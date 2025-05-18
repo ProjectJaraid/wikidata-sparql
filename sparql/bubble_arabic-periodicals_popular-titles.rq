@@ -1,0 +1,28 @@
+#title: الصحافة العربية حتى سنة ١٩٣٠
+#defaultView:BubbleChart
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697> # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  ?title (COUNT (DISTINCT ?periodical) as ?count)
+WITH {
+  SELECT DISTINCT
+    ?periodical
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset;
+              wdt:P407/wdt:P279* wd:Q13955.              # limit by publication language (Arabic = Q13955)
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+  }
+  LIMIT 4000
+} as %periodicals
+WHERE {
+  INCLUDE %periodicals # load subgraph
+  ?periodical wdt:P1476 ?title. # retrieve titles
+  FILTER(LANG(?title) = 'ar'). # limit titles to Arabic strings
+}
+GROUP BY ?title
+HAVING(?count > 6) # set a threshold
+ORDER BY DESC(?count)
+LIMIT 50
+
+#short URL to query results: https://w.wiki/9o3x

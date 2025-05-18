@@ -1,0 +1,37 @@
+#title: الصحافة العربية حتى سنة ١٩٣٠
+#defaultView:Graph
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697> # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+    ?periodical ?periodicalLabel ?periodicalDesc
+    ?pubPlace ?pubPlaceLabel
+    ?editor ?editorLabel
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset;
+              wdt:P407/wdt:P279* wd:Q13955.              # limit by publication language (Arabic = Q13955)
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+  }
+  ORDER BY ?dateOnset
+  LIMIT 4000
+  } as %periodicals
+WHERE {
+  INCLUDE %periodicals
+    # get additional properties
+    OPTIONAL {?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace.} # place of publication
+    OPTIONAL {?periodical wdt:P98 ?editor.}.   # editor
+    # get labels and descriptions
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "ar,[AUTO_LANGUAGE]".
+        ?periodical rdfs:label ?periodicalLabel;
+            schema:description ?periodicalDesc.
+        ?pubPlace rdfs:label ?pubPlaceLabel.
+        ?editor rdfs:label ?editorLabel.
+    }
+}
+ORDER BY ?dateOnset
+LIMIT 5000 # while the query does not time out, rendering might never complete with large limits
+# short URL to query results: https://tinyurl.com/jaraid-graph

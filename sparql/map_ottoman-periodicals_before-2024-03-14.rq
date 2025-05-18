@@ -1,0 +1,43 @@
+#title: The Ottoman and Turkish Periodical Press until 1930
+#defaultView:Map{"hide":["?coords"], "markercluster": "true"}
+SELECT DISTINCT
+  ?coords ?pubPlaceLabel
+  (URI(str(?periodical)) as ?item) # link to the wikidata item
+  (CONCAT(?periodicalLabel, ": ", ?periodicalDesc) as ?itemLabel) # construct a label for the item
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE {
+   ?periodical wdt:P31/wdt:P279* wd:Q1002697; # get all periodicals
+        wdt:P407/wdt:P279* wd:Q256 . # language: Turkish, of which Ottoman is a subclass
+    # limit to titles published before a specific date
+    ?periodical (wdt:P571 | wdt:P580) ?dateOnset.
+    FILTER( YEAR(?dateOnset) < 1930).
+    }
+  LIMIT 4000
+  } as %periodicals
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE{
+    INCLUDE %periodicals
+    ?periodical schema:dateModified ?modified.
+    FILTER(?modified <= "2024-03-16"^^xsd:dateTime).
+    }
+  } as %period
+WHERE {
+    INCLUDE %period
+    # retrieve more properties: locations
+    OPTIONAL{
+        ?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace.
+        ?pubPlace wdt:P625 ?coords.}
+    # get labels and descriptions
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "tr, ar, en".
+        ?periodical rdfs:label ?periodicalLabel;
+            schema:description ?periodicalDesc.
+        ?pubPlace rdfs:label ?pubPlaceLabel.
+    }
+}
+ORDER BY ?dateOnset
+LIMIT 5000

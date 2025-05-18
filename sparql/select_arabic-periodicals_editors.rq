@@ -1,0 +1,40 @@
+#title: الصحافة العربية حتى سنة ١٩٣٠
+#defaultView:Graph
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697> # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+    ?editor ?editorLabel ?imgEditor
+    ("FFA500" AS ?rgb)
+    ?periodical ?periodicalLabel ?imgPeriodical
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset;
+              wdt:P407/wdt:P279* wd:Q13955.              # limit by publication language (Arabic = Q13955)
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+  }
+  LIMIT 4000
+} as %periodicals
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset ?editor
+  WHERE {
+    INCLUDE %periodicals
+    ?periodical (wdt:P98 | wdt:P112) ?editor.            # editors
+    OPTIONAL { ?editor wdt:P18 ?imgEditor.}              # image of editor
+  }
+} as %editors
+WHERE {
+  INCLUDE %editors
+    #OPTIONAL { ?periodical wdt:P18 ?imgPeriodical.}       # image of front page
+    # get labels and descriptions
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "ar,[AUTO_LANGUAGE]".
+        ?periodical rdfs:label ?periodicalLabel.
+        ?editor rdfs:label ?editorLabel.
+    }
+}
+ORDER BY ?dateOnset
+LIMIT 4000 # while the query does not time out, rendering might never complete with large limits

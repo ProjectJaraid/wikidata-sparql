@@ -1,0 +1,37 @@
+#title: الصحافة العربية حتى سنة ١٩٣٠
+#defaultView:Map{"hide":["?coords", "?type", "?periodical"], "layer": "?typeLabel"}
+SELECT DISTINCT
+  ?coords ?pubPlaceLabel ?typeLabel
+  ?periodical
+  (URI(str(?periodical)) as ?item) # link to the wikidata item
+  (CONCAT(?periodicalLabel, ": ", ?periodicalDesc) as ?itemLabel) # construct a label for the item
+WITH {
+  SELECT DISTINCT
+    ?periodical
+  WHERE {
+   ?periodical wdt:P31/wdt:P279* wd:Q1002697; # get all periodicals
+      wdt:P407/wdt:P279* wd:Q13955.  # limit publication language to Arabic
+    # limit to titles published before a specific date
+    ?periodical (wdt:P571 | wdt:P580) ?dateOnset.
+    FILTER( YEAR(?dateOnset) < 1930).
+    }
+  ORDER BY ?dateOnset
+  LIMIT 4000
+  } as %periodicals
+WHERE {
+  INCLUDE %periodicals
+  # retrieve more properties: locations
+  ?periodical wdt:P291 ?pubPlace;
+    wdt:P31 ?type.
+  ?pubPlace wdt:P625 ?coords.
+  # get labels and descriptions
+  SERVICE wikibase:label {
+      bd:serviceParam wikibase:language "ar, [AUTO_LANGUAGE]".
+      ?periodical rdfs:label ?periodicalLabel;
+          schema:description ?periodicalDesc.
+      ?pubPlace rdfs:label ?pubPlaceLabel.
+      ?type rdfs:label ?typeLabel.
+  }
+}
+GROUP BY ?coords ?pubPlaceLabel ?typeLabel ?periodical ?periodicalLabel ?periodicalDesc
+LIMIT 8000

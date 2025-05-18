@@ -1,0 +1,44 @@
+#title:Arabic periodicals with known holdings
+#defaultView:Table
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  (URI(str(?periodical)) as ?item) # link to the wikidata item
+  (CONCAT(?periodicalLabel, ": ", ?periodicalDesc) as ?itemLabel) # construct a label for the item
+  ?dateOnset
+  ?collection ?collectionLabel
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset.
+    ?periodical wdt:P407/wdt:P279* wd:Q13955.            # limit by publication language (Arabic = Q13955)
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+  }
+  ORDER BY ?dateOnset
+  LIMIT 4000
+} as %periodicals
+WITH {
+  SELECT DISTINCT
+   ?periodical ?dateOnset
+   ?catalogueId ?collection
+  WHERE {
+    INCLUDE %periodicals
+    # holdings: P1042=ZDB, P243=OCLC, P1844=Hathi, P6721=KOBV
+    {?periodical (wdt:P1042 | wdt:P243 | wdt:P1844 | wdt:P6721) ?catalogueId.}
+    UNION
+    {?periodical wdt:P195 ?collection}
+  }
+} as %holdings
+WHERE {
+  INCLUDE %holdings
+  SERVICE wikibase:label {
+      bd:serviceParam wikibase:language "ar,[AUTO_LANGUAGE]".
+      ?periodical rdfs:label ?periodicalLabel;
+          schema:description ?periodicalDesc.
+      ?collection rdfs:label ?collectionLabel.
+  }
+}
+ORDER BY ?dateOnset
+LIMIT 10000

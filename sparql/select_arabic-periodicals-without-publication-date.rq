@@ -1,0 +1,30 @@
+#defaultView:Table
+ PREFIX medium: <http://www.wikidata.org/entity/Q1002697> # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  ?periodical ?periodicalLabel ?periodicalDesc
+  (YEAR(?dateOnset) as ?year)
+WITH {
+  SELECT DISTINCT
+    ?periodical
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # set through PREFIX medium
+       wdt:P407/wdt:P279* wd:Q13955.           # limit by publication language (Arabic = Q13955)
+    #FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+  }
+  LIMIT 20000
+} as %periodicals
+WHERE {
+  INCLUDE %periodicals
+  OPTIONAL {?periodical (wdt:P571 | wdt:P580) ?dateOnset.}
+  FILTER (!bound(?dateOnset)) # remove periodicals with a publication date
+  #MINUS {?periodical wdt:291 ?pubPlace.} 
+  # get labels and descriptions
+  SERVICE wikibase:label {
+      bd:serviceParam wikibase:language "ar, [AUTO_LANGUAGE]".
+      ?periodical rdfs:label ?periodicalLabel;
+          schema:description ?periodicalDesc.
+    }
+}
+ORDER BY ?periodicalLabel
+LIMIT 2000

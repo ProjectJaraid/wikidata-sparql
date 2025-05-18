@@ -1,0 +1,41 @@
+#title: The global periodical press until 1930 (items present before 18 March 2024)
+#defaultView:Map{"hide":["?coords"], "markercluster":"true"}
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type:
+SELECT DISTINCT
+  (URI(str(?periodical)) as ?item)                                # link to  wikidata item
+  (CONCAT(?periodicalLabel, ": ", ?periodicalDesc) as ?itemLabel) # construct label for item
+  ?coords
+# all periodicals before the date of interest
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime }. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+               (wdt:P571 | wdt:P580) ?dateOnset.
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+  }
+  LIMIT 60000
+} as %periodicals
+# indirect filter for date of creation
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE{
+    INCLUDE %periodicals
+    BIND(REPLACE(STR(?periodical), "^.*Q(\\d+)$", "$1", "i") as ?qid).  # get QID and strip Q
+    FILTER(xsd:integer(?qid) < "124964154"^^xsd:integer).               # filter for numbers smaller than 124964154, created on 2024-03-18
+    }
+  } as %period
+WHERE {
+    INCLUDE %period
+    # retrieve more properties: locations
+    OPTIONAL{ ?periodical wdt:P291 ?pubPlace.
+             ?pubPlace wdt:P625 ?coords. }
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "mul,[AUTO_LANGUAGE]".
+        ?periodical rdfs:label ?periodicalLabel;
+            schema:description ?periodicalDesc.
+    }
+}
+ORDER BY ?dateOnset

@@ -1,0 +1,7 @@
+# get title in publication language
+  OPTIONAL{?periodical wdt:P1476 ?title.
+    ?periodical wdt:P407/wdt:P218 ?pubLang.} # Only works with ISO 639-1 code (P218)
+  BIND(                                      # Bind either the original title or the lable to ?titleStr
+    IF(langMatches(lang(?title), ?pubLang),  # langMatch can't get around the ISO 639-1 limitations 
+       str(?title),
+       ?periodicalLabel) AS ?titleStr).

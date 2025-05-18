@@ -1,0 +1,28 @@
+#title: Global periodicals: most prevalent languages
+#defaultView:BubbleChart
+SELECT DISTINCT
+  ?lang ?langLabel (COUNT (DISTINCT ?periodical) as ?count)
+WITH {
+  SELECT DISTINCT
+    ?periodical
+  WHERE {
+    ?periodical wdt:P31/wdt:P279* wd:Q1002697;
+      (wdt:P571 | wdt:P580) ?dateOnset.
+    FILTER( YEAR(?dateOnset) < 1930).
+    }
+  LIMIT 40000
+  } as %periodicals
+WHERE {
+  INCLUDE %periodicals # load subgraph
+  ?periodical wdt:P407 ?lang.
+  ?lang wdt:P31/wdt:P279* wd:Q34770.
+  SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "[AUTO_LANGUAGE]".
+        ?lang rdfs:label ?langLabel.
+    }
+}
+GROUP BY ?lang ?langLabel
+#HAVING(?count > 50) # set a threshold
+ORDER BY DESC(?count)
+LIMIT 50
+# https://w.wiki/ArRb

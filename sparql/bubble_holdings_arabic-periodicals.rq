@@ -1,0 +1,36 @@
+#title:Holdings of Arabic periodicals
+#defaultView:BubbleChart
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697> # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  ?collection ?collectionLabel ?periodicalCount
+WITH {
+  SELECT DISTINCT
+    ?periodical
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset;
+              wdt:P407/wdt:P279* wd:Q13955.              # limit by publication language (Arabic = Q13955)
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+  }
+  LIMIT 4000
+} as %periodicals
+WITH {
+  SELECT DISTINCT 
+   ?collection (COUNT (DISTINCT ?periodical) as ?periodicalCount)
+  WHERE {
+    INCLUDE %periodicals
+    ?periodical wdt:P195 ?collection
+  }
+  GROUP BY ?collection
+  HAVING(?periodicalCount > 1) # set a threshold
+} as %holdings
+WHERE {
+  INCLUDE %holdings
+  SERVICE wikibase:label {
+      bd:serviceParam wikibase:language "mul,[AUTO_LANGUAGE]".
+      ?collection rdfs:label ?collectionLabel.
+  }
+}
+ORDER BY DESC(?periodicalCount)
+LIMIT 200

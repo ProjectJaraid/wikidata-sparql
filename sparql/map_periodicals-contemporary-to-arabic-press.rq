@@ -1,0 +1,49 @@
+#title: Periodicals in places with Arabic publications
+#defaultView:Map{"hide":["?coords"], "markercluster":"true"}
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  ?coords ?pubPlaceLabel
+  (URI(str(?periodical)) as ?item) # link to the wikidata item
+  (CONCAT(?periodicalLabel, ": ", ?periodicalDesc) as ?itemLabel) # construct a label for the item
+  (?langLabel as ?layer)
+WITH {
+  SELECT DISTINCT
+    ?pubPlace ?dateOfInterest
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset;
+              wdt:P407/wdt:P279* wd:Q13955.              # limit by publication language (Arabic = Q13955)
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+    ?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace.
+  }
+  LIMIT 500
+} as %locations
+WITH {
+  SELECT DISTINCT
+    ?periodical ?pubPlace
+  WHERE {
+    INCLUDE %locations
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset;
+              (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace.
+    FILTER(?dateOnset > "1850-01-01"^^xsd:dateTime).
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+  }
+  LIMIT 20000
+} as %periodicals
+WHERE {
+  INCLUDE %periodicals
+  ?pubPlace wdt:P625 ?coords.
+  OPTIONAL { ?periodical wdt:P407 ?lang. }
+  # get labels and descriptions
+  SERVICE wikibase:label {
+      bd:serviceParam wikibase:language "mul,ar, [AUTO_LANGUAGE]".
+      ?periodical rdfs:label ?periodicalLabel;
+          schema:description ?periodicalDesc.
+      ?pubPlace rdfs:label ?pubPlaceLabel.
+      ?lang rdfs:label ?langLabel.
+    }
+}
+ORDER BY ?dateOnset ?periodicalLabel
+#LIMIT 5000

@@ -1,0 +1,48 @@
+#title:Holdings of Arabic periodicals
+#defaultView:Map{"hide":["?coords"], "markercluster":"true"}
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  (URI(str(?periodical)) as ?item) # link to the wikidata item
+  (CONCAT(?periodicalLabel, ": ", ?periodicalDesc) as ?itemLabel) # construct a label for the item
+  ?coords
+  ?collection ?collectionLabel
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset.
+    ?periodical wdt:P407/wdt:P279* wd:Q13955.            # limit by publication language (Arabic = Q13955)
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+  }
+  ORDER BY ?dateOnset
+  LIMIT 4000
+} as %periodicals
+WITH {
+  SELECT DISTINCT
+   ?periodical ?dateOnset ?collection
+  WHERE {
+    INCLUDE %periodicals
+    ?periodical wdt:P195 ?collection .
+  }
+  #LIMIT 10000
+} as %holdings
+WHERE {
+  INCLUDE %holdings
+  OPTIONAL{
+    {?collection wdt:P625 ?coords .}            # coordinates of the collection
+    UNION
+    {?collection p:P159 [ps:625 ?coords].}      # or cords of the HQ location
+    UNION
+    {?collection wdt:P276 [wdt:P625 ?coords]. } # or cords of the location
+    }
+  SERVICE wikibase:label {
+      bd:serviceParam wikibase:language "[AUTO_LANGUAGE], ar".
+      ?periodical rdfs:label ?periodicalLabel;
+          schema:description ?periodicalDesc.
+      ?collection rdfs:label ?collectionLabel.
+  }
+}
+ORDER BY ?dateOnset
+LIMIT 10000

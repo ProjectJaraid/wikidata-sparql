@@ -1,0 +1,56 @@
+#title: الصحافة العربية في فلسطين حتى سنة ١٩٣٠
+#defaultView:Map{"hide":["?coords"]}
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  ?coords
+  (URI( CONCAT ("https://reasonator.toolforge.org/?&q=",
+                STRAFTER(STR(?periodical), STR(wd:) ))) as ?item) # link to item on Reasonator
+  (CONCAT(?titleStr, ": ", ?periodicalDesc) as ?itemLabel)        # construct a label for the item
+# all periodicals before the date of interest
+WITH {
+  SELECT DISTINCT
+    ?periodical ?pubPlace ?dateOnset
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # set through PREFIX medium
+              (wdt:P571 | wdt:P580) ?dateOnset.
+    #?periodical wdt:P407/wdt:P279* wd:Q13955.           # limit by publication language (Arabic = Q13955)
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+    ?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace. # locations (remove if not interested in mapping)
+  }
+  ORDER BY ?dateOnset
+  LIMIT 40000
+} as %periodicals
+# items within a bounding box: Palestine
+WITH {
+  SELECT DISTINCT
+    ?coords ?periodical ?dateOnset
+  WHERE {
+    INCLUDE %periodicals # input data from another subquery
+    # query for values within a bounding box
+    SERVICE wikibase:box {
+      ?pubPlace wdt:P625 ?coords. # get coordinates of locations
+      # limit bounding box by Western and Eastern corners: Palestine
+        bd:serviceParam wikibase:cornerSouthWest "Point(34.11074 31.2163)"^^geo:wktLiteral. # al-Shaykh Zuwayd
+        bd:serviceParam wikibase:cornerNorthEast "Point(35.97328 33.34235)"^^geo:wktLiteral. # North East of Majdal Shams
+     }
+  }
+} as %area
+WHERE {
+  INCLUDE %area
+  # languages
+  # get labels and descriptions
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "ar, [AUTO_LANGUAGE]".
+    ?periodical rdfs:label ?periodicalLabel;
+        schema:description ?periodicalDesc.
+  }
+  # get title in publication language
+  OPTIONAL{?periodical wdt:P1476 ?title.
+    ?periodical wdt:P407/wdt:P218 ?pubLang.} # Only works with ISO 639-1 code (P218)
+  BIND(                                      # Bind either the original title or the lable to ?titleStr
+    IF(langMatches(lang(?title), ?pubLang),  # langMatch can't get around the ISO 639-1 limitations
+       str(?title),
+       ?periodicalLabel) AS ?titleStr).
+}
+ORDER BY ?dateOnset ?titleStr

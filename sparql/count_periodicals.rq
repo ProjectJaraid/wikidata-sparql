@@ -1,0 +1,25 @@
+#title: The global periodical press until 1930 (items present on selected date)
+SELECT
+  (COUNT (DISTINCT ?periodical) as ?count)
+WITH {
+  SELECT DISTINCT
+    ?periodical
+  WHERE {
+    ?periodical wdt:P31/wdt:P279* wd:Q1002697;
+               (wdt:P571 | wdt:P580) ?dateOnset.
+    FILTER( YEAR(?dateOnset) < 1930).
+    }
+  LIMIT 50000
+  } as %periodicals
+WITH {
+  SELECT DISTINCT
+    ?periodical
+  WHERE{
+    INCLUDE %periodicals
+    ?periodical schema:dateModified ?modified.
+    FILTER(?modified <= "2024-08-21"^^xsd:dateTime).
+    }
+  } as %period
+WHERE {
+    INCLUDE %period
+}

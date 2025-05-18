@@ -1,0 +1,58 @@
+#title: الصحافة العربية حتى سنة ١٩٣٠
+#defaultView:Map{"hide":["?coords"]}
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  ?coords
+  (URI( CONCAT ("https://reasonator.toolforge.org/?&q=",
+    strAfter(str(?periodical), str(wd:) ))) AS ?item)     # link to item on Reasonator
+  (CONCAT(?periodicalLabel, ": ", ?periodicalDesc) AS ?itemLabel) # construct a label for the item
+# all periodicals before the date of interest
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset.
+    ?periodical wdt:P407/wdt:P279* wd:Q13955.            # limit by publication language (Arabic = Q13955)
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+  }
+  ORDER BY ?dateOnset
+  LIMIT 4000
+} as %periodicals
+# items with holdings
+WITH {
+  SELECT DISTINCT
+   ?periodical ?pubPlace ?dateOnset
+   ?catalogueId ?collection
+  WHERE {
+    INCLUDE %periodicals
+    # holdings: P1042=ZDB, P243=OCLC, P1844=Hathi, P6721=KOBV,
+    #      P12239=shamela, P724=internet archive, P8091=ark
+    {?periodical (wdt:P1042 | wdt:P243 | wdt:P1844 | wdt:P6721 | wdt:P12239 | wdt:P724 | wdt:P8091) ?catalogueId.}
+    UNION
+    {?periodical wdt:P195 ?collection}
+  }
+} as %holdings
+WHERE {
+    INCLUDE %holdings
+    # retrieve more properties: locations
+    OPTIONAL{
+      ?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace.
+      ?pubPlace wdt:P625 ?coords.}
+    # get labels and descriptions
+    SERVICE wikibase:label {
+      bd:serviceParam wikibase:language "ar, [AUTO_LANGUAGE]".
+      ?periodical rdfs:label ?periodicalLabel;
+          schema:description ?periodicalDesc.
+    }
+    # get title in publication language
+    OPTIONAL{?periodical wdt:P1476 ?title.
+             ?periodical wdt:P407/wdt:P218 ?pubLang.} # Only works with ISO 639-1 code (P218)
+    BIND(                                      # Bind either the original title or the lable to ?titleStr
+      IF(langMatches(lang(?title), ?pubLang),  # langMatch can't get around the ISO 639-1 limitations
+         str(?title),
+         ?periodicalLabel) AS ?titleStr).
+}
+ORDER BY ?dateOnset
+LIMIT 5000

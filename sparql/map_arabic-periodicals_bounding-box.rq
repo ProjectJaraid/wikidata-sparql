@@ -1,0 +1,48 @@
+#title: الصحافة العربية في فلسطين حتى سنة ١٩٣٠
+#title:
+#defaultView:Map{"hide":["?coords", "?pubPlace", "lang"], "markercluster": "true"}
+SELECT DISTINCT
+  ?coords
+  (URI( CONCAT ("https://reasonator.toolforge.org/?&q=", STRAFTER(STR(?periodical), STR(wd:) ))) as ?item) # link to item on Reasonator
+  # (URI(str(?periodical)) as ?item) # link to the wikidata item
+  (CONCAT(?periodicalLabel, ": ", ?periodicalDesc) as ?itemLabel) # construct a label for the item
+  #?lang
+WITH {
+  SELECT DISTINCT
+    ?periodical ?pubPlace ?dateOnset ?lang
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}.
+    ?periodical wdt:P31/wdt:P279* wd:Q1002697;
+              (wdt:P571 | wdt:P580) ?dateOnset;
+              wdt:P407/wdt:P279* ?lang.
+    VALUES ?lang {wd:Q13955} # limit by publication language (Arabic = Q13955)
+    FILTER(?dateOnset < ?dateOfInterest).                   # published before a specific date
+    ?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace. # locations
+  }
+  LIMIT 40000
+} as %periodicals
+WITH {
+  SELECT DISTINCT
+    ?coords ?periodical ?pubPlace ?dateOnset ?lang
+  WHERE {
+    INCLUDE %periodicals
+    # query for values within a bounding box
+    SERVICE wikibase:box {
+      ?pubPlace wdt:P625 ?coords. # get coordinates of locations
+      # limit bounding box by Western and Eastern corners: Palestine
+        bd:serviceParam wikibase:cornerSouthWest "Point(34.11074 31.2163)"^^geo:wktLiteral.
+        bd:serviceParam wikibase:cornerNorthEast "Point(35.97328 33.34235)"^^geo:wktLiteral.
+     }
+  }
+} as %area
+WHERE {
+    INCLUDE %area
+    # get labels and descriptions
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "ar, [AUTO_LANGUAGE]".
+        ?periodical rdfs:label ?periodicalLabel;
+            schema:description ?periodicalDesc.
+    }
+}
+ORDER BY ?dateOnset
+LIMIT 300

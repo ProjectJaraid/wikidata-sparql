@@ -1,0 +1,71 @@
+#title: Periodicals published within a certain area at a given point in time
+#defaultView:Map{"hide":["?coords"], "markercluster":"true"}
+PREFIX center: <http://www.wikidata.org/entity/Q1218>       # set a center: Jerusalem
+PREFIX medium: <http://www.wikidata.org/entity/Q11032>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  ?coords
+  (URI( CONCAT ("https://reasonator.toolforge.org/?&q=",
+                STRAFTER(STR(?periodical), STR(wd:) ))) as ?item) # link to item on Reasonator
+  (CONCAT(?titleStr, ": ", ?periodicalDesc) as ?itemLabel)        # construct a label for the item
+# all places in a circle around a centre
+WITH {
+  SELECT DISTINCT
+    ?pubPlace ?coords
+  WHERE {
+    #hint:Query hint:optimizer "None" .
+    center: wdt:P625 ?center.
+    SERVICE wikibase:around {
+      ?pubPlace wdt:P625 ?coords.
+      # limit to radius around a center in km
+      bd:serviceParam wikibase:center ?center.
+      bd:serviceParam wikibase:radius "150".
+     }
+  }
+  LIMIT 40000 # this might be sufficient for 150 km
+} AS %around
+# all periodicals published at a date of interest
+WITH {
+  SELECT DISTINCT
+    ?periodical ?coords ?dateOnset
+  WHERE {
+    INCLUDE %around
+    VALUES ?dateOfInterest {"1910-06-01"^^xsd:dateTime}. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # publication type
+              (wdt:P571 | wdt:P580) ?dateOnset.
+    FILTER(?dateOnset < ?dateOfInterest).                # limit to titles published before a specific date
+    OPTIONAL{ ?periodical (wdt:P582 | wdt:P576) ?dateTerminus.} # exclude discontinued papers
+    FILTER(!bound(?dateTerminus) || ?dateTerminus > ?dateOfInterest).
+    ?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace. # locations (remove if not interested in mapping)
+  }
+  ORDER BY ?dateOnset
+  LIMIT 5000
+} AS %periodicals
+# items with holdings
+WITH {
+  SELECT DISTINCT
+   ?coords ?periodical ?dateOnset
+  WHERE {
+    INCLUDE %periodicals # input data from another subquery
+    # holdings: P1042=ZDB, P243=OCLC, P1844=Hathi, P6721=KOBV
+    {?periodical (wdt:P1042 | wdt:P243 | wdt:P1844 | wdt:P6721) ?catalogueId.}
+    UNION
+    {?periodical wdt:P195 ?collection}
+  }
+} as %holdings
+WHERE {
+  INCLUDE %holdings
+  # get labels and descriptions
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "ar, [AUTO_LANGUAGE]".
+    ?periodical rdfs:label ?periodicalLabel;
+        schema:description ?periodicalDesc.
+  }
+  # get title in publication language
+  OPTIONAL{?periodical wdt:P1476 ?title.
+    ?periodical wdt:P407/wdt:P218 ?pubLang.} # Only works with ISO 639-1 code (P218)
+  BIND(                                      # Bind either the original title or the lable to ?titleStr
+    IF(langMatches(lang(?title), ?pubLang),  # langMatch can't get around the ISO 639-1 limitations
+       str(?title),
+       ?periodicalLabel) AS ?titleStr).
+}
+ORDER BY ?dateOnset ?titleStr

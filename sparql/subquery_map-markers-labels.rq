@@ -1,0 +1,8 @@
+#title: some title
+#defaultView:Map{"hide":["?coords"]}
+SELECT DISTINCT
+  ?coords
+  #(URI(str(?periodical)) as ?item)                         # link to Wikidata item
+  (URI( CONCAT ("https://reasonator.toolforge.org/?&q=",
+    strAfter(str(?periodical), str(wd:) ))) AS ?item)     # link to item on Reasonator
+  (CONCAT(?titleStr, ": ", ?periodicalDesc) AS ?itemLabel) # construct a label for the item

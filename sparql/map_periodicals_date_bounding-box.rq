@@ -1,0 +1,48 @@
+#title: Periodicals published within a certain area at a given point in time
+#defaultView:Map{"hide":["?coords", "?pubPlace"]}
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  ?coords
+  (URI( CONCAT ("https://reasonator.toolforge.org/?&q=", STRAFTER(STR(?periodical), STR(wd:) ))) as ?item) # link to item on Reasonator
+  # (URI(str(?periodical)) as ?item) # link to the wikidata item
+  (CONCAT(?periodicalLabel, ": ", ?periodicalDesc) as ?itemLabel) # construct a label for the item
+# all periodicals published at a date of interest
+WITH {
+  SELECT DISTINCT
+    ?periodical ?pubPlace ?dateOnset
+  WHERE {
+    VALUES ?dateOfInterest {"1910-06-01"^^xsd:dateTime}. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # periodicals
+              (wdt:P571 | wdt:P580) ?dateOnset.
+    FILTER(?dateOnset < ?dateOfInterest).                # limit to titles published before a specific date
+    OPTIONAL{ ?periodical (wdt:P582 | wdt:P576) ?dateTerminus.} # exclude discontinued papers
+    FILTER(!bound(?dateTerminus) || ?dateTerminus > ?dateOfInterest).
+    ?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace. # retrieve more properties: locations
+  }
+  ORDER BY ?dateOnset
+  LIMIT 40000
+} AS %periodicals
+# items within a bounding box
+WITH {
+  SELECT DISTINCT
+    ?coords ?periodical ?dateOnset
+  WHERE {
+    INCLUDE %periodicals
+    SERVICE wikibase:box {
+      ?pubPlace wdt:P625 ?coords. # get coordinates
+      # limit Western and Eastern corners: Levant
+        bd:serviceParam wikibase:cornerSouthWest "Point(32.11074 31.2163)"^^geo:wktLiteral.  # SW
+        bd:serviceParam wikibase:cornerNorthEast "Point(37.97328 37.34235)"^^geo:wktLiteral. # NE
+     }
+  }
+} as %area
+WHERE {
+    INCLUDE %area
+    # get labels and descriptions
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "ar, [AUTO_LANGUAGE]".
+        ?periodical rdfs:label ?periodicalLabel;
+            schema:description ?periodicalDesc.
+    }
+}
+ORDER BY ?dateOnset ?periodicalLabel

@@ -1,0 +1,9 @@
+SELECT DISTINCT 
+  ?item ?title ?translit
+WHERE {
+  ?item wdt:P31/wdt:P279* wd:Q3331189; # publications
+        #wdt:P407 wd:Q13955;            # Arabic
+        p:P1476 [ps:P1476 ?title;      # title
+                 pq:P2440 ?translit].  # transliteration or translation
+}
+ORDER BY ?title ?item

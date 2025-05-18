@@ -1,0 +1,32 @@
+#title: The global periodical press until 1930
+#defaultView:Map{"hide":["?coords"], "markercluster":"true"}
+SELECT DISTINCT
+  ?coords
+  (URI(str(?periodical)) as ?item) # link to the wikidata item
+  (CONCAT(?periodicalLabel, ": ", ?periodicalDesc) as ?itemLabel) # construct a label for the item
+# all periodicals before the date of interest
+WITH {
+  SELECT DISTINCT
+    ?periodical ?pubPlace ?dateOnset
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}.    # set a date of interest
+    ?periodical wdt:P31/wdt:P279* wd:Q1002697;              # periodicals (wd:Q1002697), newspapers (wd:Q11032)
+              (wdt:P571 | wdt:P580) ?dateOnset.
+    FILTER(?dateOnset <= ?dateOfInterest).                  # published before a specific date
+    ?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace. # locations (remove if not interested in mapping)
+  }
+  LIMIT 60000
+} as %periodicals
+WHERE {
+    INCLUDE %periodicals
+    ?pubPlace wdt:P625 ?coords.
+    # get labels and descriptions
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "[AUTO_LANGUAGE]".
+        ?periodical rdfs:label ?periodicalLabel;
+            schema:description ?periodicalDesc.
+    }
+}
+#LIMIT 200
+ORDER BY ?dateOnset
+#short URL to query results: https://query-chest.toolforge.org/redirect/lPQ6bs93UuOQqEqC2sMA24y6ykqukaqaSkkeAyay2sI

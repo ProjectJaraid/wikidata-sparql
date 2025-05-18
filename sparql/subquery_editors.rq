@@ -1,0 +1,10 @@
+# periodical editors
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset ?editor
+  WHERE {
+    INCLUDE %input
+    ?periodical (wdt:P98 | wdt:P112) ?editor.            # editors
+    OPTIONAL { ?editor wdt:P18 ?imgEditor.}              # image of editor
+  }
+} as %editors

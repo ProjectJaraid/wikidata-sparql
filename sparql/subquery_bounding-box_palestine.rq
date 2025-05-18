@@ -1,0 +1,15 @@
+# items within a bounding box: Palestine
+WITH {
+  SELECT DISTINCT
+    ?coords ?periodical ?pubPlace ?dateOnset
+  WHERE {
+    INCLUDE %input # input data from another subquery
+    # query for values within a bounding box
+    SERVICE wikibase:box {
+      ?pubPlace wdt:P625 ?coords. # get coordinates of locations
+      # limit bounding box by Western and Eastern corners: Palestine
+        bd:serviceParam wikibase:cornerSouthWest "Point(34.11074 31.2163)"^^geo:wktLiteral. # al-Shaykh Zuwayd
+        bd:serviceParam wikibase:cornerNorthEast "Point(35.97328 33.34235)"^^geo:wktLiteral. # North East of Majdal Shams
+     }
+  }
+} as %area

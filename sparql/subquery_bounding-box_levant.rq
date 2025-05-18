@@ -1,0 +1,17 @@
+# bounding box works much better with literal point values. Looking up coordinates will result in timeouts
+# items within a bounding box: Eastern Mediterranean
+WITH {
+  SELECT DISTINCT
+    ?coords ?periodical ?pubPlace ?dateOnset
+  WHERE {
+    INCLUDE %input # input data from another subquery
+    #VALUES ?west {"Point(35.513055555 33.886944444)"^^geo:wktLiteral} # use a variable for the literal value
+    #wd:Q41183 wdt:P625 ?east.                                         # look up coordinates: results in timeout
+    SERVICE wikibase:box {
+      ?pubPlace wdt:P625 ?coords. # get coordinates of locations
+        # limit Western and Eastern corners: Levant
+        bd:serviceParam wikibase:cornerWest "Point(32.11074 31.2163)"^^geo:wktLiteral.  # West
+        bd:serviceParam wikibase:cornerEast "Point(37.97328 37.34235)"^^geo:wktLiteral. # East
+     }
+  }
+} as %area

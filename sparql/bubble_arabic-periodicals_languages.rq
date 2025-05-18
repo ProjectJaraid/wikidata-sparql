@@ -1,0 +1,39 @@
+#title: The global Arabic periodical press until 1930 (items present on 21 August 2024): most prevalent languages and dialects beyond Arabic
+#defaultView:BubbleChart
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697> # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  ?lang ?langLabel (COUNT (DISTINCT ?periodical) as ?count)
+WITH {
+  SELECT DISTINCT
+    ?periodical
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset;
+              wdt:P407/wdt:P279* wd:Q13955.              # limit by publication language (Arabic = Q13955)
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+  }
+  LIMIT 4000
+} as %periodicals
+WITH {
+  SELECT DISTINCT
+    ?periodical
+  WHERE{
+    INCLUDE %periodicals
+    ?periodical schema:dateModified ?modified.
+    FILTER(?modified <= "2024-08-21"^^xsd:dateTime).
+    }
+  } as %period
+WHERE {
+  INCLUDE %period # load subgraph
+  ?periodical wdt:P407 ?lang.
+  ?lang wdt:P31/wdt:P279* wd:Q34770.
+  SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "[AUTO_LANGUAGE]".
+        ?lang rdfs:label ?langLabel.
+    }
+}
+GROUP BY ?lang ?langLabel
+HAVING(?count < 2000) # set a threshold to exclude Arabic
+ORDER BY DESC(?count)
+LIMIT 50

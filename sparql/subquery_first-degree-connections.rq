@@ -1,0 +1,13 @@
+# get first-degree connections
+WITH {
+  SELECT DISTINCT
+    ?subject ?object
+  WHERE {
+    INCLUDE %periodicals
+    BIND(?periodical AS ?subject).
+    ?subject ?wdt ?object.
+      ?edge a wikibase:Property;
+        wikibase:propertyType wikibase:WikibaseItem;
+        wikibase:directClaim ?wdt.
+  }
+} AS %items
