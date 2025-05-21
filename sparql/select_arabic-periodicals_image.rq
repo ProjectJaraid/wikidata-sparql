@@ -2,19 +2,21 @@
 #defaultView:Graph
 PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
 SELECT DISTINCT
+  (?periodical AS ?item) (CONCAT(?periodicalLabel, ": ", ?periodicalDesc) as ?itemLabel) ?imgPeriodical
   ?pubPlace ?pubPlaceLabel
-  ("FFA500" AS ?rgb)
-  (?periodical AS ?item) (CONCAT(?periodicalLabel, ": ", ?periodicalDesc) as ?itemLabel)
-  ?imgPeriodical
+  ?lang ?langLabel ("FFA500" AS ?rgb)
 WITH {
   SELECT DISTINCT
-    ?periodical ?dateOnset
+    ?periodical ?dateOnset ?lang
   WHERE {
     # BIND(wd:Q124972743 as ?periodical).
     VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
+    VALUES ?lang {          # select publication languages
+      wd:Q13955             # Arabic
+      }.
     ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
               (wdt:P571 | wdt:P580) ?dateOnset;
-              wdt:P407/wdt:P279* wd:Q13955.              # limit by publication language (Arabic = Q13955)
+              wdt:P407/wdt:P279* ?lang.                  # limit by publication language
     FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
   }
   LIMIT 4000
@@ -29,6 +31,7 @@ WHERE {
       bd:serviceParam wikibase:language "[AUTO_LANGUAGE], mul".
       ?periodical rdfs:label ?periodicalLabel.
       ?pubPlace rdfs:label ?pubPlaceLabel.
+      ?lang rdfs:label ?langLabel.
     }
 }
 ORDER BY ?dateOnset
