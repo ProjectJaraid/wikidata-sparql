@@ -29,7 +29,8 @@ WHERE {
   # get labels and descriptions
   SERVICE wikibase:label {
       bd:serviceParam wikibase:language "[AUTO_LANGUAGE], mul".
-      ?periodical rdfs:label ?periodicalLabel.
+      ?periodical rdfs:label ?periodicalLabel;
+                  schema:description ?periodicalDesc.
       ?pubPlace rdfs:label ?pubPlaceLabel.
       ?lang rdfs:label ?langLabel.
     }
