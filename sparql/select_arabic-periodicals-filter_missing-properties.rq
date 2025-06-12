@@ -8,9 +8,13 @@ WITH {
     ?periodical
   WHERE {
     VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
-    ?periodical wdt:P31/wdt:P279* medium: ;              # set through PREFIX medium
-       wdt:P407/wdt:P279* wd:Q13955.           # limit by publication language (Arabic = Q13955)
-    #FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+    VALUES ?lang {          # select publication languages
+      wd:Q13955             # Arabic
+      }.
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset.
+    ?periodical wdt:P407/wdt:P279* ?lang.
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
   }
   LIMIT 20000
 } as %periodicals
