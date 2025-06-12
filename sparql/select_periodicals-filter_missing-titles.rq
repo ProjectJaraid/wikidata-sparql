@@ -1,0 +1,41 @@
+#title:Periodicals published before 1930: no title in the publication language
+#defaultView:Table
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697> # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  ?periodical ?periodicalLabel ?periodicalDesc
+  (YEAR(?dateOnset) as ?year)
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset.
+    #FILTER("1850-01-01"^^xsd:dateTime < ?dateOnset)
+    FILTER(?dateOnset < ?dateOfInterest)                # published before a specific date
+  }
+  LIMIT 40000
+} as %periodicals
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE {
+    INCLUDE %periodicals
+    # remove periodicals with title in publication language
+    MINUS {
+      ?periodical wdt:P1476 ?title;
+                  wdt:P407/wdt:P218 ?pubLang.
+      FILTER (langMatches(lang(?title), ?pubLang) )
+    }
+  }
+} as %missingTitles
+WHERE {
+  INCLUDE %missingTitles
+  # get labels and descriptions
+  SERVICE wikibase:label {
+      bd:serviceParam wikibase:language "mul,en,fr,es,de,ar,[AUTO_LANGUAGE]".
+      ?periodical rdfs:label ?periodicalLabel;
+          schema:description ?periodicalDesc.
+    }
+}
+ORDER BY ?year ?periodicalLabel
