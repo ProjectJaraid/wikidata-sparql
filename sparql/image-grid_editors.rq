@@ -1,0 +1,60 @@
+#title: الصحافة العربية حتى سنة ١٩٣٠
+#defaultView:ImageGrid
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697> # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+    ?editor ?editorLabel ?imgEditor 
+    (YEAR(?dateBirth) as ?yearBirth) (YEAR(?dateDeath) as ?yearDeath) ?gender
+    #("FFA500" AS ?rgb)
+    #?periodical ?periodicalLabel
+    #?dateOnset #?imgPeriodical
+# all periodicals before the date of interest
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE {
+    VALUES ?dateOfInterest {                # set a date of interest
+      "1930-01-01"^^xsd:dateTime
+      }.
+    VALUES ?lang {          # select publication languages
+      wd:Q13955             # Arabic
+#      wd:Q36730             # Ottoman Turkish
+#      wd:Q8785              # Armenian
+#      wd:Q36155             # Coptic
+#      wd:Q9129              # Greek
+#      wd:Q9168              # Farsi
+#      wd:Q36196             # Ladino
+      }.
+    ?periodical wdt:P31/wdt:P279* medium: ;              # set through PREFIX medium
+              (wdt:P571 | wdt:P580) ?dateOnset.
+    ?periodical wdt:P407/wdt:P279* ?lang.           # limit by publication language
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+  }
+  ORDER BY ?dateOnset
+  LIMIT 20000
+} as %periodicals
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset ?editor ?imgEditor
+  WHERE {
+    INCLUDE %periodicals
+    ?periodical (wdt:P98 | wdt:P112) ?editor.            # editors
+    OPTIONAL { ?editor wdt:P18 ?imgEditor.}              # image of editor
+  }
+  LIMIT 40000
+} as %editors
+WHERE {
+  INCLUDE %editors
+    #OPTIONAL { ?periodical wdt:P18 ?imgPeriodical.}       # image of front page
+    OPTIONAL { ?editor wdt:P569 ?dateBirth .}
+    OPTIONAL { ?editor wdt:P570 ?dateDeath .}
+    OPTIONAL { ?editor wdt:P21 ?gender .}
+    FILTER (bound(?gender) || bound(?dateBirth) || bound(?dateDeath)) .
+    # get labels and descriptions
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "ar,mul,en,fr,[AUTO_LANGUAGE]".
+        ?periodical rdfs:label ?periodicalLabel.
+        ?editor rdfs:label ?editorLabel.
+    }
+}
+ORDER BY ?yearBirth ?editorLabel
+#LIMIT 4000 # while the query does not time out, rendering might never complete with large limits
