@@ -1,0 +1,28 @@
+# all periodicals in pre-Nakba Palestine
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset ?pubPlace ?coords
+  WHERE {
+    VALUES ?dateOfInterest {"1948-05-15"^^xsd:dateTime}. # set a date of interest
+    VALUES ?pubPlace {
+      wd:Q985531   # Tulkaram
+      wd:Q180294   # Yaffa
+      wd:Q41843    # Biʾr al-Sabaʿ
+      wd:Q41621    # Haifa
+      wd:Q33935    # Tel Aviv
+      wd:Q5776     # Bethlehem
+      wd:Q1218     # Jerusalem
+      wd:Q126084   # Acre
+      wd:Q214178   # Nablus
+      wd:Q158119   # Ramallah
+      wd:Q47492    # Gaza
+      }.
+    ?periodical wdt:P31/wdt:P279* medium: ;              # set through PREFIX medium
+              (wdt:P571 | wdt:P580) ?dateOnset;          # onset
+              (wdt:P291|wdt:P159|wdt:P276 ) ?pubPlace.   # locations
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+    ?pubPlace wdt:P625 ?coords. # get coordinates of locations
+  }
+  ORDER BY ?dateOnset
+  LIMIT 500
+} as %palPeriodicals

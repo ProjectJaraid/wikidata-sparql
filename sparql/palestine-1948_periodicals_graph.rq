@@ -1,0 +1,57 @@
+#title: الصحافة الفلسطينية قبل النكبة
+#defaultView:Grap
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  (?periodical AS ?item) (?titleStr AS ?itemLabel) 
+  ?pubLang (YEAR(?dateOnset) AS ?year)
+  ?imgPeriodical
+  ?pubPlace ?pubPlaceLabel ?coords ("FFA500" AS ?rgb)
+# all periodicals in pre-Nakba Palestine
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset ?pubPlace ?coords
+  WHERE {
+    VALUES ?dateOfInterest {"1948-05-15"^^xsd:dateTime}. # set a date of interest
+    VALUES ?pubPlace {
+      wd:Q985531   # Tulkaram
+      wd:Q180294   # Yaffa
+      wd:Q41843    # Biʾr al-Sabaʿ
+      wd:Q41621    # Haifa
+      wd:Q33935    # Tel Aviv
+      wd:Q5776     # Bethlehem
+      wd:Q1218     # Jerusalem
+      wd:Q126084   # Acre
+      wd:Q214178   # Nablus
+      wd:Q158119   # Ramallah
+      wd:Q47492    # Gaza
+      }.
+    ?periodical wdt:P31/wdt:P279* medium: ;              # set through PREFIX medium
+              (wdt:P571 | wdt:P580) ?dateOnset;          # onset
+              (wdt:P291|wdt:P159|wdt:P276 ) ?pubPlace.   # locations
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+    ?pubPlace wdt:P625 ?coords. # get coordinates of locations
+  }
+  ORDER BY ?dateOnset
+  LIMIT 500
+} as %palPeriodicals
+WHERE {
+  INCLUDE %palPeriodicals
+  # languages
+  # get labels and descriptions
+  SERVICE wikibase:label {
+    bd:serviceParam wikibase:language "ar,he,en,fr,mul, [AUTO_LANGUAGE]".
+     ?periodical rdfs:label ?periodicalLabel;
+                  schema:description ?periodicalDesc.
+      ?pubPlace rdfs:label ?pubPlaceLabel.
+  }
+  OPTIONAL{?periodical wdt:P18 ?imgPeriodical.} # get images
+  # get title in publication language
+  OPTIONAL{?periodical wdt:P1476 ?title.
+    ?periodical wdt:P407/wdt:P218 ?pubLang.} # Only works with ISO 639-1 code (P218)
+  BIND(                                      # Bind either the original title or the lable to ?titleStr
+    IF(langMatches(lang(?title), ?pubLang),  # langMatch can't get around the ISO 639-1 limitations
+       str(?title),
+       ?periodicalLabel)
+    AS ?titleStr).
+}
+ORDER BY ?dateOnset ?titleStr
