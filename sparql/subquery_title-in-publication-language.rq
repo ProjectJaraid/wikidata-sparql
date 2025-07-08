@@ -1,4 +1,5 @@
 # get title in publication language
+# note that although one gets mostly the correct strings, they'll be returned as many times as there are titles. SELECT DISTINCT does not solve this issue.
   OPTIONAL{?periodical wdt:P1476 ?title.
     ?periodical wdt:P407/wdt:P218 ?pubLang.} # Only works with ISO 639-1 code (P218)
   BIND(                                      # Bind either the original title or the lable to ?titleStr
