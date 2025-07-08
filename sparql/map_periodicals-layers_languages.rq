@@ -44,3 +44,5 @@ WHERE {
 }
 GROUP BY ?pubPlace ?pubPlaceLabel ?coords ?langLabel
 ORDER BY ?count ?langLabel
+
+#URL to results: https://query-chest.toolforge.org/redirect/rdblWlDg4OqEQKa2yg2aSgeU8G2soiG4QaweemeeGWn
