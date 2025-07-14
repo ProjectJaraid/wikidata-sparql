@@ -34,8 +34,30 @@ WITH {
   ORDER BY ?dateOnset
   LIMIT 500
 } as %palPeriodicals
+# items with digital surrogates
+WITH {
+  SELECT DISTINCT
+   ?periodical ?dateOnset ?pubPlace ?coords
+   ?catalogueId ?url ?collection
+  WHERE {
+    INCLUDE %palPeriodicals
+    {?periodical p:P195
+                 [pq:P953 ?url;         # value of qualifier
+                  ps:P195 ?collection].}# property statement
+    UNION
+    {?periodical wdt:P953 ?url.}        # value of property
+    UNION                               # the following need resolving
+    {?periodical (wdt:P1844 |           # Hathi: these should have been resolved in the ?url above
+                  wdt:P12239 |          # shamela: convert to URL
+                  wdt:P724 |            # archive.org: convert to URL
+                  wdt:P8091 |           # ark: might be resolved in ?url above
+                  wdt:P4258 |           # Gallica
+                  wdt:P12151)           # Digita BNE
+    ?catalogueId.}
+  }
+} as %digitised
 WHERE {
-  INCLUDE %palPeriodicals
+  INCLUDE %digitised
   # languages
   # get labels and descriptions
   SERVICE wikibase:label {
@@ -56,4 +78,4 @@ WHERE {
 }
 ORDER BY ?dateOnset ?titleStr
 
-#URL: https://query-chest.toolforge.org/redirect/WSB7DBbD7oYkIU2k8KoksQkaauOu8ew8cEOs4CCyCID
+# URL: https://query-chest.toolforge.org/redirect/aDYfGc5U3MCeOaWIg0OcKoYK2MMweuiOo8KGA26yOib

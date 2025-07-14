@@ -34,8 +34,22 @@ WITH {
   ORDER BY ?dateOnset
   LIMIT 500
 } as %palPeriodicals
+# items with holdings
+WITH {
+  SELECT DISTINCT
+   ?coords ?periodical ?pubPlace ?dateOnset
+   ?catalogueId ?collection
+  WHERE {
+    INCLUDE %palPeriodicals # input data from another subquery
+    # holdings: P1042=ZDB, P243=OCLC, P1844=Hathi, P6721=KOBV,
+    #      P12239=shamela, P724=internet archive, P8091=ark
+    {?periodical (wdt:P1042 | wdt:P243 | wdt:P1844 | wdt:P6721 | wdt:P12239 | wdt:P724 | wdt:P8091) ?catalogueId.}
+    UNION
+    {?periodical wdt:P195 ?collection}
+  }
+} as %holdings
 WHERE {
-  INCLUDE %palPeriodicals
+  INCLUDE %holdings
   # languages
   # get labels and descriptions
   SERVICE wikibase:label {
@@ -56,4 +70,4 @@ WHERE {
 }
 ORDER BY ?dateOnset ?titleStr
 
-#URL: https://query-chest.toolforge.org/redirect/WSB7DBbD7oYkIU2k8KoksQkaauOu8ew8cEOs4CCyCID
+#URL: https://query-chest.toolforge.org/redirect/FastY9YqoKky0AAggWsk4mMeQW284SIOkIGGiEEMQKd

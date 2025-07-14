@@ -9,7 +9,7 @@ SELECT DISTINCT
 # all periodicals in pre-Nakba Palestine
 WITH {
   SELECT DISTINCT
-    ?periodical ?dateOnset ?pubPlace ?coords
+    ?periodical ?dateOnset #?pubPlace
   WHERE {
     VALUES ?dateOfInterest {"1948-05-15"^^xsd:dateTime}. # set a date of interest
     VALUES ?pubPlace {
@@ -34,8 +34,18 @@ WITH {
   ORDER BY ?dateOnset
   LIMIT 500
 } as %palPeriodicals
+# items with holdings
+WITH {
+  SELECT DISTINCT
+   ?periodical ?pubPlace #?dateOnset
+   ?collection #?catalogueId
+  WHERE {
+    INCLUDE %palPeriodicals # input data from another subquery
+    ?periodical wdt:P195 ?collection.
+  }
+} as %holdings
 WHERE {
-  INCLUDE %palPeriodicals
+  INCLUDE %holdings
   # languages
   # get labels and descriptions
   SERVICE wikibase:label {
@@ -45,6 +55,13 @@ WHERE {
       ?pubPlace rdfs:label ?pubPlaceLabel.
   }
   OPTIONAL{?periodical wdt:P18 ?imgPeriodical.} # get images
+  OPTIONAL{
+    {?collection wdt:P625 ?coords .}            # coordinates of the collection
+    UNION
+    {?collection p:P159 [ps:625 ?coords].}      # or cords of the HQ location
+    UNION
+    {?collection wdt:P276 [wdt:P625 ?coords]. } # or cords of the location
+    }
   # get title in publication language
   OPTIONAL{?periodical wdt:P1476 ?title.
     ?periodical wdt:P407/wdt:P218 ?pubLang.} # Only works with ISO 639-1 code (P218)
@@ -56,4 +73,4 @@ WHERE {
 }
 ORDER BY ?dateOnset ?titleStr
 
-#URL: https://query-chest.toolforge.org/redirect/WSB7DBbD7oYkIU2k8KoksQkaauOu8ew8cEOs4CCyCID
+# URL: https://query-chest.toolforge.org/redirect/Bsfc1wk38K2WEaQk84qGkyeOkggEea8kGuSMqgGOEU1
