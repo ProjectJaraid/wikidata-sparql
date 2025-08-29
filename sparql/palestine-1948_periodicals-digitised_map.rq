@@ -66,7 +66,7 @@ WHERE {
                   schema:description ?periodicalDesc.
       ?pubPlace rdfs:label ?pubPlaceLabel.
   }
-  OPTIONAL{?periodical wdt:P18 ?imgPeriodical.} # get images
+  OPTIONAL{?periodical (wdt:P18|wdt:P154) ?imgPeriodical.} # get images
   # get title in publication language
   OPTIONAL{?periodical wdt:P1476 ?title.
     ?periodical wdt:P407/wdt:P218 ?pubLang.} # Only works with ISO 639-1 code (P218)

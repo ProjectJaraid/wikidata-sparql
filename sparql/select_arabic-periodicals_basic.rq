@@ -2,12 +2,14 @@
 #defaultView:Table
 PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
 SELECT DISTINCT
-  ?periodical ?periodicalLabel ?periodicalDesc
-  (YEAR(?dateOnset) as ?year)
+  ?periodical ?periodicalLabel
+  ?title (YEAR(?dateOnset) as ?year) ?pubPlaceLabel
+  ?periodicalDesc
 WITH {
   SELECT DISTINCT
     ?periodical ?dateOnset
   WHERE {
+    hint:SubQuery hint:runOnce true .    # this might save some time
     VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime }. # set a date of interest
     ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
               (wdt:P571 | wdt:P580) ?dateOnset.
@@ -19,13 +21,18 @@ WITH {
 } as %periodicals
 WHERE {
   INCLUDE %periodicals
+     # retrieve more properties: locations
+  OPTIONAL{?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace.}
+  ?periodical wdt:P1476 ?title. # retrieve titles
+  FILTER(LANG(?title) = 'ar'). # limit titles to Arabic strings
   # get labels and descriptions
   SERVICE wikibase:label {
-      bd:serviceParam wikibase:language "[AUTO_LANGUAGE], ar".
+      bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,ar,en,fr,de".
       ?periodical rdfs:label ?periodicalLabel;
           schema:description ?periodicalDesc.
+      ?pubPlace rdfs:label ?pubPlaceLabel
     }
 }
 ORDER BY ?dateOnset
 LIMIT 5000
-#short URL to query results: https://w.wiki/9rDP
+#URL to query results: https://query-chest.toolforge.org/redirect/aTiwEok0BcaAsiYeyKcoCCWKsOAgs6kMwyO0cgAIg2K
