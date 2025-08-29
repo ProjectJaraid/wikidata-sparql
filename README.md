@@ -16,6 +16,12 @@ Queries are largely modularised, which allows for some plug-and-play approach in
 
 Most queries are far too long for Wikimedia's link shortener for sharing. I have therefore submitted many to the [query chest service](https://query-chest.toolforge.org/). A list of queries is provided below.
 
+# sample query
+
+The following query provides a list of all Arabic periodicals published before 1930:
+
+<iframe style="width: 100%;height: 70vh;border: none;" src="https://query.wikidata.org/embed.html#%23title%3A%20%D8%A7%D9%84%D8%B5%D8%AD%D8%A7%D9%81%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9%20%D8%AD%D8%AA%D9%89%20%D8%B3%D9%86%D8%A9%20%D9%A1%D9%A9%D9%A3%D9%A0%0A%23defaultView%3ATable%0APREFIX%20medium%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2FQ1002697%3E%20%20%20%20%23%20set%20a%20publication%20type%3A%20periodicals%20(wd%3AQ1002697)%2C%20newspapers%20(wd%3AQ11032)%0ASELECT%20DISTINCT%0A%20%20%3Fperiodical%20%3FperiodicalLabel%20%0A%20%20%3Ftitle%20(YEAR(%3FdateOnset)%20as%20%3Fyear)%20%3FpubPlaceLabel%20%0A%20%20%3FperiodicalDesc%0AWITH%20%7B%0A%20%20SELECT%20DISTINCT%0A%20%20%20%20%3Fperiodical%20%3FdateOnset%0A%20%20WHERE%20%7B%0A%20%20%20%20hint%3ASubQuery%20hint%3ArunOnce%20true%20.%20%20%20%20%23%20this%20might%20save%20some%20time%0A%20%20%20%20VALUES%20%3FdateOfInterest%20%7B%221930-01-01%22%5E%5Exsd%3AdateTime%20%7D.%20%23%20set%20a%20date%20of%20interest%0A%20%20%20%20%3Fperiodical%20wdt%3AP31%2Fwdt%3AP279*%20medium%3A%20%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20limit%20to%20medium%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20(wdt%3AP571%20%7C%20wdt%3AP580)%20%3FdateOnset.%0A%20%20%20%20%3Fperiodical%20wdt%3AP407%2Fwdt%3AP279*%20wd%3AQ13955.%20%20%20%20%20%20%20%20%20%20%20%20%23%20limit%20by%20publication%20language%20(Arabic%20%3D%20Q13955)%0A%20%20%20%20FILTER(%3FdateOnset%20%3C%20%3FdateOfInterest).%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20published%20before%20a%20specific%20date%0A%20%20%7D%0A%20%20ORDER%20BY%20%3FdateOnset%0A%20%20LIMIT%204000%0A%7D%20as%20%25periodicals%0AWHERE%20%7B%0A%20%20INCLUDE%20%25periodicals%0A%20%20%20%20%20%23%20retrieve%20more%20properties%3A%20locations%0A%20%20OPTIONAL%7B%3Fperiodical%20(wdt%3AP291%7Cwdt%3AP159%7Cwdt%3AP276%7Cwdt%3AP495%7Cwdt%3AP131%20)%20%3FpubPlace.%7D%0A%20%20%3Fperiodical%20wdt%3AP1476%20%3Ftitle.%20%23%20retrieve%20titles%0A%20%20FILTER(LANG(%3Ftitle)%20%3D%20'ar').%20%23%20limit%20titles%20to%20Arabic%20strings%0A%20%20%23%20get%20labels%20and%20descriptions%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%0A%20%20%20%20%20%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cmul%2Car%2Cen%2Cfr%2Cde%22.%0A%20%20%20%20%20%20%3Fperiodical%20rdfs%3Alabel%20%3FperiodicalLabel%3B%0A%20%20%20%20%20%20%20%20%20%20schema%3Adescription%20%3FperiodicalDesc.%0A%20%20%20%20%20%20%3FpubPlace%20rdfs%3Alabel%20%3FpubPlaceLabel%0A%20%20%20%20%7D%0A%7D%0AORDER%20BY%20%3FdateOnset%0ALIMIT%205000%0A%23short%20URL%20to%20query%20results%3A%20https%3A%2F%2Fw.wiki%2F9rDP" referrerpolicy="origin" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
+
 # General workflow
 
 1. Select the basic data set
@@ -42,8 +48,8 @@ WITH {
 
 2. Retrieve additional information
 
-# FILTERS
-## Dates
+## FILTERS
+### Dates
 
 - with data type:
     - `FILTER(?dateOnset < "1930-01-01"^^xsd:dateTime)`
@@ -51,7 +57,7 @@ WITH {
     - `FILTER( YEAR(?dateOnset) < 1930)`
     - `FILTER( YEAR(COALESCE(?dateInception, ?dateStart)) < 1930).`
 
-# Maps
+## Maps
 
 1. Get locations: `?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace.`
 2. Get coordinates `?pubPlace wdt:P625 ?coords`
