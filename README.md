@@ -12,17 +12,31 @@ tags:
 
 This repository contains a set of SPARQL queries for querying Wikidata for periodicals. Formal documentation is sorely missing, but the workflow and tool chain has been described in some detail in <https://doi.org/10.5281/zenodo.14112647>.
 
+# This repo
+
+## file naming conventions
+
+- file names begin with the item type
+- file names use key-value pairs. keys are separated by dashes and values by underscores: `-key_value-key_value`.
+- The type of display resulting from a SPARQL query is suffixed to the file name using the `disp` key:
+  - nothing or `disp_table`: the default table view
+  - `disp_bubble`: `#defaultView:BubbleChart`
+  - `disp_map`: `#defaultView:Map{"hide":["?coords"]}`
+- reusable subqueries are marked with the prefix `subquery_`
+
+# Queries
+
 Queries are largely modularised, which allows for some plug-and-play approach in chaining modules together.
 
 Most queries are far too long for Wikimedia's link shortener for sharing. I have therefore submitted many to the [query chest service](https://query-chest.toolforge.org/). A list of queries is provided below.
 
-# sample query
+## sample query
 
 The following query provides a list of all Arabic periodicals published before 1930:
 
 <iframe style="width: 100%;height: 70vh;border: none;" src="https://query.wikidata.org/embed.html#%23title%3A%20%D8%A7%D9%84%D8%B5%D8%AD%D8%A7%D9%81%D8%A9%20%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9%20%D8%AD%D8%AA%D9%89%20%D8%B3%D9%86%D8%A9%20%D9%A1%D9%A9%D9%A3%D9%A0%0A%23defaultView%3ATable%0APREFIX%20medium%3A%20%3Chttp%3A%2F%2Fwww.wikidata.org%2Fentity%2FQ1002697%3E%20%20%20%20%23%20set%20a%20publication%20type%3A%20periodicals%20(wd%3AQ1002697)%2C%20newspapers%20(wd%3AQ11032)%0ASELECT%20DISTINCT%0A%20%20%3Fperiodical%20%3FperiodicalLabel%20%0A%20%20%3Ftitle%20(YEAR(%3FdateOnset)%20as%20%3Fyear)%20%3FpubPlaceLabel%20%0A%20%20%3FperiodicalDesc%0AWITH%20%7B%0A%20%20SELECT%20DISTINCT%0A%20%20%20%20%3Fperiodical%20%3FdateOnset%0A%20%20WHERE%20%7B%0A%20%20%20%20hint%3ASubQuery%20hint%3ArunOnce%20true%20.%20%20%20%20%23%20this%20might%20save%20some%20time%0A%20%20%20%20VALUES%20%3FdateOfInterest%20%7B%221930-01-01%22%5E%5Exsd%3AdateTime%20%7D.%20%23%20set%20a%20date%20of%20interest%0A%20%20%20%20%3Fperiodical%20wdt%3AP31%2Fwdt%3AP279*%20medium%3A%20%3B%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20limit%20to%20medium%0A%20%20%20%20%20%20%20%20%20%20%20%20%20%20(wdt%3AP571%20%7C%20wdt%3AP580)%20%3FdateOnset.%0A%20%20%20%20%3Fperiodical%20wdt%3AP407%2Fwdt%3AP279*%20wd%3AQ13955.%20%20%20%20%20%20%20%20%20%20%20%20%23%20limit%20by%20publication%20language%20(Arabic%20%3D%20Q13955)%0A%20%20%20%20FILTER(%3FdateOnset%20%3C%20%3FdateOfInterest).%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%23%20published%20before%20a%20specific%20date%0A%20%20%7D%0A%20%20ORDER%20BY%20%3FdateOnset%0A%20%20LIMIT%204000%0A%7D%20as%20%25periodicals%0AWHERE%20%7B%0A%20%20INCLUDE%20%25periodicals%0A%20%20%20%20%20%23%20retrieve%20more%20properties%3A%20locations%0A%20%20OPTIONAL%7B%3Fperiodical%20(wdt%3AP291%7Cwdt%3AP159%7Cwdt%3AP276%7Cwdt%3AP495%7Cwdt%3AP131%20)%20%3FpubPlace.%7D%0A%20%20%3Fperiodical%20wdt%3AP1476%20%3Ftitle.%20%23%20retrieve%20titles%0A%20%20FILTER(LANG(%3Ftitle)%20%3D%20'ar').%20%23%20limit%20titles%20to%20Arabic%20strings%0A%20%20%23%20get%20labels%20and%20descriptions%0A%20%20SERVICE%20wikibase%3Alabel%20%7B%0A%20%20%20%20%20%20bd%3AserviceParam%20wikibase%3Alanguage%20%22%5BAUTO_LANGUAGE%5D%2Cmul%2Car%2Cen%2Cfr%2Cde%22.%0A%20%20%20%20%20%20%3Fperiodical%20rdfs%3Alabel%20%3FperiodicalLabel%3B%0A%20%20%20%20%20%20%20%20%20%20schema%3Adescription%20%3FperiodicalDesc.%0A%20%20%20%20%20%20%3FpubPlace%20rdfs%3Alabel%20%3FpubPlaceLabel%0A%20%20%20%20%7D%0A%7D%0AORDER%20BY%20%3FdateOnset%0ALIMIT%205000%0A%23short%20URL%20to%20query%20results%3A%20https%3A%2F%2Fw.wiki%2F9rDP" referrerpolicy="origin" sandbox="allow-scripts allow-same-origin allow-popups"></iframe>
 
-# General workflow
+## General workflow
 
 1. Select the basic data set
 
@@ -48,8 +62,8 @@ WITH {
 
 2. Retrieve additional information
 
-## FILTERS
-### Dates
+### FILTERS
+#### Dates
 
 - with data type:
     - `FILTER(?dateOnset < "1930-01-01"^^xsd:dateTime)`
@@ -57,14 +71,14 @@ WITH {
     - `FILTER( YEAR(?dateOnset) < 1930)`
     - `FILTER( YEAR(COALESCE(?dateInception, ?dateStart)) < 1930).`
 
-## Maps
+### Maps
 
 1. Get locations: `?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace.`
 2. Get coordinates `?pubPlace wdt:P625 ?coords`
 3. Get geoshape `?pubPlace wdt:P3896 ?geoshape`
 4. Options: #defaultView:Map{"hide":["?coords"], "markercluster": "true"}
 
-# Queries on query chest
+## Queries on query chest
 
 [rq:publications-transliterated-title]: https://query-chest.toolforge.org/redirect/dSZmMD4FSCeucOakcKCuKkYSg6wo8GCeyO8YqugMe2z 
 
@@ -72,7 +86,7 @@ WITH {
 
 [rq:arabic-periodicals-images]: https://query-chest.toolforge.org/redirect/nNIwitQHCq02U4Ww8MwIGS4EcY4y6qCO2uOWqGwWoGU 
 
-## counts
+### counts
 
 [rq:count-arabic-periodicals-2024-03-18]: https://query-chest.toolforge.org/redirect/oYNezk1fgs8UQyCQoKsSemEiWu6oiWSAq0As6k2QISv 
 
@@ -84,13 +98,13 @@ WITH {
 
 [rq:count-digitised]: https://query-chest.toolforge.org/redirect/JwwYdMXGLosUGeSKCucwckW0gMmEqAY2Uosa2MiMYev
 
-## Bubble charts
+### Bubble charts
 
 [rq:bubble-lang-2024-03-18]: https://query-chest.toolforge.org/redirect/dMk3vPTaZkuiqe804Wqeqkmi8SooO260qSCmAG08MI7 
 
 [rq:bubble-lang-2024-08-08]: https://query-chest.toolforge.org/redirect/26dFDncq2WMkmei8eg26qwISOKyMAmioq6Co8WwUIKQ 
 
-## Maps
+### Maps
 
 [rq:map-periodicals-all-2024-03-18-cluster]: https://query-chest.toolforge.org/redirect/8K4bVhyOmm6seAwkmiIqsGEEY4yCooU6YMGsKSYQ2Eb 
 
@@ -110,7 +124,7 @@ WITH {
 
 [rq:map-levant-1910-06-digitised]: https://query-chest.toolforge.org/redirect/ZtdJnjhGtM4SGUks2GEYwcAmwKGeCmS8icSua0ISkwW 
 
-### Palestine
+#### Palestine
 
 [rq:palestine-1948_periodicals_map]: https://query-chest.toolforge.org/redirect/WSB7DBbD7oYkIU2k8KoksQkaauOu8ew8cEOs4CCyCID
 
