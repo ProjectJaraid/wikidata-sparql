@@ -59,6 +59,7 @@ This repository contains a set of SPARQL queries for querying Wikidata for perio
   - nothing or `disp_table`: the default table view
   - `disp_bubble`: `#defaultView:BubbleChart`
   - `disp_map`: `#defaultView:Map{"hide":["?coords"]}`
+  - `disp_graph`: `#defaultView:Graph`
 - reusable subqueries are marked with the prefix `subquery_`
 
 # Queries
@@ -154,6 +155,12 @@ WITH {
 [rq:map-periodicals-ota-2024-08-01-cluster]: https://query-chest.toolforge.org/redirect/7c5YPWykbICAWcWaAYqYwMqEo6qUaaou0WaIugIqGYu
 
 [rq:map-periodicals-ota-cluster]: https://query-chest.toolforge.org/redirect/wLTnRa9d2GceWkacK6Ek8uSUaWIGaamSsqe8C6kaMCI 
+
+#### Collections
+
+https://query-chest.toolforge.org/redirect/qmTkCttCikGMoCI8kSkS4Uq8MuyS8EyMKS6KaOQQqsf
+
+#### Levant
 
 [rq:map-levant-1910-06]: https://query-chest.toolforge.org/redirect/v8e8UlL8s2gM46Ieou4UeMOimUSsyUS40uso0OAaIUL 
 
