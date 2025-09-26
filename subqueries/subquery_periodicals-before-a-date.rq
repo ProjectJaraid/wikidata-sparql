@@ -16,8 +16,8 @@ WITH {
       wd:Q36196             # Ladino
       }.
     ?periodical wdt:P31/wdt:P279* medium: ;              # set through PREFIX medium
-              (wdt:P571 | wdt:P580) ?dateOnset.
-    #?periodical wdt:P407/wdt:P279* ?lang.           # limit by publication language
+              (wdt:P571 | wdt:P580 | wdt:P577) ?dateOnset.
+    #?periodical wdt:P407/wdt:P279* ?lang.               # limit by publication language
     FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
   }
   ORDER BY ?dateOnset
