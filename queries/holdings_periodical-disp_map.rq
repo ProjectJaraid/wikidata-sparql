@@ -1,0 +1,36 @@
+#title: Holdings of a specific title
+#defaultView:Map{"hide":["?coords"]}
+PREFIX periodical: <http://www.wikidata.org/entity/Q286468>    # select a periodical
+SELECT DISTINCT
+  ?coords
+  (URI( CONCAT ("https://reasonator.toolforge.org/?&q=",
+    strAfter(str(?periodical), str(wd:) ))) AS ?item)     # link to item on Reasonator
+  (CONCAT(?periodicalLabel, ": ", ?periodicalDesc) AS ?itemLabel) # construct a label for the item
+  ?collection ?collectionLabel
+# holdings of the periodical
+WITH {
+  SELECT DISTINCT
+   ?periodical ?collection
+  WHERE {
+    BIND(periodical: as ?periodical)
+    ?periodical wdt:P195 ?collection .
+  }
+} as %holdings
+WHERE {
+  INCLUDE %holdings
+  OPTIONAL{
+    {?collection wdt:P625 ?coords .}            # coordinates of the collection
+    UNION
+    {?collection p:P159 [ps:625 ?coords].}      # or cords of the HQ location
+    UNION
+    {?collection wdt:P276 [wdt:P625 ?coords]. } # or cords of the location
+    }
+  SERVICE wikibase:label {
+      bd:serviceParam wikibase:language "[AUTO_LANGUAGE], ar".
+      ?periodical rdfs:label ?periodicalLabel;
+          schema:description ?periodicalDesc.
+      ?collection rdfs:label ?collectionLabel.
+  }
+}
+ORDER BY ?dateOnset
+LIMIT 10000
