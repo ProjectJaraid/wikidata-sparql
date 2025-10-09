@@ -1,5 +1,5 @@
 #title: Holdings of a specific title
-#defaultView:Map{"hide":["?coords"]}
+#defaultView:Map{"hide":["?coords"], "markercluster":"true"}
 PREFIX periodical: <http://www.wikidata.org/entity/Q286468>    # select a periodical
 SELECT DISTINCT
   ?coords
