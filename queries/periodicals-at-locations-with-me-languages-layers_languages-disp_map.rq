@@ -1,35 +1,35 @@
 #title: The global periodical press before 1930: locations with periodicals in publication languages of the Eastern Mediterranean
-#defaultView:Table{"hide":["?coords"]}
+#defaultView:Map{"hide":["?coords"]}
 PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
 SELECT DISTINCT
-  #?coords (?langLabel AS ?layer)
   ?lang ?langLabel
   (COUNT(?periodical) AS ?count)
   ?pubPlaceLabel ?pubPlace
+  ?coords (?langLabel AS ?layer)
 # get all locations with periodicals in a range of publication languages
 WITH {
   SELECT DISTINCT
     ?pubPlace ?dateOfInterest
   WHERE {
     #hint:Query hint:optimizer "None" .
-    VALUES ?dateOfInterest {                # set a date of interest
-      "1930-01-01"^^xsd:dateTime
+    # set cut-off date
+    VALUES ?dateOfInterest { "1930-01-01"^^xsd:dateTime}.
+    # select publication languages
+    VALUES ?lang {
+      wd:Q13955  # Arabic
+      wd:Q36730  # Ottoman Turkish
+      wd:Q8785   # Armenian
+      wd:Q36155  # Coptic
+      wd:Q9129   # Greek
+      wd:Q9168   # Farsi
+      wd:Q36196  # Ladino
+      wd:Q37733  # Judeo-Arabic
+      wd:Q9292   # Azerbaijani
       }.
-    VALUES ?lang {          # select publication languages
-      wd:Q13955             # Arabic
-      wd:Q36730             # Ottoman Turkish
-      wd:Q8785              # Armenian
-      wd:Q36155             # Coptic
-      wd:Q9129              # Greek
-      wd:Q9168              # Farsi
-      wd:Q36196             # Ladino
-      wd:Q37733             # Judeo-Arabic
-      wd:Q9292              # Azerbaijani
-      }.
-    ?periodical wdt:P31/wdt:P279* medium: ;           # set through PREFIX medium
+    ?periodical wdt:P31/wdt:P279* medium: ;    # set medium
                 (wdt:P571 | wdt:P580) ?dateOnset;
-                wdt:P407/wdt:P279* ?lang.             # limit by publication language
-    FILTER(?dateOnset < ?dateOfInterest).             # published before a specific date
+                wdt:P407/wdt:P279* ?lang.      # limit by language
+    FILTER(?dateOnset < ?dateOfInterest).      # published before cut-off date
     ?periodical (wdt:P291|wdt:P159|wdt:P276 ) ?pubPlace.
   }
   LIMIT 1000
@@ -41,25 +41,25 @@ WITH {
   WHERE {
     INCLUDE %locations
     #hint:Query hint:optimizer "None" .
-    ?periodical wdt:P31/wdt:P279* medium: ;              # set through PREFIX medium
+    ?periodical wdt:P31/wdt:P279* medium: ;     # set medium
                 (wdt:P571 | wdt:P580) ?dateOnset;
                 (wdt:P291|wdt:P159|wdt:P276 ) ?pubPlace.
-    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+    FILTER(?dateOnset < ?dateOfInterest).       # published before cut-off date
   }
   LIMIT 50000
 } as %periodicals
 WHERE {
   INCLUDE %periodicals
-  #?pubPlace wdt:P625 ?coords.   # get coordinates of locations
+  ?pubPlace wdt:P625 ?coords.   # get coordinates
   ?periodical wdt:P407 ?lang.   # get publication language
-  # get labels and descriptions
+  # labels
   SERVICE wikibase:label {
     bd:serviceParam wikibase:language "[AUTO_LANGUAGE]".
     ?pubPlace rdfs:label ?pubPlaceLabel.
     ?lang rdfs:label ?langLabel.
   }
 }
-GROUP BY ?pubPlace ?pubPlaceLabel ?lang ?langLabel
-ORDER BY DESC(?count) ?langLabel
+GROUP BY ?pubPlace ?pubPlaceLabel ?lang ?langLabel ?coords
+ORDER BY ?langLabel DESC(?count)
 
-#URL: https://query-chest.toolforge.org/redirect/iDOqXyQ6u8ciKSGCYUkEoS02maygCMy8EccoSa8yuWw
+#URL: https://query-chest.toolforge.org/redirect/XvayrLG3RwUiau4MWWuUEkkuccWmusCSy4gO888Q489
