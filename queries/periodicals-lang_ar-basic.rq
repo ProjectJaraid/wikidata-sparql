@@ -48,8 +48,8 @@ WITH {
                   wdt:P12151)           # Digita BNE
     ?url.}
     }
-    BIND ( IF (BOUND (?collection), "yes", "" )  as ?inLibrary )
-    BIND ( IF (BOUND (?url), "yes", "" )  as ?digitised )
+    BIND ( IF (BOUND (?collection), "x", "" )  as ?inLibrary )
+    BIND ( IF (BOUND (?url), "x", "" )  as ?digitised )
   }
 } as %status
 WHERE {
@@ -69,4 +69,4 @@ WHERE {
 ORDER BY ?dateOnset ?periodical ?inLibrary ?digitised
 LIMIT 6000
 
-#URL to query results: https://query-chest.toolforge.org/redirect/5vbdkyVzW40goU244wySYouU22eIi8ao6Mcwu6SgEIY
+#URL to query results: https://query-chest.toolforge.org/redirect/00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003Uc7gk5ozqoESiKquKIuiwiGAUMwsI4qka4cIuKYyEX
