@@ -26,7 +26,7 @@ WITH {
   WHERE {
     INCLUDE %periodicals
     OPTIONAL{
-      {?periodical wdt:P195 ?collection}
+      {?periodical wdt:P195 ?collection} # this also includes the internet archive
       UNION
       {?periodical (wdt:P1042 |    # ZDB
                     wdt:P243 |     # OCLC
@@ -37,6 +37,9 @@ WITH {
     OPTIONAL {
       {?periodical p:P195
                  [pq:P953 ?url].}       # value of qualifier
+    UNION
+      {?periodical p:P195
+                 [pq:P8091 ?url].}      # ark
     UNION
     {?periodical wdt:P953 ?url.}        # value of property
     UNION                               # the following need resolving
@@ -69,4 +72,4 @@ WHERE {
 ORDER BY ?dateOnset ?periodical ?inLibrary ?digitised
 LIMIT 6000
 
-#URL to query results: https://query-chest.toolforge.org/redirect/00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000003Uc7gk5ozqoESiKquKIuiwiGAUMwsI4qka4cIuKYyEX
+#URL to query results: https://query-chest.toolforge.org/redirect/5NZuEN6OBMmiWm0IoYYU6caa2q6AKeqUKEKe0uqy4Ml
