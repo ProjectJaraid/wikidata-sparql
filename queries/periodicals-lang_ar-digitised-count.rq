@@ -24,10 +24,9 @@ WITH {
    ?periodical ?url
   WHERE {
     INCLUDE %periodicals
-    {?periodical p:P195
-                 [pq:P953 ?url].}       # property statement
-    UNION
-    {?periodical (wdt:P953 | wdt:P1184) ?url.}        # value of property
+    {?periodical p:P195[pq:P953 ?url].}       # property statement
+#    UNION {?periodical p:P195[pq:P8091 ?url].}      # ark: throws of the count
+    UNION {?periodical (wdt:P953 | wdt:P1184) ?url.}        # value of property
     UNION                               # the following need resolving
     {?periodical (wdt:P1844 |           # Hathi: these should have been resolved in the ?url above
                   wdt:P12239 |          # shamela: convert to URL
