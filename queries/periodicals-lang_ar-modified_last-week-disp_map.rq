@@ -1,0 +1,46 @@
+#title: The global Arabic periodical press until 1930 (items modified within the last week)
+#defaultView:Map{"hide":["?coords"], "markercluster":"true"}
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697> # set publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+PREFIX lang: <http://www.wikidata.org/entity/Q13955>     # set publication language: Arabic
+SELECT DISTINCT
+  ?coords
+  (URI(str(?periodical)) as ?item) # link to wikidata item
+  (CONCAT(?periodicalLabel, ": ", ?periodicalDesc) as ?itemLabel) # label for the item
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE {
+    hint:SubQuery hint:runOnce true .    # this might save some time
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime }. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset.
+    ?periodical wdt:P407/wdt:P279* lang: .            # limit by publication language (Arabic = Q13955)
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+  }
+  ORDER BY ?dateOnset
+  LIMIT 4000
+} as %periodicals
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE{
+    INCLUDE %periodicals
+    BIND((now() - "P7D"^^xsd:duration) AS ?lastWeek).
+    ?periodical schema:dateModified ?modified.
+    FILTER(?modified >= ?lastWeek).
+    }
+  } as %lastWeek
+WHERE {
+    INCLUDE %lastWeek
+    OPTIONAL {
+      ?periodical wdt:P291 ?pubPlace.
+      ?pubPlace wdt:P625 ?coords.}
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "[AUTO_LANGUAGE]".
+        ?periodical rdfs:label ?periodicalLabel;
+            schema:description ?periodicalDesc.
+    }
+}
+ORDER BY ?dateOnset
+
+# URL https://query-chest.toolforge.org/redirect/yUPg6ONOSE0wGSiyqK8AUkomCIQ8yEG6W4qGmSGCSem
