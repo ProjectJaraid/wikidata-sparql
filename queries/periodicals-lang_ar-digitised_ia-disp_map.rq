@@ -1,45 +1,65 @@
-#title: The global Arabic periodical press until 1948: digitised titles in the Internet Archive
-#defaultView:Map{"hide":["?coords"], "markercluster":"true"}
-PREFIX medium: <http://www.wikidata.org/entity/Q1002697> # set publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
-PREFIX lang: <http://www.wikidata.org/entity/Q13955>     # set publication language: Arabic
+#title: الصحافة العربية حتى سنة ١٩٤٨ موجودة في أرشيف الإنترنت
+#defaultView:Map{"hide":["?coords"], "markercluster": "true"}
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+PREFIX collection: <http://www.wikidata.org/entity/Q461> # internet archive
 SELECT DISTINCT
   ?coords
-  (URI(str(?periodical)) as ?item) # link to wikidata item
-  (CONCAT(?periodicalLabel, ": ", ?periodicalDesc) as ?itemLabel) # label for the item
+  (URI( CONCAT ("https://reasonator.toolforge.org/?&q=",
+    strAfter(str(?periodical), str(wd:) ))) AS ?item)     # link to item on Reasonator
+  (CONCAT(?periodicalLabel, ": ", ?periodicalDesc) AS ?itemLabel) # construct a label for the item
+# all periodicals before the date of interest
 WITH {
   SELECT DISTINCT
-    ?periodical
+    ?periodical ?dateOnset
   WHERE {
-    hint:SubQuery hint:runOnce true .    # this might save some time
-    VALUES ?dateOfInterest {"1949-01-01"^^xsd:dateTime }. # set a date of interest
+    VALUES ?dateOfInterest {"1949-01-01"^^xsd:dateTime}. # set a date of interest
+    VALUES ?lang {          # select publication languages
+      wd:Q13955             # Arabic
+#      wd:Q36730             # Ottoman Turkish
+#      wd:Q8785              # Armenian
+#      wd:Q36155             # Coptic
+#      wd:Q9129              # Greek
+#      wd:Q9168              # Farsi
+#      wd:Q36196             # Ladino
+      }.
     ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
               (wdt:P571 | wdt:P580) ?dateOnset.
-    ?periodical wdt:P407/wdt:P279* lang: .            # limit by publication language (Arabic = Q13955)
+    ?periodical wdt:P407/wdt:P279* ?lang.                # limit by publication language
     FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
   }
   ORDER BY ?dateOnset
-  LIMIT 6000
+  LIMIT 4000
 } as %periodicals
-# found on the internet archive
+# items with holdings
 WITH {
   SELECT DISTINCT
-    ?periodical
+   ?periodical ?dateOnset
   WHERE {
     INCLUDE %periodicals
-    ?periodical wdt:P195 wd:Q461.
-    }
-} as %digitised
+    ?periodical wdt:P195 collection: .
+  }
+} as %holdings
 WHERE {
-    INCLUDE %digitised
-    OPTIONAL {
-      ?periodical wdt:P291 ?pubPlace. 
+    INCLUDE %holdings
+    # retrieve more properties: locations
+    OPTIONAL{
+      ?periodical (wdt:P291|wdt:P159|wdt:P276 ) ?pubPlace.
       ?pubPlace wdt:P625 ?coords.}
+    # get labels and descriptions
     SERVICE wikibase:label {
-        bd:serviceParam wikibase:language "[AUTO_LANGUAGE]".
-        ?periodical rdfs:label ?periodicalLabel;
-            schema:description ?periodicalDesc.
+      bd:serviceParam wikibase:language "ar, [AUTO_LANGUAGE]".
+      ?periodical rdfs:label ?periodicalLabel;
+          schema:description ?periodicalDesc.
     }
+    # get title in publication language
+    OPTIONAL{?periodical wdt:P1476 ?title.
+             ?periodical wdt:P407/wdt:P218 ?pubLang.} # Only works with ISO 639-1 code (P218)
+    BIND(                                      # Bind either the original title or the lable to ?titleStr
+      IF(langMatches(lang(?title), ?pubLang),  # langMatch can't get around the ISO 639-1 limitations
+         str(?title),
+         ?periodicalLabel) AS ?titleStr).
 }
 ORDER BY ?dateOnset
+LIMIT 5000
 
 # URL https://query-chest.toolforge.org/redirect/wnywBGxzyyiukWWYiIQqi0smeUCu6AggKG4mOME68i3 
