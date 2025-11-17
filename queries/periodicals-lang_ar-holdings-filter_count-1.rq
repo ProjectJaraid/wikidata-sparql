@@ -1,0 +1,73 @@
+#title:Arabic periodicals with a single known holding
+#defaultView:Table
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  ?periodical ?periodicalLabel ?title (YEAR(?dateOnset) as ?year) ?pubPlaceLabel  ?periodicalDesc
+  #?countCollections
+  ?collection ?collectionLabel ?digitised
+# all periodicals before the date of interest
+WITH {
+  SELECT DISTINCT
+    ?periodical
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset.
+    ?periodical wdt:P407/wdt:P279* wd:Q13955.            # limit by publication language (Arabic = Q13955)
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+  }
+  ORDER BY ?dateOnset
+  LIMIT 6000
+} as %periodicals
+# return count of collections, note that we are only looking at explicit collections
+WITH {
+  SELECT DISTINCT
+   ?periodical (count(?periodical) as ?countCollections)
+  WHERE {
+    INCLUDE %periodicals
+    ?periodical wdt:P195 ?collection .
+  }
+  GROUP BY ?periodical
+  #LIMIT 10000
+} as %holdings
+WHERE {
+  INCLUDE %holdings
+  # Filter: unique holdings
+  FILTER(?countCollections = 1).
+  # retrieve more properties
+  ?periodical (wdt:P571 | wdt:P580) ?dateOnset;
+              wdt:P195 ?collection .
+  OPTIONAL{?periodical (wdt:P291|wdt:P159|wdt:P276 ) ?pubPlace.}
+  OPTIONAL{
+    ?periodical wdt:P1476 ?title. # retrieve titles
+    FILTER(LANG(?title) = 'ar'). # limit titles to Arabic strings
+    }
+  # check if it was digitised
+  OPTIONAL {
+      {?periodical p:P195
+                 [pq:P953 ?url].}       # value of qualifier
+    UNION
+      {?periodical p:P195
+                 [pq:P8091 ?url].}      # ark
+    UNION
+    {?periodical wdt:P953 ?url.}        # value of property
+    UNION                               # the following need resolving
+    {?periodical (wdt:P1844 |           # Hathi
+                  wdt:P12239 |          # shamela
+                  wdt:P724 |            # archive.org
+                  wdt:P8091 |           # ark
+                  wdt:P4258 |           # Gallica
+                  wdt:P12151)           # Digita BNE
+    ?url.}
+    }
+  BIND ( IF (BOUND (?url), "TRUE", "" )  as ?digitised )
+  SERVICE wikibase:label {
+      bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,ar,en,fr,de".
+      ?periodical rdfs:label ?periodicalLabel;
+          schema:description ?periodicalDesc.
+      ?collection rdfs:label ?collectionLabel.
+      ?pubPlace rdfs:label ?pubPlaceLabel.
+  }
+}
+ORDER BY ?dateOnset ?periodical
+#URL: https://query-chest.toolforge.org/redirect/r9Gn5nKhkWUYgyYwOU08qAk64wWOQO4ycuCcsSi6Syc

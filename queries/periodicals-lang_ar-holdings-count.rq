@@ -1,5 +1,4 @@
 #title:No. of holdings for Arabic periodicals
-# url: https://query-chest.toolforge.org/redirect/wnhAUtiqI4MQyW0MOsqAyOqOwSuE6iSUcU28oCUAqkY
 #defaultView:Table
 PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
 SELECT DISTINCT
@@ -40,3 +39,4 @@ GROUP BY ?periodical ?periodicalLabel
 ORDER BY desc(?countCollections)
 
 LIMIT 10000
+# url: https://query-chest.toolforge.org/redirect/wnhAUtiqI4MQyW0MOsqAyOqOwSuE6iSUcU28oCUAqkY
