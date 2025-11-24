@@ -7,7 +7,7 @@ WITH {
   WHERE {
     VALUES ?dateOfInterest {"1910-06-01"^^xsd:dateTime}. # set a date of interest
     ?periodical wdt:P31/wdt:P279* medium: ;              # publication type
-              (wdt:P571 | wdt:P580) ?dateOnset.
+              (wdt:P571 | wdt:P580 | wdt:P577) ?dateOnset.
     FILTER(?dateOnset < ?dateOfInterest).                # limit to titles published before a specific date
     OPTIONAL{ ?periodical (wdt:P582 | wdt:P576) ?dateTerminus.} # exclude discontinued papers
     FILTER(!bound(?dateTerminus) || ?dateTerminus > ?dateOfInterest).

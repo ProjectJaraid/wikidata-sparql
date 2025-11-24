@@ -1,16 +1,25 @@
-#title:Holdings of Arabic periodicals
-#defaultView:BubbleChart
+#title:Holdings of Arabic periodicals published before 1930
+#defaultView:BubbleChart{"hide":["?coords"]}
 PREFIX medium: <http://www.wikidata.org/entity/Q1002697> # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
 SELECT DISTINCT
-  ?collection ?collectionLabel ?periodicalCount
+  ?collection ?collectionLabel ?periodicalCount #?coords
 WITH {
   SELECT DISTINCT
     ?periodical
   WHERE {
     VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
+    VALUES ?lang {          # select publication languages
+      wd:Q13955             # Arabic
+#      wd:Q36730             # Ottoman Turkish
+#      wd:Q8785              # Armenian
+#      wd:Q36155             # Coptic
+#      wd:Q9129              # Greek
+#      wd:Q9168              # Farsi
+#      wd:Q36196             # Ladino
+      }.
     ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
               (wdt:P571 | wdt:P580) ?dateOnset;
-              wdt:P407/wdt:P279* wd:Q13955.              # limit by publication language (Arabic = Q13955)
+              wdt:P407/wdt:P279* ?lang .              # limit by publication language (Arabic = Q13955)
     FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
   }
   LIMIT 4000
@@ -27,6 +36,13 @@ WITH {
 } as %holdings
 WHERE {
   INCLUDE %holdings
+   OPTIONAL{
+    {?collection wdt:P625 ?coords .}            # coordinates of the collection
+    UNION
+    {?collection p:P159 [ps:625 ?coords].}      # or cords of the HQ location
+    UNION
+    {?collection wdt:P276 [wdt:P625 ?coords]. } # or cords of the location
+    }
   SERVICE wikibase:label {
       bd:serviceParam wikibase:language "mul,[AUTO_LANGUAGE]".
       ?collection rdfs:label ?collectionLabel.
@@ -34,3 +50,5 @@ WHERE {
 }
 ORDER BY DESC(?periodicalCount)
 LIMIT 200
+
+#URL: https://query-chest.toolforge.org/redirect/5jePPWeZe42UCWwCmYyIc2mmcW242euOIeaEUiS0O0j
