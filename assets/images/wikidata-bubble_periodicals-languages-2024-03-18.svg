@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg class="bubble" height="1097.6" version="1.1" width="1097.6" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <style>
+    text {
+      /* Specify the system or custom font to use */
+      font-family: "Helvetica Neue", sans-serif;
+      font-weight: 300;
+      font-size: 12px;
+    }
+    text.rank-1 {
+        font-size: 500%;
+    }
+    text.rank-2 {
+        font-size: 400%;
+    }
+    text.rank-3 {
+        font-size: 350%;
+    }
+    text.rank-4 {
+        font-size: 250%;
+    }
+    text.rank-5 {
+        font-size: 200%;
+    }
+  </style>
+    <g class="node" transform="translate(431.1069558844129,642.1596122126105)">
+        <title>English: 6066</title>
+        <circle r="212.4211914227309" style="fill: rgb(49, 130, 189);"/>
+        <text class="rank-1" dy=".3em" style="text-anchor: middle; cursor: pointer;">English</text>
+    </g>
+    <g class="node" transform="translate(827.3679704773017,642.1596122126105)">
+        <title>German: 4470</title>
+        <circle r="182.34774582315916" style="fill: rgb(107, 174, 214);"/>
+        <text class="rank-2" dy=".3em" style="text-anchor: middle; cursor: pointer;">German</text>
+    </g>
+    <g class="node" transform="translate(655.2149934274468,363.8450574931248)">
+        <title>Swedish: 2765</title>
+        <circle r="143.41487714113399" style="fill: rgb(158, 202, 225);"/>
+        <text class="rank-3" dy=".3em" style="text-anchor: middle; cursor: pointer;">Swedish</text>
+    </g>
+    <g class="node" transform="translate(381.7894331067249,294.56962764104173)">
+        <title>French: 2529</title>
+        <circle r="137.15797104833237" style="fill: rgb(198, 219, 239);"/>
+        <text class="rank-3" dy=".3em" style="text-anchor: middle; cursor: pointer;">French</text>
+    </g>
+    <g class="node" transform="translate(174.21167405905948,438.4757908388616)">
+        <title>Spanish: 1745</title>
+        <circle r="113.93164107872447" style="fill: rgb(230, 85, 13);"/>
+        <text class="rank-4" dy=".3em" style="text-anchor: middle; cursor: pointer;">Spanish</text>
+    </g>
+    <g class="node" transform="translate(125.52060076877092,639.7768431837048)">
+        <title>Russian: 1130</title>
+        <circle r="91.68237586727813" style="fill: rgb(253, 141, 60);"/>
+        <text class="rank-4" dy=".3em" style="text-anchor: middle; cursor: pointer;">Russian</text>
+    </g>
+    <g class="node" transform="translate(185.12728115610736,801.4547058129347)">
+        <title>Dutch: 842</title>
+        <circle r="79.14120948402271" style="fill: rgb(253, 174, 107);"/>
+        <text class="rank-4" dy=".3em" style="text-anchor: middle; cursor: pointer;">Dutch</text>
+    </g>
+    <g class="node" transform="translate(302.5631266980207,894.1819940520697)">
+        <title>Italian: 640</title>
+        <circle r="68.9980193930698" style="fill: rgb(253, 208, 162);"/>
+        <text  class="rank-5" dy=".3em" style="text-anchor: middle; cursor: pointer;">Italian</text>
+    </g>
+    <g class="node" transform="translate(424.62099803200203,908.3852630801541)">
+        <title>Hungarian: 369</title>
+        <circle r="52.39137788351687" style="fill: rgb(49, 163, 84);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Hungarian</text>
+    </g>
+    <g class="node" transform="translate(528.4364069493423,889.272849213)">
+        <title>Finnish: 359</title>
+        <circle r="51.67659162673037" style="fill: rgb(116, 196, 118);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Finnish</text>
+    </g>
+    <g class="node" transform="translate(616.2067450131204,832.3204821862283)">
+        <title>Polish: 356</title>
+        <circle r="51.46021974149138" style="fill: rgb(161, 217, 155);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Polish</text>
+    </g>
+    <g class="node" transform="translate(712.3654917659835,838.1291647426257)">
+        <title>Tatar: 253</title>
+        <circle r="43.38173308840132" style="fill: rgb(199, 233, 192);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Tatar</text>
+    </g>
+    <g class="node" transform="translate(795.6501595977811,867.0698684691852)">
+        <title>Czech: 252</title>
+        <circle r="43.29591355215332" style="fill: rgb(117, 107, 177);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Czech</text>
+    </g>
+    <g class="node" transform="translate(881.6634620526512,860.8116466428426)">
+        <title>Danish: 231</title>
+        <circle r="41.4526812899066" style="fill: rgb(158, 154, 200);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Danish</text>
+    </g>
+    <g class="node" transform="translate(956.5895252266821,825.0359913183322)">
+        <title>Armenian: 216</title>
+        <circle r="40.084227004598354" style="fill: rgb(188, 189, 220);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Armenian</text>
+    </g>
+    <g class="node" transform="translate(1007.9191644036505,767.177405079692)">
+        <title>Norwegian: 172</title>
+        <circle r="35.76933456600401" style="fill: rgb(218, 218, 235);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Norwegia</text>
+    </g>
+    <g class="node" transform="translate(1038.8075178412578,701.1153078361698)">
+        <title>Catalan: 171</title>
+        <circle r="35.665202366690266" style="fill: rgb(99, 99, 99);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Catalan</text>
+    </g>
+    <g class="node" transform="translate(1044.733722333906,630.3597997014056)">
+        <title>Portuguese: 154</title>
+        <circle r="33.84597254349546" style="fill: rgb(150, 150, 150);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Portugue</text>
+    </g>
+    <g class="node" transform="translate(1029.8479991289255,563.1354438562931)">
+        <title>Occitan: 151</title>
+        <circle r="33.514682619738" style="fill: rgb(189, 189, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Occitan</text>
+    </g>
+    <g class="node" transform="translate(995.0057400852296,505.04843480105313)">
+        <title>Japanese: 144</title>
+        <circle r="32.72863429838538" style="fill: rgb(217, 217, 217);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Japanese</text>
+    </g>
+    <g class="node" transform="translate(945.158741832347,460.6975102340143)">
+        <title>Belarusian: 142</title>
+        <circle r="32.50055741309566" style="fill: rgb(49, 130, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Belarusi</text>
+    </g>
+    <g class="node" transform="translate(885.703533266085,436.0451037799494)">
+        <title>Bulgarian: 124</title>
+        <circle r="30.370887281774408" style="fill: rgb(107, 174, 214);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Bulgari</text>
+    </g>
+    <g class="node" transform="translate(825.3341123823005,429.465570698974)">
+        <title>Ukrainian: 112</title>
+        <circle r="28.86394236810222" style="fill: rgb(158, 202, 225);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Ukraini</text>
+    </g>
+    <g class="node" transform="translate(826.1888211251592,372.81403824427963)">
+        <title>Romanian: 93</title>
+        <circle r="26.301959921490358" style="fill: rgb(198, 219, 239);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Romani</text>
+    </g>
+    <g class="node" transform="translate(820.1352633535753,319.4882445114729)">
+        <title>Arabic: 90</title>
+        <circle r="25.874257272401174" style="fill: rgb(230, 85, 13);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Arabic</text>
+    </g>
+    <g class="node" transform="translate(797.7441241460726,273.33383463115774)">
+        <title>Greek: 77</title>
+        <circle r="23.932716701359336" style="fill: rgb(253, 141, 60);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Greek</text>
+    </g>
+    <g class="node" transform="translate(765.4905157017258,238.12430317996973)">
+        <title>Bangla: 67</title>
+        <circle r="22.324618122824038" style="fill: rgb(253, 174, 107);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Bangl</text>
+    </g>
+    <g class="node" transform="translate(727.1814476530451,213.64063701082495)">
+        <title>Galician: 63</title>
+        <circle r="21.647956776076665" style="fill: rgb(253, 208, 162);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Galic</text>
+    </g>
+    <g class="node" transform="translate(684.5549916768005,199.89475109220155)">
+        <title>Azerbaijani: 63</title>
+        <circle r="21.647956776076665" style="fill: rgb(49, 163, 84);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Azerb</text>
+    </g>
+    <g class="node" transform="translate(641.7475568351589,199.82260001525822)">
+        <title>Persian: 52</title>
+        <circle r="19.667461523122977" style="fill: rgb(116, 196, 118);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Pers</text>
+    </g>
+    <g class="node" transform="translate(602.4570048453821,208.56416874489082)">
+        <title>Latin: 49</title>
+        <circle r="19.091703340724806" style="fill: rgb(161, 217, 155);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Lati</text>
+    </g>
+    <g class="node" transform="translate(567.7392401964512,226.06569706693398)">
+        <title>Yiddish: 45</title>
+        <circle r="18.295862775480213" style="fill: rgb(199, 233, 192);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Yidd</text>
+    </g>
+    <g class="node" transform="translate(538.1893376931059,250.09025336280337)">
+        <title>Chinese: 45</title>
+        <circle r="18.295862775480213" style="fill: rgb(117, 107, 177);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Chin</text>
+    </g>
+    <g class="node" transform="translate(518.3536662307436,218.0625858491564)">
+        <title>Croatian: 43</title>
+        <circle r="17.884667283002006" style="fill: rgb(158, 154, 200);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Croa</text>
+    </g>
+    <g class="node" transform="translate(496.34950751265876,188.5152985869455)">
+        <title>Esperanto: 41</title>
+        <circle r="17.463792627838956" style="fill: rgb(188, 189, 220);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Espe</text>
+    </g>
+    <g class="node" transform="translate(468.91583320859377,166.6339560669071)">
+        <title>Hebrew: 35</title>
+        <circle r="16.135434308428202" style="fill: rgb(218, 218, 235);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Hebr</text>
+    </g>
+    <g class="node" transform="translate(439.1033157029201,150.78623319792348)">
+        <title>Welsh: 35</title>
+        <circle r="16.135434308428202" style="fill: rgb(99, 99, 99);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Wels</text>
+    </g>
+    <g class="node" transform="translate(407.08186727383384,142.5812428955794)">
+        <title>Turkish: 32</title>
+        <circle r="15.428426167575285" style="fill: rgb(150, 150, 150);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Tur</text>
+    </g>
+    <g class="node" transform="translate(374.79062558754583,140.65019086666393)">
+        <title>Ottoman Turkish: 32</title>
+        <circle r="15.428426167575285" style="fill: rgb(189, 189, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Ott</text>
+    </g>
+    <g class="node" transform="translate(343.0816791645243,145.68353562847176)">
+        <title>Bokmål: 31</title>
+        <circle r="15.185443640887206" style="fill: rgb(217, 217, 217);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Bok</text>
+    </g>
+    <g class="node" transform="translate(313.2399517065538,156.85133833351006)">
+        <title>Slovene: 31</title>
+        <circle r="15.185443640887206" style="fill: rgb(49, 130, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Slo</text>
+    </g>
+    <g class="node" transform="translate(287.34577015295673,174.09349205238084)">
+        <title>Korean: 28</title>
+        <circle r="14.43197118405111" style="fill: rgb(107, 174, 214);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Kor</text>
+    </g>
+    <g class="node" transform="translate(265.781449261493,195.08746850368487)">
+        <title>Malay: 27</title>
+        <circle r="14.171914366786215" style="fill: rgb(158, 202, 225);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Mal</text>
+    </g>
+    <g class="node" transform="translate(249.01224763089732,219.4439287606587)">
+        <title>Lithuanian: 26</title>
+        <circle r="13.906995411725763" style="fill: rgb(198, 219, 239);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Lit</text>
+    </g>
+    <g class="node" transform="translate(237.09726907267043,246.21852339004715)">
+        <title>American English: 26</title>
+        <circle r="13.906995411725763" style="fill: rgb(230, 85, 13);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Ame</text>
+    </g>
+    <g class="node" transform="translate(231.76383840204858,273.9010725961943)">
+        <title>Georgian: 22</title>
+        <circle r="12.792575175887036" style="fill: rgb(253, 141, 60);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Geo</text>
+    </g>
+    <g class="node" transform="translate(231.35153587041765,300.07087821801395)">
+        <title>Serbian: 19</title>
+        <circle r="11.888400788896758" style="fill: rgb(253, 174, 107);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Se</text>
+    </g>
+    <g class="node" transform="translate(234.64223507050923,324.8047317452982)">
+        <title>Estonian: 18</title>
+        <circle r="11.571319625681463" style="fill: rgb(253, 208, 162);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Es</text>
+    </g>
+    <g class="node" transform="translate(211.7050053272722,317.8344069811085)">
+        <title>Albanian: 16</title>
+        <circle r="10.90954476612846" style="fill: rgb(49, 163, 84);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Al</text>
+    </g>
+    <g class="node" transform="translate(189.17624095866455,313.38084481305566)">
+        <title>Kazakh: 15</title>
+        <circle r="10.563121298479954" style="fill: rgb(116, 196, 118);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Ka</text>
+    </g>
+    <g class="node" transform="translate(166.56754600329214,312.72106492385234)">
+        <title>Basque: 15</title>
+        <circle r="10.563121298479954" style="fill: rgb(161, 217, 155);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Ba</text>
+    </g>
+    <g class="node" transform="translate(144.6108764157907,316.3842113783635)">
+        <title>Latvian: 14</title>
+        <circle r="10.204944690131388" style="fill: rgb(199, 233, 192);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">La</text>
+    </g>
+    <g class="node" transform="translate(123.85642792408385,323.38056859674197)">
+        <title>Slovak: 14</title>
+        <circle r="10.204944690131388" style="fill: rgb(117, 107, 177);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Sl</text>
+    </g>
+    <g class="node" transform="translate(104.63247993440677,333.8751372020856)">
+        <title>Upper Sorbian: 14</title>
+        <circle r="10.204944690131388" style="fill: rgb(158, 154, 200);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Up</text>
+    </g>
+    <g class="node" transform="translate(88.02791850119178,347.5814078724378)">
+        <title>Western Armenian: 13</title>
+        <circle r="9.833730761561489" style="fill: rgb(188, 189, 220);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">We</text>
+    </g>
+    <g class="node" transform="translate(73.95785086213237,363.3851821630459)">
+        <title>Gujarati: 13</title>
+        <circle r="9.833730761561489" style="fill: rgb(218, 218, 235);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Gu</text>
+    </g>
+    <g class="node" transform="translate(63.25554343362023,381.18993846961246)">
+        <title>Nynorsk: 12</title>
+        <circle r="9.44794291119081" style="fill: rgb(99, 99, 99);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Ny</text>
+    </g>
+    <g class="node" transform="translate(55.412532409570474,400.0089772408314)">
+        <title>West Frisian: 12</title>
+        <circle r="9.44794291119081" style="fill: rgb(150, 150, 150);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">We</text>
+    </g>
+    <g class="node" transform="translate(51.19047755012093,419.54366261724186)">
+        <title>Bashkir: 11</title>
+        <circle r="9.045716655708414" style="fill: rgb(189, 189, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Ba</text>
+    </g>
+    <g class="node" transform="translate(49.7436748527187,439.07365625940844)">
+        <title>Modern Greek: 11</title>
+        <circle r="9.045716655708414" style="fill: rgb(217, 217, 217);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Mo</text>
+    </g>
+    <g class="node" transform="translate(51.7305714210425,458.1329171996342)">
+        <title>Swiss High German: 10</title>
+        <circle r="8.624752424133725" style="fill: rgb(49, 130, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Sw</text>
+    </g>
+    <g class="node" transform="translate(56.385213753961295,475.83001524506864)">
+        <title>Indonesian: 9</title>
+        <circle r="8.182158574596345" style="fill: rgb(107, 174, 214);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">In</text>
+    </g>
+    <g class="node" transform="translate(62.996878873762455,492.4172606085164)">
+        <title>Walloon: 9</title>
+        <circle r="8.182158574596345" style="fill: rgb(158, 202, 225);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Wa</text>
+    </g>
+    <g class="node" transform="translate(71.92952651495227,507.878781572573)">
+        <title>Uzbek: 9</title>
+        <circle r="8.182158574596345" style="fill: rgb(198, 219, 239);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Uz</text>
+    </g>
+    <g class="node" transform="translate(82.99673796399202,521.8919059617256)">
+        <title>Irish: 9</title>
+        <circle r="8.182158574596345" style="fill: rgb(230, 85, 13);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Ir</text>
+    </g>
+    <g class="node" transform="translate(95.96754750907195,534.1641887220306)">
+        <title>Tamil: 9</title>
+        <circle r="8.182158574596345" style="fill: rgb(253, 141, 60);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Ta</text>
+    </g>
+    <g class="node" transform="translate(84.78325629201663,547.4784588403998)">
+        <title>Malayalam: 8</title>
+        <circle r="7.714213083787643" style="fill: rgb(253, 174, 107);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">M</text>
+    </g>
+    <g class="node" transform="translate(69.93092581086836,555.5847353262758)">
+        <title>Icelandic: 8</title>
+        <circle r="7.714213083787643" style="fill: rgb(253, 208, 162);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">I</text>
+    </g>
+    <g class="node" transform="translate(56.64223232729012,566.0591835067872)">
+        <title>Breton: 8</title>
+        <circle r="7.714213083787643" style="fill: rgb(49, 163, 84);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">B</text>
+    </g>
+    <g class="node" transform="translate(45.290962750380174,578.6071761023792)">
+        <title>Chuvash: 8</title>
+        <circle r="7.714213083787643" style="fill: rgb(116, 196, 118);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">C</text>
+    </g>
+    <g class="node" transform="translate(36.85436539878998,592.6967103351552)">
+        <title>Scottish Gaelic: 7</title>
+        <circle r="7.215985592025555" style="fill: rgb(161, 217, 155);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">S</text>
+    </g>
+    <g class="node" transform="translate(30.52543518605114,607.3090326687718)">
+        <title>Provençal: 7</title>
+        <circle r="7.215985592025555" style="fill: rgb(199, 233, 192);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">P</text>
+    </g>
+    <g class="node" transform="translate(27.20065484779525,622.3343446128983)">
+        <title>Faroese: 6</title>
+        <circle r="6.680704500766391" style="fill: rgb(117, 107, 177);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">F</text>
+    </g>
+    <g class="node" transform="translate(25.701009623364826,637.1119330801299)">
+        <title>Mari: 6</title>
+        <circle r="6.680704500766391" style="fill: rgb(158, 154, 200);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">M</text>
+    </g>
+    <g class="node" transform="translate(26.410038230224814,651.948487098522)">
+        <title>Lower Sorbian: 6</title>
+        <circle r="6.680704500766391" style="fill: rgb(188, 189, 220);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">L</text>
+    </g>
+    <g class="node" transform="translate(29.312052235757506,666.5157233297948)">
+        <title>Crimean Tatar: 6</title>
+        <circle r="6.680704500766391" style="fill: rgb(218, 218, 235);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">C</text>
+    </g>
+    <g class="node" transform="translate(34.342839772147045,680.4913175379035)">
+        <title>Yoruba: 6</title>
+        <circle r="6.680704500766391" style="fill: rgb(99, 99, 99);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Y</text>
+    </g>
+    <g class="node" transform="translate(41.58626804769142,692.787889577464)">
+        <title>Tajik: 5</title>
+        <circle r="6.098620925160071" style="fill: rgb(150, 150, 150);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">T</text>
+    </g>
+    <g class="node" transform="translate(49.67687560258065,703.8305128834929)">
+        <title>Thai: 5</title>
+        <circle r="6.098620925160071" style="fill: rgb(189, 189, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">T</text>
+    </g>
+    <g class="node" transform="translate(59.20966629985264,713.6551432382741)">
+        <title>Kalmyk: 5</title>
+        <circle r="6.098620925160071" style="fill: rgb(217, 217, 217);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">K</text>
+    </g>
+    <g class="node" transform="translate(70.00337227570787,722.0749633903242)">
+        <title>Xhosa: 5</title>
+        <circle r="6.098620925160071" style="fill: rgb(49, 130, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">X</text>
+    </g>
+    <g class="node" transform="translate(81.8527491177959,728.9298688265992)">
+        <title>Afrikaans: 5</title>
+        <circle r="6.098620925160071" style="fill: rgb(107, 174, 214);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">A</text>
+    </g>
+    <g class="node" transform="translate(94.53247862751874,734.0895121908588)">
+        <title>Telugu: 5</title>
+        <circle r="6.098620925160071" style="fill: rgb(158, 202, 225);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">T</text>
+    </g>
+    <g class="node" transform="translate(107.80145328927335,737.4557818639238)">
+        <title>Asturian: 5</title>
+        <circle r="6.098620925160071" style="fill: rgb(198, 219, 239);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">A</text>
+    </g>
+    <g class="node" transform="translate(121.40736097661886,738.9646675751411)">
+        <title>Swahili: 5</title>
+        <circle r="6.098620925160071" style="fill: rgb(230, 85, 13);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">S</text>
+    </g>
+    <g class="node" transform="translate(115.62317766600319,750.6577222677987)">
+        <title>Tswana: 4</title>
+        <circle r="5.45477238306423" style="fill: rgb(253, 141, 60);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">T</text>
+    </g>
+    <g class="node" transform="translate(109.04569661894811,761.1713788207035)">
+        <title>Odia: 4</title>
+        <circle r="5.45477238306423" style="fill: rgb(253, 174, 107);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">O</text>
+    </g>
+    <g class="node" transform="translate(104.04710131295064,772.5210165243337)">
+        <title>Northern Sami: 4</title>
+        <circle r="5.45477238306423" style="fill: rgb(253, 208, 162);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">N</text>
+    </g>
+    <g class="node" transform="translate(100.73112527172702,784.4711016257394)">
+        <title>Latgalian: 4</title>
+        <circle r="5.45477238306423" style="fill: rgb(49, 163, 84);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">L</text>
+    </g>
+    <g class="node" transform="translate(99.1665834039182,796.773639566371)">
+        <title>Tagalog: 4</title>
+        <circle r="5.45477238306423" style="fill: rgb(116, 196, 118);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">T</text>
+    </g>
+    <g class="node" transform="translate(99.38594391929394,809.1733214978199)">
+        <title>Javanese: 4</title>
+        <circle r="5.45477238306423" style="fill: rgb(161, 217, 155);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">J</text>
+    </g>
+    <g class="node" transform="translate(101.3846545310953,821.4128225876143)">
+        <title>Māori: 4</title>
+        <circle r="5.45477238306423" style="fill: rgb(199, 233, 192);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">M</text>
+    </g>
+    <g class="node" transform="translate(105.12123692752493,833.2381421617948)">
+        <title>Assamese: 4</title>
+        <circle r="5.45477238306423" style="fill: rgb(117, 107, 177);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">A</text>
+    </g>
+    <g class="node" transform="translate(110.51814755186155,844.4038748627746)">
+        <title>Old Tatar: 4</title>
+        <circle r="5.45477238306423" style="fill: rgb(158, 154, 200);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">O</text>
+    </g>
+    <g class="node" transform="translate(117.6074648715097,853.6747781137502)">
+        <title>Riksmål: 3</title>
+        <circle r="4.723971455595405" style="fill: rgb(188, 189, 220);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">R</text>
+    </g>
+    <g class="node" transform="translate(124.84119040875783,861.88192488357)">
+        <title>Zulu: 3</title>
+        <circle r="4.723971455595405" style="fill: rgb(218, 218, 235);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">Z</text>
+    </g>
+    <g class="node" transform="translate(133.06522890358212,869.0964403964265)">
+        <title>Marathi: 3</title>
+        <circle r="4.723971455595405" style="fill: rgb(99, 99, 99);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">M</text>
+    </g>
+    <g class="node" transform="translate(142.14448498350004,875.1998126024181)">
+        <title>Vietnamese: 3</title>
+        <circle r="4.723971455595405" style="fill: rgb(150, 150, 150);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">V</text>
+    </g>
+    <g class="node" transform="translate(151.92981471116832,880.0917820800835)">
+        <title>Australian English: 3</title>
+        <circle r="4.723971455595405" style="fill: rgb(189, 189, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">A</text>
+    </g>
+    <g class="node" transform="translate(162.26047555537724,883.6919889868494)">
+        <title>West Flemish: 3</title>
+        <circle r="4.723971455595405" style="fill: rgb(217, 217, 217);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">W</text>
+    </g>
+    <g class="node" transform="translate(172.96676689086627,885.9412931212944)">
+        <title>Sesotho: 3</title>
+        <circle r="4.723971455595405" style="fill: rgb(49, 130, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">S</text>
+    </g>
+    <g class="node" transform="translate(183.87281765176112,886.802745412708)">
+        <title>Niçard: 3</title>
+        <circle r="4.723971455595405" style="fill: rgb(107, 174, 214);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;">N</text>
+    </g>
+    <g class="node" transform="translate(193.8604022058487,885.4925494849408)">
+        <title>Simplified Chinese: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(158, 202, 225);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(202.9519381555757,884.0434954587532)">
+        <title>Iazychie: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(198, 219, 239);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(211.83184477377318,881.6138778040424)">
+        <title>Karachay-Balkar: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(230, 85, 13);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(220.39469233454452,878.2325429866986)">
+        <title>Canadian English: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(253, 141, 60);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(228.5388155040025,873.9396370598599)">
+        <title>Ilocano: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(253, 174, 107);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(229.04164435034738,883.1321854903699)">
+        <title>Judeo-Moroccan: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(253, 208, 162);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(228.23965925536947,892.3034778422375)">
+        <title>Hill Mari: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(49, 163, 84);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(228.57730982801507,901.5035743410128)">
+        <title>Sundanese: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(116, 196, 118);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(230.04941871785906,910.5914057056693)">
+        <title>Mandarin: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(161, 217, 155);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(232.63341340702488,919.4276240677489)">
+        <title>Duala: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(199, 233, 192);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(236.2896723249096,927.8767396558668)">
+        <title>Luxembourgish: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(117, 107, 177);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(240.96213238382035,935.8091983222498)">
+        <title>Serbo-Croatian: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(158, 154, 200);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(246.57914861989968,943.1033680556471)">
+        <title>Kabardian: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(188, 189, 220);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(253.05459275807488,949.6474040205056)">
+        <title>Turkmen: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(218, 218, 235);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(260.2891738562319,955.3409635249088)">
+        <title>Udmurt: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(99, 99, 99);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(268.1719607785738,960.0967446208955)">
+        <title>Ossetian: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(150, 150, 150);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(276.58208315338516,963.8418247450968)">
+        <title>Komi: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(189, 189, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(285.3905847336392,966.518778873701)">
+        <title>Burmese: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(217, 217, 217);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(294.4624007420242,968.0865600465688)">
+        <title>Rusyn: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(49, 130, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(303.658428880854,968.5211287590174)">
+        <title>Erzya: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(107, 174, 214);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(312.8376622511224,967.8158215705241)">
+        <title>Amharic: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(158, 202, 225);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(321.8593514756791,965.981453278303)">
+        <title>Tibetan: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(198, 219, 239);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(330.5851628737058,963.0461510890802)">
+        <title>Corsican: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(230, 85, 13);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(338.8812995942171,959.0549233317888)">
+        <title>Turki: 2</title>
+        <circle r="3.8571065418938213" style="fill: rgb(253, 141, 60);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(345.03400299337954,953.82278943194)">
+        <title>Dargwa: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(253, 174, 107);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(350.4951655226521,949.5292565042747)">
+        <title>Standard Chinese: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(253, 208, 162);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(355.5248366737359,944.7374792469273)">
+        <title>Rumantsch Grischun: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(49, 163, 84);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(360.0777385951137,939.4905939550241)">
+        <title>Cherokee: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(116, 196, 118);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(364.1128853831399,933.8358338742462)">
+        <title>Church Slavonic: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(161, 217, 155);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(367.59395204327086,927.8241040000918)">
+        <title>Syriac: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(199, 233, 192);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(373.1611717773262,931.9791955279429)">
+        <title>Classical Japanese: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(117, 107, 177);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(376.4384332707269,938.1044121180685)">
+        <title>Taiwanese Classical Chinese: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(158, 154, 200);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(380.4412433551095,943.7821081825334)">
+        <title>written vernacular Chinese: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(188, 189, 220);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(385.1093264259878,948.9267871438931)">
+        <title>Judeo-Tat: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(218, 218, 235);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(390.37238898380537,953.46097876805)">
+        <title>Buryat: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(99, 99, 99);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(396.1511781361106,957.3164057360103)">
+        <title>Israeli (Modern) Hebrew: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(150, 150, 150);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(402.3586750131565,960.4350117857609)">
+        <title>Judeo-Arabic: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(189, 189, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(408.9014051260905,962.7698359421768)">
+        <title>Bukharian: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(217, 217, 217);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(415.6808459359375,964.2857196705208)">
+        <title>Southern Altai: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(49, 130, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(422.5949104377486,964.959836304993)">
+        <title>Karakalpak: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(107, 174, 214);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(429.5394844196278,964.7820347800216)">
+        <title>Dargin: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(158, 202, 225);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(436.40999424809416,963.7549924882812)">
+        <title>Piedmontese: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(198, 219, 239);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(443.10298157156194,961.8941749636496)">
+        <title>Kurdish: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(230, 85, 13);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(449.51766122954695,959.2276029962147)">
+        <title>Arvanitic: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(253, 141, 60);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(455.55743890809964,955.7954306861852)">
+        <title>Levantine Arabic: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(253, 174, 107);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(461.13136568811956,951.6493407905061)">
+        <title>Modern Armenian: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(253, 208, 162);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(466.1555075834955,946.8517664672459)">
+        <title>Valencian: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(49, 163, 84);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(470.5542094461225,941.4749511369787)">
+        <title>Karelian: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(116, 196, 118);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(474.2612342055087,935.5998606180697)">
+        <title>Cebuano: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(161, 217, 155);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(477.22076028793265,929.3149639172855)">
+        <title>Bikol: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(199, 233, 192);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(479.38822219569374,922.7149010349729)">
+        <title>Picard: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(117, 107, 177);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(485.7915837187424,925.4085384228215)">
+        <title>Ronga: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(158, 154, 200);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(490.6032487694405,930.4191871444909)">
+        <title>Volapük: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(188, 189, 220);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(495.9992813649372,934.7942932461087)">
+        <title>Interlingua: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(218, 218, 235);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(501.8963348730405,938.4662792339146)">
+        <title>Interlingue: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(99, 99, 99);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(508.2033239377859,941.3784279439324)">
+        <title>Kumyk: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(150, 150, 150);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(514.8228313756194,943.4857585901627)">
+        <title>Avar: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(189, 189, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(521.652612872418,944.7557215337424)">
+        <title>Nepali: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(217, 217, 217);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(528.5871762399315,945.1687010417264)">
+        <title>Ingush: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(49, 130, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(535.5194108385977,944.7183182699275)">
+        <title>Adyghe: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(107, 174, 214);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(542.3422419988068,943.4115297899684)">
+        <title>Moksha: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(158, 202, 225);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(548.9502848865808,941.268520138703)">
+        <title>Laz: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(198, 219, 239);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(555.2414722682012,938.322390049685)">
+        <title>Khakas: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(230, 85, 13);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(561.1186310314845,934.6186451822248)">
+        <title>Permyak: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(253, 141, 60);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(566.4909831128983,930.2144932450859)">
+        <title>Romansh: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(253, 174, 107);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(571.2755476473328,925.1779603713811)">
+        <title>Yakut: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(253, 208, 162);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(575.3984226830494,919.5868403930635)">
+        <title>Chechen: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(49, 163, 84);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(578.7959266645546,913.5274932444236)">
+        <title>Nenets: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(116, 196, 118);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(581.415582052155,907.0935110543415)">
+        <title>Kyrgyz: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(161, 217, 155);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(583.2169258852963,900.3842725307175)">
+        <title>Tuvan: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(199, 233, 192);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(584.1721347697987,893.5034079659231)">
+        <title>Veps: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(117, 107, 177);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(584.2664546354904,886.5571985726632)">
+        <title>Taiwanese Hokkien: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(158, 154, 200);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(583.4984286262433,879.6529348739625)">
+        <title>Pangasinan: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(188, 189, 220);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(590.1828486041067,881.5442970105237)">
+        <title>Toba Batak: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(218, 218, 235);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(596.5148199635851,884.4017189035633)">
+        <title>Aragonese: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(99, 99, 99);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(603.1533195483863,886.4484344271937)">
+        <title>Ewe: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(150, 150, 150);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(609.9950112198944,887.652584020929)">
+        <title>Karaim: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(189, 189, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(616.9333959130865,887.9954236647174)">
+        <title>Mongolian: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(217, 217, 217);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(623.8604694210982,887.4716166518974)">
+        <title>Lezgian: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(49, 130, 189);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(630.6684036091101,886.0893166613835)">
+        <title>Pashto: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(107, 174, 214);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(637.2512248874647,883.870040835958)">
+        <title>Abkhaz: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(158, 202, 225);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(643.5064638165823,880.8483348423629)">
+        <title>Ladakhi: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(198, 219, 239);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(649.336750165615,877.0712351269251)">
+        <title>Luganda: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(230, 85, 13);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(654.651328595854,872.5975367373471)">
+        <title>Gikuyu: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(253, 141, 60);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(659.3674713754776,867.4968781078875)">
+        <title>Egyptian Arabic: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(253, 174, 107);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(663.4117661350513,861.8486570543378)">
+        <title>Maltese: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(253, 208, 162);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(666.7212586183398,855.7407948526234)">
+        <title>Sorbian: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(49, 163, 84);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(670.8143932975474,861.3537236487105)">
+        <title>Franco-Provençal: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(116, 196, 118);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(674.6371953331533,867.1541465443831)">
+        <title>Ruthenian: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(161, 217, 155);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(679.263536930923,872.3363936045706)">
+        <title>Latino sine flexione: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(199, 233, 192);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(684.5948859848945,876.790093014813)">
+        <title>Spanglish: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(117, 107, 177);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+    <g class="node" transform="translate(690.5176950972361,880.4203896130043)">
+        <title>Limousin: 1</title>
+        <circle r="2.727386191532115" style="fill: rgb(158, 154, 200);"/>
+        <text dy=".3em" style="text-anchor: middle; cursor: pointer;"/>
+    </g>
+</svg>

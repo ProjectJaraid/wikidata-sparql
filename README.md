@@ -3,7 +3,7 @@ title: "SPARQL queries for Project Jarāʾid"
 subtitle: "Readme"
 description: |
    SPARQL for querying Wikidata for mostly Arabic periodicals
-date: 2025-09-25 
+date: 2025-12-02
 author: 
   - name: Till Grallert
     institute: 
@@ -126,6 +126,14 @@ WITH {
 
 ### counts
 
+Simple counts for documtary purposes
+
+- [All periodicals on Wikidata (items created before 18 March 2024)][rq:count-periodicals-all-2024-03-18]
+- [Arabic periodicals on Wikidata (items created before 18 March 2024)][rq:count-arabic-periodicals-2024-03-18]
+- [Arabic periodicals on Wikidata (items created before 8 August 2024)][rq:count-arabic-periodicals-2024-08-08]
+- [Arabic periodicals in collections][rq:count-collections]
+- [Arabic periodicals with digitised copies][rq:count-digitised]
+
 [rq:count-arabic-periodicals-2024-03-18]: https://query-chest.toolforge.org/redirect/oYNezk1fgs8UQyCQoKsSemEiWu6oiWSAq0As6k2QISv 
 
 [rq:count-periodicals-all-2024-03-18]: https://query-chest.toolforge.org/redirect/BGlKl7mq24UyuaKyESSwQMYUS4S2qgwgUg4OuuOYksf 
@@ -142,7 +150,24 @@ WITH {
 
 [rq:bubble-lang-2024-08-08]: https://query-chest.toolforge.org/redirect/26dFDncq2WMkmei8eg26qwISOKyMAmioq6Co8WwUIKQ 
 
+#### Historical stages of the data set
+
+![Bubble chart of publication languages (items created before 18 March 2024), [SPARQL query][rq:bubble-lang-2024-03-18]. Note the surprising prominence of Swedish.](assets/images/wikidata-bubble_periodicals-languages-2024-03-18.png){#fig:bubble-lang-2024-03-18}
+
+
 ### Maps
+
+Maps with cluster markers for publication locations of periodicals published before 1930
+
+[rq:map-periodicals-ota-cluster]: https://query-chest.toolforge.org/redirect/wLTnRa9d2GceWkacK6Ek8uSUaWIGaamSsqe8C6kaMCI 
+
+#### Historical stages of the data set
+
+![Map of all periodicals (items created before 18 March 2024), [SPARQL query][rq:map-periodicals-all-2024-03-18-cluster].](assets/images/wikidata-map_periodicals-all-2024-03-18_markercluster.png){#fig:map-periodicals-all-2024-03-18-cluster}
+
+![Map of all Arabic periodicals (items created before 18 March 2024), [SPARQL query][rq:map-periodicals-ar-2024-03-18-cluster].](assets/images/wikidata-map_periodicals-arabic-2024-03-18_markercluster.png){#fig:map-periodicals-ar-2024-03-18-cluster}
+
+![Map of all Arabic periodicals (items created until 8 August 2024), [SPARQL query][rq:map-periodicals-ar-2024-08-08-cluster].](assets/images/wikidata-map_periodicals-arabic-2024-08-08_markercluster.png){#fig:map-periodicals-ar-2024-08-08-cluster}
 
 [rq:map-periodicals-all-2024-03-18-cluster]: https://query-chest.toolforge.org/redirect/8K4bVhyOmm6seAwkmiIqsGEEY4yCooU6YMGsKSYQ2Eb 
 
@@ -154,13 +179,19 @@ WITH {
 
 [rq:map-periodicals-ota-2024-08-01-cluster]: https://query-chest.toolforge.org/redirect/7c5YPWykbICAWcWaAYqYwMqEo6qUaaou0WaIugIqGYu
 
-[rq:map-periodicals-ota-cluster]: https://query-chest.toolforge.org/redirect/wLTnRa9d2GceWkacK6Ek8uSUaWIGaamSsqe8C6kaMCI 
+
 
 #### Collections
 
 https://query-chest.toolforge.org/redirect/qmTkCttCikGMoCI8kSkS4Uq8MuyS8EyMKS6KaOQQqsf
 
 #### Levant
+
+![Map of newspapers published in the Eastern Mediterranean during the summer of 1910, [SPARQL query][rq:map-levant-1910-06].](assets/images/wikidata-map_periodicals-bilad-al-sham-1910-06-15.png){#fig:map-levant-1910-06}
+
+![Map of newspapers published in the Eastern Mediterranean during the summer of 1910 with known holdings, [SPARQL query][rq:map-levant-1910-06-holdings].](assets/images/wikidata-map_periodicals-bilad-al-sham-1910-06-15_holdings.png){#fig:map-levant-1910-06-holdings}
+
+![Map of newspapers published in the Eastern Mediterranean during the summer of 1910 with digitised copies, [SPARQL query][rq:map-levant-1910-06-digitised].](assets/images/wikidata-map_periodicals-bilad-al-sham-1910-06-15_digitised.png){#fig:map-levant-1910-06-digitised}
 
 [rq:map-levant-1910-06]: https://query-chest.toolforge.org/redirect/v8e8UlL8s2gM46Ieou4UeMOimUSsyUS40uso0OAaIUL 
 
