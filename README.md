@@ -227,7 +227,7 @@ Simple counts for documtary purposes
 
 ### holdings / collections
 
-1. Bubble graph of collections of Arabic periodicals
+1. Bubble graph of collections of Arabic periodicals. Note the surprising prominence of the Internet Archive!
     - [SPARQL query][rq:holdings_periodicals-lang_ar-disp_bubble]
     - [![](assets/img/holdings_periodicals-lang_ar-disp_bubble.png)][rq:holdings_periodicals-lang_ar-disp_bubble]
 2. Map of Arabic periodicals with kown holdings. Periodicals are mapped to the location of the holding institution. 
@@ -236,6 +236,10 @@ Simple counts for documtary purposes
 3. Map of Arabic periodicals with kown holdings.
     - [SPARQL query][rq:periodicals-lang_ar-holdings-disp_map]
     - [![](assets/img/periodicals-lang_ar-holdings-disp_map.png)][rq:periodicals-lang_ar-holdings-disp_map]
+4. List of Arabic periodicals with a single known holding. Of importance if your had the resources for digitisation.
+    - [SPARQL query][rq:periodicals-lang_ar-holdings-filter_count-1]
+
+[rq:periodicals-lang_ar-holdings-filter_count-1]: https://query-chest.toolforge.org/redirect/r9Gn5nKhkWUYgyYwOU08qAk64wWOQO4ycuCcsSi6Syc
 
 [rq:periodicals-lang_ar-holdings-disp_map]: https://query-chest.toolforge.org/redirect/w3zZsU79KQEuYUk8kk2MEwGaQg08w0GkYo2wYSksGGY
 
