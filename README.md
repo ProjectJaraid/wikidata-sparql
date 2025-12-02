@@ -126,9 +126,15 @@ WITH {
 
 ### basic tables
 
-[![All Arabic periodicals published before 1930, including information on holdings and digitised copies](assets/img/wikidata-periodicals-lang_ar-basic.png)][rq:periodicals-lang_ar-basic]
+- [![All Arabic periodicals published before 1930, including information on holdings and digitised copies](assets/img/wikidata-periodicals-lang_ar-basic.png)][rq:periodicals-lang_ar-basic]
+- [Arabic periodicals, ranked by number of collections][rq:count-collections]
+- [Arabic periodicals, ranked by number of digitised collections][rq:count-digitised]
 
 [rq:periodicals-lang_ar-basic]: https://query-chest.toolforge.org/redirect/5NZuEN6OBMmiWm0IoYYU6caa2q6AKeqUKEKe0uqy4Ml
+
+[rq:count-collections]: https://query-chest.toolforge.org/redirect/wnhAUtiqI4MQyW0MOsqAyOqOwSuE6iSUcU28oCUAqkY 
+
+[rq:count-digitised]: https://query-chest.toolforge.org/redirect/JwwYdMXGLosUGeSKCucwckW0gMmEqAY2Uosa2MiMYev
 
 ### counts
 
@@ -137,8 +143,7 @@ Simple counts for documtary purposes
 - [All periodicals on Wikidata (items created before 18 March 2024)][rq:count-periodicals-all-2024-03-18]
 - [Arabic periodicals on Wikidata (items created before 18 March 2024)][rq:count-arabic-periodicals-2024-03-18]
 - [Arabic periodicals on Wikidata (items created before 8 August 2024)][rq:count-arabic-periodicals-2024-08-08]
-- [Arabic periodicals in collections][rq:count-collections]
-- [Arabic periodicals with digitised copies][rq:count-digitised]
+
 
 [rq:count-arabic-periodicals-2024-03-18]: https://query-chest.toolforge.org/redirect/oYNezk1fgs8UQyCQoKsSemEiWu6oiWSAq0As6k2QISv 
 
@@ -146,9 +151,6 @@ Simple counts for documtary purposes
 
 [rq:count-arabic-periodicals-2024-08-08]: https://query-chest.toolforge.org/redirect/eO3ox4S9FwUeY24gs24CU6OOqiI0WiYKiEKmggM46sn 
 
-[rq:count-collections]: https://query-chest.toolforge.org/redirect/wnhAUtiqI4MQyW0MOsqAyOqOwSuE6iSUcU28oCUAqkY 
-
-[rq:count-digitised]: https://query-chest.toolforge.org/redirect/JwwYdMXGLosUGeSKCucwckW0gMmEqAY2Uosa2MiMYev
 
 ### Bubble charts
 
