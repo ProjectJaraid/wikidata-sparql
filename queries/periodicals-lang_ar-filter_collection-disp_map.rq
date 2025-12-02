@@ -1,4 +1,4 @@
-#title: الصحافة العربية حتى سنة ١٩٣٠ في مكتبة نعمة يافث التذكارية
+#title: الصحافة العربية حتى سنة ١٩٣٠ موجودة في مكتبة نعمة يافث التذكارية
 #defaultView:Map{"hide":["?coords"], "markercluster": "true"}
 PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
 PREFIX collection: <http://www.wikidata.org/entity/Q124855340> # AUB library

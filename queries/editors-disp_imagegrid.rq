@@ -58,3 +58,4 @@ WHERE {
 }
 ORDER BY ?yearBirth ?editorLabel
 #LIMIT 4000 # while the query does not time out, rendering might never complete with large limits
+# URL: https://query-chest.toolforge.org/redirect/vWy7oAd56GAWYscO0wyQkQ2M4UQmG4m4AMk8MiAcSEw

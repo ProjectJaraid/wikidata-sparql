@@ -1,5 +1,5 @@
-#title: الصحافة العربية حتى سنة ١٩٣٠
-#defaultView:Map{"hide":["?coords"]}
+#title: الصحافة العربية حتى سنة ١٩٣٠: الصحف موجودة في المكتبات
+#defaultView:Map{"hide":["?coords"], "markercluster":"true"}
 PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
 SELECT DISTINCT
   ?coords
@@ -27,18 +27,20 @@ WITH {
    ?catalogueId ?collection
   WHERE {
     INCLUDE %periodicals
-    # holdings: P1042=ZDB, P243=OCLC, P1844=Hathi, P6721=KOBV,
-    #      P12239=shamela, P724=internet archive, P8091=ark
-    {?periodical (wdt:P1042 | wdt:P243 | wdt:P1844 | wdt:P6721 | wdt:P12239 | wdt:P724 | wdt:P8091) ?catalogueId.}
+    {?periodical wdt:P195 ?collection} # this also includes the internet archive
     UNION
-    {?periodical wdt:P195 ?collection}
+    {?periodical (wdt:P1042 |    # ZDB
+                  wdt:P243 |     # OCLC
+                  wdt:P1844 |    # Hathi
+                  wdt:P6721 )    # KOBV
+    ?collection.}
   }
 } as %holdings
 WHERE {
     INCLUDE %holdings
     # retrieve more properties: locations
     OPTIONAL{
-      ?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace.
+      ?periodical (wdt:P291|wdt:P159|wdt:P276 ) ?pubPlace.
       ?pubPlace wdt:P625 ?coords.}
     # get labels and descriptions
     SERVICE wikibase:label {
@@ -56,3 +58,5 @@ WHERE {
 }
 ORDER BY ?dateOnset
 LIMIT 5000
+
+# URL: https://query-chest.toolforge.org/redirect/w3zZsU79KQEuYUk8kk2MEwGaQg08w0GkYo2wYSksGGY

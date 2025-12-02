@@ -25,7 +25,7 @@ WHERE {
     INCLUDE %periodicals
     # retrieve more properties: locations
     OPTIONAL{
-      ?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace.
+      ?periodical (wdt:P291|wdt:P159|wdt:P276 ) ?pubPlace.
       ?pubPlace wdt:P625 ?coords.}
     OPTIONAL { ?periodical wdt:P18 ?imgPeriodical.}
     # get labels and descriptions
@@ -45,4 +45,4 @@ WHERE {
 }
 ORDER BY ?dateOnset
 LIMIT 5000
-#short URL to query results: https://w.wiki/9o3Z
+#short URL to query results: https://query-chest.toolforge.org/redirect/KkTnCUlWc4MI6WKwSm6CeY4GM8EGOyScEsi4Sw0oOq4
