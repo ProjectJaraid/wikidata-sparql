@@ -27,7 +27,7 @@ tags:
   - SPARQL
 ---
 
-Queries are largely modularised, which allows for some plug-and-play approach in chaining modules together. 
+Queries are largely modularised, which allows for some plug-and-play approach in chaining modules together. The language of results will depend on your operating system's language. 
 Most queries are far too long for Wikimedia's link shortener for sharing. I have therefore submitted many to the [query chest service](https://query-chest.toolforge.org/).
 
 
@@ -36,7 +36,7 @@ Most queries are far too long for Wikimedia's link shortener for sharing. I have
 1. All Arabic periodicals published before 1930, including information on holdings and digitised copies
     - [SPARQL query][rq:periodicals-lang_ar-basic]
     - [![All Arabic periodicals published before 1930, including information on holdings and digitised copies](../assets/img/periodicals-lang_ar-basic.png)][rq:periodicals-lang_ar-basic]
-2. [Arabic periodicals, ranked by number of collections][rq:count-collections]
+2. [Arabic periodicals, ranked by number of collections][rq:count-collections]. Not that one can easily switch to a bubble graph with the left-hand menu.
 3. [Arabic periodicals, ranked by number of digitised collections][rq:count-digitised]
 
 ## Maps
@@ -116,6 +116,12 @@ Simple counts for documtary purposes
 1. Images of editors of Arabic periodicals found on WikiCommons
     - [SPARQL query][rq:editors-disp_imagegrid]
     - [![](../assets/img/editors-disp_imagegrid.png)][rq:editors-disp_imagegrid]
+
+## front pages
+
+1. Network of front pages, locations and publication languages
+    - [SPARQL query][rq:periodicals-lang_ar-image-disp_graph]
+    - [![](../assets/img/periodicals-lang_ar-image-disp_graph.png)][rq:periodicals-lang_ar-image-disp_graph]
 
 ## geographic regions
 ### Palestine
@@ -223,3 +229,6 @@ Simple counts for documtary purposes
 <!-- editors -->
 
 [rq:editors-disp_imagegrid]: https://query-chest.toolforge.org/redirect/vWy7oAd56GAWYscO0wyQkQ2M4UQmG4m4AMk8MiAcSEw
+
+<!-- images -->
+[rq:periodicals-lang_ar-image-disp_graph]: https://query-chest.toolforge.org/redirect/q8HKXkolw8uYgywMEgGsywuqWSMymGWyCEIEoiqku4Z

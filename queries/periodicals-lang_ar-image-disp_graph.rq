@@ -11,8 +11,17 @@ WITH {
   WHERE {
     # BIND(wd:Q124972743 as ?periodical).
     VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
-    VALUES ?lang {          # select publication languages
-      wd:Q13955             # Arabic
+    # select publication languages
+    VALUES ?lang {
+      wd:Q13955  # Arabic
+      wd:Q36730  # Ottoman Turkish
+      wd:Q8785   # Armenian
+      wd:Q36155  # Coptic
+      wd:Q9129   # Greek
+      wd:Q9168   # Farsi
+      wd:Q36196  # Ladino
+      wd:Q37733  # Judeo-Arabic
+      wd:Q9292   # Azerbaijani
       }.
     ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
               (wdt:P571 | wdt:P580) ?dateOnset;
@@ -24,11 +33,11 @@ WITH {
 WHERE {
   INCLUDE %periodicals
   ?periodical wdt:P18 ?imgPeriodical. # get images
-  ?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace. # retrieve more properties: locations
+  ?periodical (wdt:P291|wdt:P159|wdt:P276 ) ?pubPlace. # retrieve more properties: locations
   ?pubPlace wdt:P625 ?coords.
   # get labels and descriptions
   SERVICE wikibase:label {
-      bd:serviceParam wikibase:language "[AUTO_LANGUAGE], mul".
+      bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,ar,en,fr".
       ?periodical rdfs:label ?periodicalLabel;
                   schema:description ?periodicalDesc.
       ?pubPlace rdfs:label ?pubPlaceLabel.
@@ -37,3 +46,5 @@ WHERE {
 }
 ORDER BY ?dateOnset
 LIMIT 5000
+
+#URL: https://query-chest.toolforge.org/redirect/q8HKXkolw8uYgywMEgGsywuqWSMymGWyCEIEoiqku4Z
