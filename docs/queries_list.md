@@ -3,7 +3,7 @@ title: "SPARQL queries for Project Jarāʾid"
 subtitle: "List of linked queries and screenshots of their results"
 description: |
    SPARQL for querying Wikidata for mostly Arabic periodicals
-date: 2025-12-02
+date: 2025-12-09
 author: 
   - name: Till Grallert
     institute: 
@@ -134,6 +134,20 @@ Simple counts for documtary purposes
 ![Map of newspapers published in the Eastern Mediterranean during the summer of 1910 with digitised copies, [SPARQL query][rq:map-levant-1910-06-digitised].](../assets/img/wikidata-map_periodicals-bilad-al-sham-1910-06-15_digitised.png)
 
 
+## external IDs
+
+These can be used for further queries to external APIs
+
+1. Hathi IDs: [SPARQL query][rq:periodicals-lang_ar-filter_ids-hathi]
+    - can be used to query HathiTrust for copies via `https://catalog.hathitrust.org/api/volumes/full/recordnumber/{ID}.json`
+2. OCLC IDs: [SPARQL query][rq:periodicals-lang_ar-filter_ids-oclc]
+    - can be used to query HathiTrust for copies via `https://catalog.hathitrust.org/api/volumes/full/oclc/{ID}.json`
+
+
+<!-- external IDs -->
+
+[rq:periodicals-lang_ar-filter_ids-hathi]: https://query-chest.toolforge.org/redirect/rLaytNA78qsiw2uAuusEMCwESG8yEwqIOWE2AOwwoIZ
+[rq:periodicals-lang_ar-filter_ids-oclc]: https://query-chest.toolforge.org/redirect/kChWMCQzq2YAy6o0SsAikiouKgIMaqWIos0WwkwuCoa
 
 
 <!-- links -->
