@@ -1,0 +1,31 @@
+#title: Arabic periodicals with OCLC ID
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  ?periodical ?idOclc
+  ?periodicalLabel
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE {
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime }. # set a date of interest
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset.
+    ?periodical wdt:P407/wdt:P279* wd:Q13955.            # limit by publication language (Arabic = Q13955)
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+  }
+  ORDER BY ?dateOnset
+  LIMIT 4000
+} as %periodicals
+WHERE {
+  INCLUDE %periodicals
+  ?periodical wdt:P243 ?idOclc.
+  SERVICE wikibase:label {
+      bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,ar,en,fr,de".
+      ?periodical rdfs:label ?periodicalLabel;
+          schema:description ?periodicalDesc.
+    }
+}
+ORDER BY ?dateOnset ?periodical
+LIMIT 6000
+
+#URL of results: https://query-chest.toolforge.org/redirect/kChWMCQzq2YAy6o0SsAikiouKgIMaqWIos0WwkwuCoa
