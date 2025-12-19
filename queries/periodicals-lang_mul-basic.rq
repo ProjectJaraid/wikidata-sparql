@@ -1,0 +1,87 @@
+#title: Global press in Middle Eastern languages until 1930
+#defaultView:Table
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  ?periodical ?periodicalLabel ?title (YEAR(?dateOnset) as ?year) ?langLabel ?pubPlaceLabel
+  ?periodicalDesc
+  ?inLibrary ?digitised
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset ?lang
+  WHERE {
+    hint:SubQuery hint:runOnce true .    # this might save some time
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime }. # set a date of interest
+    # select languages
+    VALUES ?lang {
+      wd:Q13955  # Arabic
+      wd:Q36730  # Ottoman Turkish
+      wd:Q8785   # Armenian
+      wd:Q36155  # Coptic
+      wd:Q9129   # Greek
+      wd:Q9168   # Farsi
+      wd:Q36196  # Ladino
+      wd:Q37733  # Judeo-Arabic
+      wd:Q9292   # Azerbaijani
+      }.
+    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset.
+    ?periodical wdt:P407/wdt:P279* ?lang .            # limit by publication language
+    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+  }
+  ORDER BY ?dateOnset
+  LIMIT 8000
+} as %periodicals
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset ?lang
+    ?inLibrary ?digitised
+  WHERE {
+    INCLUDE %periodicals
+    OPTIONAL{
+      {?periodical wdt:P195 ?collection} # this also includes the internet archive
+      UNION
+      {?periodical (wdt:P1042 |    # ZDB
+                    wdt:P243 |     # OCLC
+                    wdt:P1844 |    # Hathi
+                    wdt:P6721 )    # KOBV
+      ?collection.}
+     }
+    OPTIONAL {
+      {?periodical p:P195
+                 [pq:P953 ?url].}       # value of qualifier
+    UNION
+      {?periodical p:P195
+                 [pq:P8091 ?url].}      # ark
+    UNION
+    {?periodical wdt:P953 ?url.}        # value of property
+    UNION                               # the following need resolving
+    {?periodical (wdt:P1844 |           # Hathi
+                  wdt:P12239 |          # shamela
+                  wdt:P724 |            # archive.org
+                  wdt:P8091 |           # ark
+                  wdt:P4258 |           # Gallica
+                  wdt:P12151)           # Digita BNE
+    ?url.}
+    }
+    BIND ( IF (BOUND (?collection), "x", "" )  as ?inLibrary )
+    BIND ( IF (BOUND (?url), "x", "" )  as ?digitised )
+  }
+} as %status
+WHERE {
+  INCLUDE %status
+     # retrieve more properties: locations
+  OPTIONAL{?periodical (wdt:P291|wdt:P159|wdt:P276 ) ?pubPlace.}
+  ?periodical wdt:P1476 ?title. # retrieve titles
+  FILTER(LANG(?title) = ('ar') || LANG(?title) = ('tr')). # limit titles to Arabic or Turkish strings
+  # get labels and descriptions
+  SERVICE wikibase:label {
+      bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,ar,en,fr,de".
+      ?periodical rdfs:label ?periodicalLabel;
+          schema:description ?periodicalDesc.
+      ?pubPlace rdfs:label ?pubPlaceLabel.
+      ?lang rdfs:label ?langLabel.
+    }
+}
+ORDER BY ?dateOnset ?periodical ?inLibrary ?digitised
+LIMIT 8000
+# URL: https://query-chest.toolforge.org/redirect/ZviF4WkVtYSi4icGwO8aWEy6iC6qYEi6w6qcKQUucKn

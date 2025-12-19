@@ -1,0 +1,17 @@
+# get all properties from items
+WHERE {
+  INCLUDE %periodicals
+  ?periodical ?p ?statement .
+  ?statement ?ps ?ps_ .
+  
+  ?wd wikibase:claim ?p.
+  ?wd wikibase:statementProperty ?ps.
+  # get qualifiers
+  #OPTIONAL {
+  #  ?statement ?pq ?pq_ .
+  #  ?wdpq wikibase:qualifier ?pq .
+  #}
+  
+  SERVICE wikibase:label { bd:serviceParam wikibase:language "en" }
+} 
+ORDER BY ?wdLabel #?statement ?ps_
