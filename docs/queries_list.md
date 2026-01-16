@@ -253,4 +253,4 @@ These can be used for further queries to external APIs
 [rq:periodicals-lang_ar-image-disp_graph]: https://query-chest.toolforge.org/redirect/q8HKXkolw8uYgywMEgGsywuqWSMymGWyCEIEoiqku4Z
 
 <!-- dimensions -->
-[rq:periodicals-lang_ar-dimensions.rq]: https://query-chest.toolforge.org/redirect/grCa6gkici6KSYS2MQMoaOc2OGyQWqqQ6WAGQseUmkb
+[rq:periodicals-lang_ar-dimensions.rq]: https://query-chest.toolforge.org/redirect/1yFIBRrWui6qQQAGAimCOW8gYg08syeWCmIAkG0sSai

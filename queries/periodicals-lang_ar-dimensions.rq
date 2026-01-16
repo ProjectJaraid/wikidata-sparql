@@ -2,10 +2,11 @@
 #defaultView:Table
 PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
 SELECT DISTINCT
-  ?periodical ?periodicalLabel
-  ?title (YEAR(?dateOnset) as ?year) ?pubPlaceLabel
+  ?periodical ?periodicalLabel ?title
+  ?type ?typeLabel
+  (YEAR(?dateOnset) as ?year) ?pubPlaceLabel
   ?periodicalDesc
-  ?height ?unitLabel
+  ?height ?unit ?unitLabel
   ?inLibrary ?digitised
 WITH {
   SELECT DISTINCT
@@ -64,6 +65,7 @@ WHERE {
            [wikibase:quantityAmount ?height;
             wikibase:quantityUnit ?unit]
           ].
+  ?periodical wdt:P31 ?type.
   OPTIONAL{?periodical (wdt:P291|wdt:P159|wdt:P276 ) ?pubPlace.}
   ?periodical wdt:P1476 ?title. # retrieve titles
   FILTER(LANG(?title) = 'ar'). # limit titles to Arabic strings
@@ -74,9 +76,10 @@ WHERE {
           schema:description ?periodicalDesc.
       ?pubPlace rdfs:label ?pubPlaceLabel.
       ?unit rdfs:label ?unitLabel.
+      ?type rdfs:label ?typeLabel.
     }
 }
 ORDER BY ?dateOnset ?periodical ?inLibrary ?digitised
 LIMIT 6000
 
-#URL to query results: https://query-chest.toolforge.org/redirect/grCa6gkici6KSYS2MQMoaOc2OGyQWqqQ6WAGQseUmkb
+#URL to query results: https://query-chest.toolforge.org/redirect/1yFIBRrWui6qQQAGAimCOW8gYg08syeWCmIAkG0sSai
