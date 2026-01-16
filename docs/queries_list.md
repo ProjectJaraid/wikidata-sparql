@@ -36,7 +36,7 @@ Most queries are far too long for Wikimedia's link shortener for sharing. I have
 1. All Arabic periodicals published before 1930, including information on holdings and digitised copies
     - [SPARQL query][rq:periodicals-lang_ar-basic]
     - [![All Arabic periodicals published before 1930, including information on holdings and digitised copies](../assets/img/periodicals-lang_ar-basic.png)][rq:periodicals-lang_ar-basic]
-2. [Arabic periodicals, ranked by number of collections][rq:count-collections]. Not that one can easily switch to a bubble graph with the left-hand menu.
+2. [Arabic periodicals, ranked by number of collections][rq:count-collections]. Note that one can easily switch to a bubble graph with the left-hand menu.
 3. [Arabic periodicals, ranked by number of digitised collections][rq:count-digitised]
 
 ## Maps
@@ -122,6 +122,11 @@ Simple counts for documtary purposes
 1. Network of front pages, locations and publication languages
     - [SPARQL query][rq:periodicals-lang_ar-image-disp_graph]
     - [![](../assets/img/periodicals-lang_ar-image-disp_graph.png)][rq:periodicals-lang_ar-image-disp_graph]
+
+## dimensions
+
+1. Basic table for periodicals with known dimensions
+    - [SPARQL query][rq:periodicals-lang_ar-dimensions.rq]
 
 ## geographic regions
 ### Palestine
@@ -246,3 +251,6 @@ These can be used for further queries to external APIs
 
 <!-- images -->
 [rq:periodicals-lang_ar-image-disp_graph]: https://query-chest.toolforge.org/redirect/q8HKXkolw8uYgywMEgGsywuqWSMymGWyCEIEoiqku4Z
+
+<!-- dimensions -->
+[rq:periodicals-lang_ar-dimensions.rq]: https://query-chest.toolforge.org/redirect/grCa6gkici6KSYS2MQMoaOc2OGyQWqqQ6WAGQseUmkb
