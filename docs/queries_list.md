@@ -65,11 +65,14 @@ Maps with cluster markers for publication locations of periodicals published bef
 
 ## counts
 
-Simple counts for documtary purposes
+Simple counts for documentary purposes
 
-- [All periodicals on Wikidata (items created before 18 March 2024)][rq:count-periodicals-all-2024-03-18]
-- [Arabic periodicals on Wikidata (items created before 18 March 2024)][rq:count-arabic-periodicals-2024-03-18]
-- [Arabic periodicals on Wikidata (items created before 8 August 2024)][rq:count-arabic-periodicals-2024-08-08]
+1. [All periodicals on Wikidata (items created before 18 March 2024)][rq:count-periodicals-all-2024-03-18]
+2. [Arabic periodicals on Wikidata (items created before 18 March 2024)][rq:count-arabic-periodicals-2024-03-18]
+3. [Arabic periodicals on Wikidata (items created before 8 August 2024)][rq:count-arabic-periodicals-2024-08-08]
+4. Count of digitised collections for each Arabic periodical
+    - [SPARQL query][rq:periodicals-lang_ar-digitised-count]
+    - [![Table of digitised collections](../assets/img/periodicals-lang_ar-digitised-count.png)][rq:periodicals-lang_ar-digitised-count]
 
 
 ## publication languages
@@ -183,7 +186,7 @@ These can be used for further queries to external APIs
 
 [rq:map-periodicals-all-2024-08-08-cluster]: https://query-chest.toolforge.org/redirect/mYSKHVP1qQamkCeYQmSsKMWMGwg266UqEayEcYwgUy7 
 
-[rq:map-periodicals-ar-2024-03-18-cluster]: https://query-chest.toolforge.org/redirect/LAwIgT9wqucyaW0mCQ0Ms2uKGUmygM6mwcSIuKKKyc0 
+[rq:map-periodicals-`ar-`2024-03-18-cluster]: https://query-chest.toolforge.org/redirect/LAwIgT9wqucyaW0mCQ0Ms2uKGUmygM6mwcSIuKKKyc0 
 
 [rq:map-periodicals-ar-2024-08-08-cluster]: https://query-chest.toolforge.org/redirect/obqUZJy6sY448EAesSQSaW80kAsYucuIiE8sO8kY2Gd 
 
@@ -196,6 +199,8 @@ These can be used for further queries to external APIs
 [rq:count-periodicals-all-2024-03-18]: https://query-chest.toolforge.org/redirect/BGlKl7mq24UyuaKyESSwQMYUS4S2qgwgUg4OuuOYksf 
 
 [rq:count-arabic-periodicals-2024-08-08]: https://query-chest.toolforge.org/redirect/eO3ox4S9FwUeY24gs24CU6OOqiI0WiYKiEKmggM46sn 
+
+[rq:periodicals-lang_ar-digitised-count]: https://query-chest.toolforge.org/redirect/RAvRJunsMyIeGyeeIaCo6cCukCi6YCkik8sSIkGkAq9
 
 <!-- languages -->
 

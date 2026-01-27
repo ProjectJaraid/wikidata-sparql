@@ -41,3 +41,5 @@ GROUP BY ?periodical ?periodicalLabel
 ORDER BY desc(?digitisedCollections)
 
 LIMIT 4000
+
+#URL of results: https://query-chest.toolforge.org/redirect/RAvRJunsMyIeGyeeIaCo6cCukCi6YCkik8sSIkGkAq9
