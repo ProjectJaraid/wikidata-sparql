@@ -1,10 +1,11 @@
-#title:Arabic periodicals with a single known holding
+#title:Undigitised Arabic periodicals with a single known holding
 #defaultView:Table
 PREFIX medium: <http://www.wikidata.org/entity/Q1002697>    # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
 SELECT DISTINCT
-  ?periodical ?periodicalLabel ?title (YEAR(?dateOnset) as ?year) ?pubPlaceLabel  ?periodicalDesc
+  ?periodical ?periodicalLabel #?title
+  (YEAR(?dateOnset) as ?year) ?pubPlaceLabel  ?periodicalDesc
   #?countCollections
-  ?collection ?collectionLabel ?digitised
+  ?collection ?collectionLabel
 # all periodicals before the date of interest
 WITH {
   SELECT DISTINCT
@@ -28,20 +29,12 @@ WITH {
     ?periodical wdt:P195 ?collection .
   }
   GROUP BY ?periodical
-  #LIMIT 10000
 } as %holdings
 WHERE {
   INCLUDE %holdings
   # Filter: unique holdings
   FILTER(?countCollections = 1).
-  # retrieve more properties
-  ?periodical (wdt:P571 | wdt:P580) ?dateOnset;
-              wdt:P195 ?collection .
-  OPTIONAL{?periodical (wdt:P291|wdt:P159|wdt:P276 ) ?pubPlace.}
-  OPTIONAL{
-    ?periodical wdt:P1476 ?title. # retrieve titles
-    FILTER(LANG(?title) = 'ar'). # limit titles to Arabic strings
-    }
+
   # check if it was digitised
   OPTIONAL {
       {?periodical p:P195
@@ -60,7 +53,15 @@ WHERE {
                   wdt:P12151)           # Digita BNE
     ?url.}
     }
-  BIND ( IF (BOUND (?url), "TRUE", "" )  as ?digitised )
+  FILTER( !BOUND(?url)).
+  # retrieve more properties
+  ?periodical (wdt:P571 | wdt:P580) ?dateOnset;
+              wdt:P195 ?collection .
+  OPTIONAL{?periodical (wdt:P291|wdt:P159|wdt:P276 ) ?pubPlace.}
+  OPTIONAL{
+    ?periodical wdt:P1476 ?title. # retrieve titles
+    FILTER(LANG(?title) = 'ar'). # limit titles to Arabic strings
+    }
   SERVICE wikibase:label {
       bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,ar,en,fr,de".
       ?periodical rdfs:label ?periodicalLabel;
@@ -70,4 +71,4 @@ WHERE {
   }
 }
 ORDER BY ?dateOnset ?periodical
-#URL: https://query-chest.toolforge.org/redirect/r9Gn5nKhkWUYgyYwOU08qAk64wWOQO4ycuCcsSi6Syc
+#URL: https://query-chest.toolforge.org/redirect/sKOFbBpaueKiSgawYUIKUQyeaaiewS2IaGWqeSQ6euq
