@@ -63,6 +63,12 @@ Maps with cluster markers for publication locations of periodicals published bef
     - [SPARQL query][rq:map-periodicals-ar-2024-08-08-cluster]
     - [![Map of all Arabic periodicals (items created until 8 August 2024)](../assets/img/wikidata-map_periodicals-arabic-2024-08-08_markercluster.png)][rq:map-periodicals-ar-2024-08-08-cluster]
 
+## timelines
+
+1. Timeline of all periodicals published in pre-Nakba Palestine
+    - [SPARQL query][rq:palestine-1948_periodicals_timeline]
+    - [![Timeline of all periodicals published in pre-Nakba Palestine](../assets/img/palestine-1948_periodicals_timeline.png)][rq:palestine-1948_periodicals_timeline]
+
 ## counts
 
 Simple counts for documentary purposes
@@ -186,7 +192,7 @@ These can be used for further queries to external APIs
 
 [rq:map-periodicals-all-2024-08-08-cluster]: https://query-chest.toolforge.org/redirect/mYSKHVP1qQamkCeYQmSsKMWMGwg266UqEayEcYwgUy7 
 
-[rq:map-periodicals-`ar-`2024-03-18-cluster]: https://query-chest.toolforge.org/redirect/LAwIgT9wqucyaW0mCQ0Ms2uKGUmygM6mwcSIuKKKyc0 
+[rq:map-periodicals-ar-2024-03-18-cluster]: https://query-chest.toolforge.org/redirect/LAwIgT9wqucyaW0mCQ0Ms2uKGUmygM6mwcSIuKKKyc0 
 
 [rq:map-periodicals-ar-2024-08-08-cluster]: https://query-chest.toolforge.org/redirect/obqUZJy6sY448EAesSQSaW80kAsYucuIiE8sO8kY2Gd 
 
@@ -214,19 +220,12 @@ These can be used for further queries to external APIs
 
 [rq:bubble-lang-2024-08-08]: https://query-chest.toolforge.org/redirect/26dFDncq2WMkmei8eg26qwISOKyMAmioq6Co8WwUIKQ 
 
-[rq:periodicals-lang_ar-holdings-filter_count-1]: https://query-chest.toolforge.org/redirect/r9Gn5nKhkWUYgyYwOU08qAk64wWOQO4ycuCcsSi6Syc
-
-[rq:periodicals-lang_ar-holdings-disp_map]: https://query-chest.toolforge.org/redirect/w3zZsU79KQEuYUk8kk2MEwGaQg08w0GkYo2wYSksGGY
-
-[rq:holdings_periodicals-lang_ar-disp_map]: https://query-chest.toolforge.org/redirect/WvUD5eWjtQqKOEC02cQKmCQguM2okyIaAW46giAaGuX
-
-[rq:holdings_periodicals-lang_ar-disp_bubble]: https://query-chest.toolforge.org/redirect/5jePPWeZe42UCWwCmYyIc2mmcW242euOIeaEUiS0O0j
 
 <!-- holdings -->
 
 [rq:periodicals-lang_ar-filter_collection-disp_map]: https://query-chest.toolforge.org/redirect/qmTkCttCikGMoCI8kSkS4Uq8MuyS8EyMKS6KaOQQqsf
 
-[rq:periodicals-lang_ar-holdings-filter_count-1]: https://query-chest.toolforge.org/redirect/r9Gn5nKhkWUYgyYwOU08qAk64wWOQO4ycuCcsSi6Syc
+[rq:periodicals-lang_ar-holdings-filter_count-1]: https://query-chest.toolforge.org/redirect/sKOFbBpaueKiSgawYUIKUQyeaaiewS2IaGWqeSQ6euq
 
 [rq:periodicals-lang_ar-holdings-disp_map]: https://query-chest.toolforge.org/redirect/w3zZsU79KQEuYUk8kk2MEwGaQg08w0GkYo2wYSksGGY
 
@@ -256,6 +255,9 @@ These can be used for further queries to external APIs
 
 <!-- images -->
 [rq:periodicals-lang_ar-image-disp_graph]: https://query-chest.toolforge.org/redirect/q8HKXkolw8uYgywMEgGsywuqWSMymGWyCEIEoiqku4Z
+
+<!-- timelines -->
+[rq:palestine-1948_periodicals_timeline]: https://query-chest.toolforge.org/redirect/fVec4Zl0eOOWc2k6oMA6aq0CcUqQi2GeIu4oMo4Kioo
 
 <!-- dimensions -->
 [rq:periodicals-lang_ar-dimensions.rq]: https://query-chest.toolforge.org/redirect/1yFIBRrWui6qQQAGAimCOW8gYg08syeWCmIAkG0sSai
