@@ -1,4 +1,4 @@
-#title: الصحافة العربية في فلسطين حتى سنة ١٩٣٠
+#title: الصحافة العربية في الارجنتين حتى سنة ١٩٣٠
 #title:
 #defaultView:Map{"hide":["?coords", "?pubPlace", "lang"], "markercluster": "true"}
 SELECT DISTINCT
@@ -37,9 +37,9 @@ WITH {
     # query for values within a bounding box
     SERVICE wikibase:box {
       ?pubPlace wdt:P625 ?coords. # get coordinates of locations
-      # limit bounding box by Western and Eastern corners: Palestine
-        bd:serviceParam wikibase:cornerSouthWest "Point(34.11074 31.2163)"^^geo:wktLiteral.
-        bd:serviceParam wikibase:cornerNorthEast "Point(35.97328 33.34235)"^^geo:wktLiteral.
+      # limit bounding box by Western and Eastern corners (https://www.listbase.org/en/geography/countries-geo-bounding-boxes/): Argentina
+        bd:serviceParam wikibase:cornerSouthWest "Point(-73.583 -55.0613)"^^geo:wktLiteral.
+        bd:serviceParam wikibase:cornerNorthEast "Point(-53.5918 -21.7813)"^^geo:wktLiteral.
      }
   }
 } as %area
@@ -54,3 +54,5 @@ WHERE {
 }
 ORDER BY ?dateOnset
 LIMIT 300
+
+#URL to results: https://query-chest.toolforge.org/redirect/TaBce5kd4C6aqYiIU6Wk0ekc2IeAomyUk8uYekgiwWv

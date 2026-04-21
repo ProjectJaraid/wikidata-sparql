@@ -1,4 +1,4 @@
-#title: الصحافة العربية في فلسطين حتى سنة ١٩٣٠
+#title: الصحافة العربية في أمريكا اللاتينية حتى سنة ١٩٣٠
 #title:
 #defaultView:Map{"hide":["?coords", "?pubPlace", "lang"], "markercluster": "true"}
 SELECT DISTINCT
@@ -9,7 +9,7 @@ SELECT DISTINCT
   #?lang
 WITH {
   SELECT DISTINCT
-    ?periodical ?pubPlace ?dateOnset ?lang
+    ?periodical ?dateOnset ?lang
   WHERE {
     VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}.
     VALUES ?lang {          # select publication languages
@@ -25,26 +25,27 @@ WITH {
               (wdt:P571 | wdt:P580) ?dateOnset;
               wdt:P407/wdt:P279* ?lang.
     FILTER(?dateOnset < ?dateOfInterest).                   # published before a specific date
-    ?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace. # locations
   }
   LIMIT 40000
 } as %periodicals
 WITH {
   SELECT DISTINCT
-    ?coords ?periodical ?pubPlace ?dateOnset ?lang
+    ?periodical ?pubPlace ?dateOnset ?lang
   WHERE {
     INCLUDE %periodicals
-    # query for values within a bounding box
-    SERVICE wikibase:box {
-      ?pubPlace wdt:P625 ?coords. # get coordinates of locations
-      # limit bounding box by Western and Eastern corners: Palestine
-        bd:serviceParam wikibase:cornerSouthWest "Point(34.11074 31.2163)"^^geo:wktLiteral.
-        bd:serviceParam wikibase:cornerNorthEast "Point(35.97328 33.34235)"^^geo:wktLiteral.
-     }
+    ?periodical (wdt:P291|wdt:P159|wdt:P276|wdt:P495|wdt:P131 ) ?pubPlace. # locations
+    # get the country and region
+    ?pubPlace wdt:P17 ?country .
+    ?country wdt:P361 ?region .
+    # filter for specific regions
+    VALUES ?region {
+      wd:Q12585  # Latin America
+    }
   }
 } as %area
 WHERE {
     INCLUDE %area
+    ?pubPlace wdt:P625 ?coords. # get coordinates of locations
     # get labels and descriptions
     SERVICE wikibase:label {
         bd:serviceParam wikibase:language "ar, [AUTO_LANGUAGE]".
@@ -53,4 +54,6 @@ WHERE {
     }
 }
 ORDER BY ?dateOnset
-LIMIT 300
+LIMIT 4000
+
+# URL of results: https://query-chest.toolforge.org/redirect/DcvuKDYvUO0eMYgGQE4IWg2eKsUOog0O0i6KeSuKEYs
