@@ -21,10 +21,10 @@ WITH {
 #      wd:Q9168              # Farsi
 #      wd:Q36196             # Ladino
       }.
-    ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
-              (wdt:P571 | wdt:P580) ?dateOnset.
-    ?periodical wdt:P407/wdt:P279* ?lang.            # limit by publication language
-    FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
+    ?periodical wdt:P31/wdt:P279* medium: ;      # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset .
+    ?periodical wdt:P407/wdt:P279* ?lang .       # limit by publication language
+    FILTER(?dateOnset < ?dateOfInterest) .       # published before a specific date
   }
   ORDER BY ?dateOnset
   LIMIT 4000

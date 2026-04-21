@@ -5,14 +5,25 @@ SELECT DISTINCT
   ?title (COUNT (DISTINCT ?periodical) as ?count)
 WITH {
   SELECT DISTINCT
-    ?periodical
+    ?periodical ?dateOnset #(YEAR(?dateOnset) as ?yearOnset)
   WHERE {
-    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime}. # set a date of interest
+    hint:SubQuery hint:runOnce true .    # this might save some time
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime }. # set a date of interest
+    VALUES ?lang {          # select publication languages
+      wd:Q13955             # Arabic
+#      wd:Q36730             # Ottoman Turkish
+#      wd:Q8785              # Armenian
+#      wd:Q36155             # Coptic
+#      wd:Q9129              # Greek
+#      wd:Q9168              # Farsi
+#      wd:Q36196             # Ladino
+      }.
     ?periodical wdt:P31/wdt:P279* medium: ;              # limit to medium
-              (wdt:P571 | wdt:P580) ?dateOnset;
-              wdt:P407/wdt:P279* wd:Q13955.              # limit by publication language (Arabic = Q13955)
+              (wdt:P571 | wdt:P580) ?dateOnset.
+    ?periodical wdt:P407/wdt:P279* ?lang.            # limit by publication language
     FILTER(?dateOnset < ?dateOfInterest).                # published before a specific date
   }
+  ORDER BY ?dateOnset
   LIMIT 4000
 } as %periodicals
 WHERE {
@@ -20,9 +31,9 @@ WHERE {
   ?periodical wdt:P1476 ?title. # retrieve titles
   FILTER(LANG(?title) = 'ar'). # limit titles to Arabic strings
 }
-GROUP BY ?title
-HAVING(?count > 6) # set a threshold
+GROUP BY ?title #?yearOnset
+HAVING(?count > 1) # set a threshold
 ORDER BY DESC(?count)
-LIMIT 50
+LIMIT 200
 
-#short URL to query results: https://w.wiki/9o3x
+# URL to query results: https://query-chest.toolforge.org/redirect/IR5nCxJ7FA2YEU2gsS42iemKeoaoyUMUmIs2GgOEOwv

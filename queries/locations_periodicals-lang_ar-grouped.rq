@@ -1,0 +1,42 @@
+#title:The most important centres of the Arabic periodical press before 1930
+#defaultView:Table{"hide":["?coords"]}
+PREFIX medium: <http://www.wikidata.org/entity/Q1002697> # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+SELECT DISTINCT
+  ?pubPlaceLabel (COUNT (DISTINCT ?periodical) as ?count)
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE {
+    hint:SubQuery hint:runOnce true .    # this might save some time
+    VALUES ?dateOfInterest {"1930-01-01"^^xsd:dateTime }. # set a date of interest
+    VALUES ?lang {          # select publication languages
+      wd:Q13955             # Arabic
+#      wd:Q36730             # Ottoman Turkish
+#      wd:Q8785              # Armenian
+#      wd:Q36155             # Coptic
+#      wd:Q9129              # Greek
+#      wd:Q9168              # Farsi
+#      wd:Q36196             # Ladino
+      }.
+    ?periodical wdt:P31/wdt:P279* medium: ;      # limit to medium
+              (wdt:P571 | wdt:P580) ?dateOnset .
+    ?periodical wdt:P407/wdt:P279* ?lang .       # limit by publication language
+    FILTER(?dateOnset < ?dateOfInterest) .       # published before a specific date
+  }
+  ORDER BY ?dateOnset
+  LIMIT 4000
+} as %periodicals
+WHERE {
+  INCLUDE %periodicals
+  ?periodical (wdt:P291|wdt:P159|wdt:P276 ) ?pubPlace .
+  # get labels and descriptions
+  SERVICE wikibase:label {
+      bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,ar,en,fr,de".
+      ?pubPlace rdfs:label ?pubPlaceLabel .
+    }
+}
+GROUP BY ?pubPlace ?pubPlaceLabel
+HAVING(?count > 15) # set a threshold
+ORDER BY DESC(?count) ?pubPlaceLabel
+
+#short URL to query results: https://query-chest.toolforge.org/redirect/RwYZuZKKm0a4YK2Wk8O4AcA8CGYMsAumw8ECOGwSSgt
