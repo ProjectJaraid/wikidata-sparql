@@ -114,7 +114,7 @@ Simple counts for documentary purposes
 3. Map of Arabic periodicals with known holdings.
     - [SPARQL query][rq:periodicals-lang_ar-holdings-disp_map]
     - [![](../assets/img/periodicals-lang_ar-holdings-disp_map.png)][rq:periodicals-lang_ar-holdings-disp_map]
-4. List of Arabic periodicals with a single known holding. Of importance if your had the resources for digitisation.
+4. List of Arabic periodicals with a single known holding. Of importance if you had the resources for digitisation.
     - [SPARQL query][rq:periodicals-lang_ar-holdings-filter_count-1]
 5. Map Arabic periodicals in a specific holding (e.g. AUB's Jafet Library)
     - [SPARQL query][rq:periodicals-lang_ar-filter_collection-disp_map]
@@ -125,6 +125,11 @@ Simple counts for documentary purposes
 1. Images of editors of Arabic periodicals found on WikiCommons
     - [SPARQL query][rq:editors-disp_imagegrid]
     - [![](../assets/img/editors-disp_imagegrid.png)][rq:editors-disp_imagegrid]
+2. Gender and age of editors at the first year of publication
+    - [SPARQL query][rq:editors-filter_age]
+3. Social network of editors and their relatives.
+    - [SPARQL query][rq:editors-social-network-disp_graph]
+    - [![](../assets/img/editors-social-network-disp_graph_detail.png)][rq:editors-social-network-disp_graph]
 
 ## front pages
 
@@ -252,6 +257,10 @@ These can be used for further queries to external APIs
 <!-- editors -->
 
 [rq:editors-disp_imagegrid]: https://query-chest.toolforge.org/redirect/vWy7oAd56GAWYscO0wyQkQ2M4UQmG4m4AMk8MiAcSEw
+
+[rq:editors-filter_age]: https://query-chest.toolforge.org/redirect/TUDcmZHcJcEiC00OWscW2omkcmiSsEa0kIgyeQwwMoe
+
+[rq:editors-social-network-disp_graph]: https://query-chest.toolforge.org/redirect/2luB9FLaquKoGoAqcU2mGK6YsWiUiOWUCakOyYEsUOi
 
 <!-- images -->
 [rq:periodicals-lang_ar-image-disp_graph]: https://query-chest.toolforge.org/redirect/q8HKXkolw8uYgywMEgGsywuqWSMymGWyCEIEoiqku4Z

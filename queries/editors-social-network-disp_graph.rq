@@ -56,3 +56,5 @@ WHERE {
     }
 }
 ORDER BY ?editorLabel ?periodicalLabel
+
+# URL of results: https://query-chest.toolforge.org/redirect/2luB9FLaquKoGoAqcU2mGK6YsWiUiOWUCakOyYEsUOi

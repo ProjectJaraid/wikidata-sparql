@@ -4,7 +4,7 @@ PREFIX medium: <http://www.wikidata.org/entity/Q1002697> # set a publication typ
 SELECT DISTINCT
   ?periodical ?periodicalLabel (YEAR(?dateOnset) as ?yearOnset) 
   ?editor ?editorLabel 
-  (YEAR(?dateBirth) as ?yearBirth) (?yearOnset - ?yearBirth as ?age) ?gender ?imgEditor 
+  (YEAR(?dateBirth) as ?yearBirth) (?yearOnset - ?yearBirth as ?age) ?genderLabel ?imgEditor
     #("FFA500" AS ?rgb)
     #?periodical ?periodicalLabel
     #?dateOnset #?imgPeriodical
@@ -49,10 +49,11 @@ WHERE {
   INCLUDE %editors
     # get labels and descriptions
     SERVICE wikibase:label {
-        bd:serviceParam wikibase:language "ar,mul,en,fr,[AUTO_LANGUAGE]".
-        ?periodical rdfs:label ?periodicalLabel.
-        ?editor rdfs:label ?editorLabel.
+        bd:serviceParam wikibase:language "ar,mul,en,fr,[AUTO_LANGUAGE]" .
+        ?periodical rdfs:label ?periodicalLabel .
+        ?editor rdfs:label ?editorLabel .
+        ?gender rdfs:label ?genderLabel .
     }
 }
 ORDER BY ?yearOnset ?periodicalLabel ?yearBirth ?editorLabel
-#LIMIT 4000 # while the query does not time out, rendering might never complete with large limits
+# URL of results: https://query-chest.toolforge.org/redirect/TUDcmZHcJcEiC00OWscW2omkcmiSsEa0kIgyeQwwMoe
