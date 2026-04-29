@@ -4,7 +4,7 @@ PREFIX medium: <http://www.wikidata.org/entity/Q1002697> # set a publication typ
 SELECT DISTINCT
   ?periodical ?periodicalLabel (YEAR(?dateOnset) as ?yearOnset) 
   ?editor ?editorLabel 
-  (YEAR(?dateBirth) as ?yearBirth) (?yearOnset - ?yearBirth as ?age) ?genderLabel ?imgEditor
+  (YEAR(?dateBirth) as ?yearBirth) (?yearOnset - ?yearBirth as ?age) ?gender ?genderLabel ?imgEditor
     #("FFA500" AS ?rgb)
     #?periodical ?periodicalLabel
     #?dateOnset #?imgPeriodical
@@ -49,7 +49,7 @@ WHERE {
   INCLUDE %editors
     # get labels and descriptions
     SERVICE wikibase:label {
-        bd:serviceParam wikibase:language "ar,mul,en,fr,[AUTO_LANGUAGE]" .
+        bd:serviceParam wikibase:language "ar,mul,en,fr,[AUTO_LANGUAGE]".
         ?periodical rdfs:label ?periodicalLabel .
         ?editor rdfs:label ?editorLabel .
         ?gender rdfs:label ?genderLabel .
