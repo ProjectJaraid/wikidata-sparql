@@ -3,7 +3,7 @@ title: "SPARQL queries for Project Jarāʾid"
 subtitle: "Readme"
 description: |
    SPARQL for querying Wikidata for mostly Arabic periodicals
-date: 2025-12-02
+date: 2026-07-15
 author: 
   - name: Till Grallert
     institute: 
@@ -54,4 +54,9 @@ This repository contains a set of SPARQL queries for querying Wikidata for perio
 
 # Queries
 
-Documentation of queries can be found [here](docs/queries.md). A list of queries is provided in a [separate file](docs/queries_list.md).
+All queries are provided in two forms:
+
+1. the actual SPARQL query. These files end in `.rq`.
+2. the URL for the embedded SPARQL query to executed on load on the Wikidata SPARQL endpoint. These files end in `.txt`. They are necessitated by a character limit in Wikidata's link shortener of 2000 characters and the volatility of <https://query-chest.toolforge.org/.
+
+The general documentation of the SPARQL queries in this repository can be found [here](docs/queries.md). A list of queries, including screenshots of the results, is provided in a [separate file](docs/queries_list.md).
