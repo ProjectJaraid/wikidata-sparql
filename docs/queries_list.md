@@ -3,7 +3,7 @@ title: "SPARQL queries for Project Jarāʾid"
 subtitle: "List of linked queries and screenshots of their results"
 description: |
    SPARQL for querying Wikidata for mostly Arabic periodicals
-date: 2025-12-09
+date: 2026-07-16
 author: 
   - name: Till Grallert
     institute: 
@@ -28,7 +28,7 @@ tags:
 ---
 
 Queries are largely modularised, which allows for some plug-and-play approach in chaining modules together. The language of results will depend on your operating system's language. 
-Most queries are far too long for Wikimedia's link shortener for sharing. I have therefore submitted many to the [query chest service](https://query-chest.toolforge.org/).
+Most queries are far too long for Wikimedia's link shortener, which is otherwise a great option for sharing due to the human-readability of the short links. But all non-ASCII characters have to be URL-encoded and the link shortener enforces a limit of 2.000 characters. I have therefore submitted many queries to the [query chest service](https://query-chest.toolforge.org/) in the past. However, as I should have known, shortened links are particularly prone to link rot and Query Chest has seemingly flushed its caches at some point in mid-July 2026. I have therefore reverted to linking full URLs despite them being extremely long and cumbersome.
 
 
 ## basic tables
