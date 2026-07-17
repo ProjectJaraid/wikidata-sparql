@@ -20,13 +20,13 @@
 
 [rq:count-collections]: https://query-chest.toolforge.org/redirect/wnhAUtiqI4MQyW0MOsqAyOqOwSuE6iSUcU28oCUAqkY 
 
-[rq:count-digitised]: https://query-chest.toolforge.org/redirect/JwwYdMXGLosUGeSKCucwckW0gMmEqAY2Uosa2MiMYev
+[rq:periodicals-lang_ar-digitised-count]: https://query-chest.toolforge.org/redirect/JwwYdMXGLosUGeSKCucwckW0gMmEqAY2Uosa2MiMYev
 
 <!-- maps -->
 
 [rq:periodicals-lang_ar-basic-disp_map]: https://query-chest.toolforge.org/redirect/KkTnCUlWc4MI6WKwSm6CeY4GM8EGOyScEsi4Sw0oOq4
 
-[rq:map-periodicals-ota-cluster]: https://query-chest.toolforge.org/redirect/wLTnRa9d2GceWkacK6Ek8uSUaWIGaamSsqe8C6kaMCI 
+[rq:periodicals-lang_ota-basic-disp_map]: https://query-chest.toolforge.org/redirect/wLTnRa9d2GceWkacK6Ek8uSUaWIGaamSsqe8C6kaMCI 
 
 [rq:map-periodicals-all-2024-03-18-cluster]: https://query-chest.toolforge.org/redirect/8K4bVhyOmm6seAwkmiIqsGEEY4yCooU6YMGsKSYQ2Eb 
 
@@ -63,7 +63,7 @@
 
 <!-- holdings -->
 
-[rq:periodicals-lang_ar-filter_collection-disp_map]: https://query-chest.toolforge.org/redirect/qmTkCttCikGMoCI8kSkS4Uq8MuyS8EyMKS6KaOQQqsf
+[rq:periodicals-lang_ar-filter_collection-aub-disp_map]: https://query-chest.toolforge.org/redirect/qmTkCttCikGMoCI8kSkS4Uq8MuyS8EyMKS6KaOQQqsf
 
 [rq:periodicals-lang_ar-holdings-filter_count-1]: https://query-chest.toolforge.org/redirect/sKOFbBpaueKiSgawYUIKUQyeaaiewS2IaGWqeSQ6euq
 
