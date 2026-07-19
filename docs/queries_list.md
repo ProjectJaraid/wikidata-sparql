@@ -351,8 +351,45 @@ Basic table for periodicals with known dimensions. This is mostly based on infor
 - link: [SPARQL query on Wikidata][rq:periodicals-lang_ar-dimensions]
 - obsolete link: <https://query-chest.toolforge.org/redirect/1yFIBRrWui6qQQAGAimCOW8gYg08syeWCmIAkG0sSai>
 
-# geographic regions
-## Palestine
+# Geographic regions
+## Palestine before the *Nakba*
+
+Instead of a rectangular bounding box, Palestine is defined by an explicitly provided list of publication places.
+
+Note that Wikidata relies on OpenStreetMap for mapping, which not just defaults to Hebrew toponyms within the 1967 borders of Israel but also superimposes the ultra-nationalist Israeli label of "Judea and Samaria" for the illegally occupied Westbank.
+
+### Map of periodicals
+
+- name: `palestine-1948_periodicals_map` 
+- link: [SPARQL query on Wikidata][rq:palestine-1948_periodicals_map] 
+- obsolete link: <https://query-chest.toolforge.org/redirect/WSB7DBbD7oYkIU2k8KoksQkaauOu8ew8cEOs4CCyCID>
+
+[![](../assets/img/palestine-1948_periodicals_map.png)][rq:palestine-1948_periodicals_map]
+
+### Map of periodicals with holdings
+
+- name: `palestine-1948_periodicals-holdings_map` 
+- link: [SPARQL query on Wikidata][rq:palestine-1948_periodicals-holdings_map] 
+- obsolete link: <https://query-chest.toolforge.org/redirect/FastY9YqoKky0AAggWsk4mMeQW284SIOkIGGiEEMQKd>
+
+[![](../assets/img/palestine-1948_periodicals-holdings_map.png)][rq:palestine-1948_periodicals-holdings_map]
+
+### Map of holdings
+
+- name: `palestine-1948_periodicals-holdings_map-collection` 
+- link: [SPARQL query on Wikidata][rq:palestine-1948_periodicals-holdings_map-collection] 
+- obsolete link: <https://query-chest.toolforge.org/redirect/Bsfc1wk38K2WEaQk84qGkyeOkggEea8kGuSMqgGOEU1>
+
+[![](../assets/img/palestine-1948_periodicals-holdings_map-collection.png)][rq:palestine-1948_periodicals-holdings_map-collection]
+
+### Map of periodicals with digitised collections
+
+- name: `palestine-1948_periodicals-digitised_map` 
+- link: [SPARQL query on Wikidata][rq:palestine-1948_periodicals-digitised_map] 
+- obsolete link: <https://query-chest.toolforge.org/redirect/aDYfGc5U3MCeOaWIg0OcKoYK2MMweuiOo8KGA26yOib>
+
+[![](../assets/img/palestine-1948_periodicals-digitised_map.png)][rq:palestine-1948_periodicals-digitised_map]
+
 ## Levant
 
 ![Map of newspapers published in the Eastern Mediterranean during the summer of 1910, [SPARQL query on Wikidata][rq:map-levant-1910-06].](../assets/img/wikidata-map_periodicals-bilad-al-sham-1910-06-15.png)
