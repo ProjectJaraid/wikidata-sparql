@@ -62,4 +62,3 @@ WHERE {
 GROUP BY ?pubPlace ?pubPlaceLabel ?lang ?langLabel ?coords
 ORDER BY ?langLabel DESC(?count)
 
-#URL: https://query-chest.toolforge.org/redirect/XvayrLG3RwUiau4MWWuUEkkuccWmusCSy4gO888Q489

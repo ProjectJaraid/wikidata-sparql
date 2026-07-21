@@ -28,4 +28,3 @@ WHERE {
 ORDER BY ?dateOnset ?periodical
 LIMIT 6000
 
-#URL of results: https://query-chest.toolforge.org/redirect/rLaytNA78qsiw2uAuusEMCwESG8yEwqIOWE2AOwwoIZ

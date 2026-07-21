@@ -51,4 +51,3 @@ WHERE {
 ORDER BY DESC(?periodicalCount)
 LIMIT 200
 
-#URL: https://query-chest.toolforge.org/redirect/5jePPWeZe42UCWwCmYyIc2mmcW242euOIeaEUiS0O0j

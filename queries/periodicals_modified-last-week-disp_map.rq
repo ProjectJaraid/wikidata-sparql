@@ -47,4 +47,4 @@ WHERE {
     }
 }
 ORDER BY ?dateOnset
-#short URL to query results: https://w.wiki/ApcD
+ https://w.wiki/ApcD

@@ -33,5 +33,5 @@ WHERE {
 }
 ORDER BY ?dateOnset
 LIMIT 5000
-#short URL to query results: https://w.wiki/Ae9K
+ https://w.wiki/Ae9K
 

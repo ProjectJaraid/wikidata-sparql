@@ -36,4 +36,3 @@ HAVING(?count > 1) # set a threshold
 ORDER BY DESC(?count)
 LIMIT 200
 
-# URL to query results: https://query-chest.toolforge.org/redirect/IR5nCxJ7FA2YEU2gsS42iemKeoaoyUMUmIs2GgOEOwv

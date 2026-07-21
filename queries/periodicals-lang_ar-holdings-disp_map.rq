@@ -59,4 +59,3 @@ WHERE {
 ORDER BY ?dateOnset
 LIMIT 5000
 
-# URL: https://query-chest.toolforge.org/redirect/w3zZsU79KQEuYUk8kk2MEwGaQg08w0GkYo2wYSksGGY

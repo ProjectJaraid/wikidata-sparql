@@ -55,4 +55,4 @@ WHERE {
 ORDER BY ?dateOnset
 LIMIT 300
 
-#URL to results: https://query-chest.toolforge.org/redirect/TaBce5kd4C6aqYiIU6Wk0ekc2IeAomyUk8uYekgiwWv
+

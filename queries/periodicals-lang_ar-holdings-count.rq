@@ -39,4 +39,3 @@ GROUP BY ?periodical ?periodicalLabel
 ORDER BY desc(?countCollections)
 
 LIMIT 10000
-# url: https://query-chest.toolforge.org/redirect/wnhAUtiqI4MQyW0MOsqAyOqOwSuE6iSUcU28oCUAqkY

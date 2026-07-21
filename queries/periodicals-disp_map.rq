@@ -29,4 +29,3 @@ WHERE {
 }
 #LIMIT 200
 ORDER BY ?dateOnset
-#short URL to query results: https://query-chest.toolforge.org/redirect/lPQ6bs93UuOQqEqC2sMA24y6ykqukaqaSkkeAyay2sI

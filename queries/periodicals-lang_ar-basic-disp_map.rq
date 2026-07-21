@@ -45,4 +45,3 @@ WHERE {
 }
 ORDER BY ?dateOnset
 LIMIT 5000
-#short URL to query results: https://query-chest.toolforge.org/redirect/KkTnCUlWc4MI6WKwSm6CeY4GM8EGOyScEsi4Sw0oOq4

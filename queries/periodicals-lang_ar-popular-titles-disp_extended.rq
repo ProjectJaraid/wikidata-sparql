@@ -72,4 +72,3 @@ WHERE {
 ORDER BY DESC(?titleCount) ?title ?dateOnset
 LIMIT 4000
 
-#short URL to query results: https://query-chest.toolforge.org/redirect/c2sS6yMDwmw8yQ2gKWmaOYICqOSYau0K8iaWGkYWUmp

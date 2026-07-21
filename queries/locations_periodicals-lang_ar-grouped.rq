@@ -39,4 +39,3 @@ GROUP BY ?pubPlace ?pubPlaceLabel
 HAVING(?count > 15) # set a threshold
 ORDER BY DESC(?count) ?pubPlaceLabel
 
-#short URL to query results: https://query-chest.toolforge.org/redirect/RwYZuZKKm0a4YK2Wk8O4AcA8CGYMsAumw8ECOGwSSgt

@@ -56,4 +56,3 @@ WHERE {
 ORDER BY ?dateOnset
 LIMIT 4000
 
-# URL of results: https://query-chest.toolforge.org/redirect/DcvuKDYvUO0eMYgGQE4IWg2eKsUOog0O0i6KeSuKEYs

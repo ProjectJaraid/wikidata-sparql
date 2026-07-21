@@ -84,4 +84,3 @@ WHERE {
 }
 ORDER BY ?dateOnset ?periodical ?inLibrary ?digitised
 LIMIT 8000
-# URL: https://query-chest.toolforge.org/redirect/ZviF4WkVtYSi4icGwO8aWEy6iC6qYEi6w6qcKQUucKn

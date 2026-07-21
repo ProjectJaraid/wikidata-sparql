@@ -56,4 +56,3 @@ WHERE {
     }
 }
 ORDER BY ?yearOnset ?periodicalLabel ?yearBirth ?editorLabel
-# URL of results: https://query-chest.toolforge.org/redirect/TUDcmZHcJcEiC00OWscW2omkcmiSsEa0kIgyeQwwMoe
