@@ -4,7 +4,6 @@
 read -p "Please provide a directory with files to be encoded: " -r input_dir
 output_dir=$input_dir
 base_url="https://query.wikidata.org/embed.html#"
-STRING="#title: الصحافة العربية حتى سنة ١٩٣٠"
 
 for file in $input_dir/*.rq;
     do
@@ -14,6 +13,7 @@ for file in $input_dir/*.rq;
         query=$(<$file)
         # URL-encode the string
         query_urlencoded=$(perl -MURI::Escape -e 'print uri_escape($ARGV[0])' "$query")
+        # process the string by stripping out comments and condense whitespace
         # save with prefix as full URL
-        echo "$base_url$query_urlencoded" > $output_dir/$name".txt"
+        echo "$base_url$query_urlencoded" | perl -pe 's/(%20)*%23%20.+?%0A/%20/g' | perl -pe 's/(%20)+/%20/g' > $output_dir/$name".txt"
     done
