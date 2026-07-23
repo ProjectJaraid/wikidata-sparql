@@ -1,14 +1,18 @@
 #!/bin/bash
 # this script reads a file (SPARQL query) and URL encodes it for use as direct links
+# change into the script directory
+current_dir=$(dirname "${BASH_SOURCE[0]}")
+cd $current_dir && pwd
 # ask user for input directory
-read -p "Please provide a directory with files to be encoded: " -r input_dir
-cd $input_dir && pwd
+#read -p "Please provide a directory with files to be encoded: " -r input_dir
+input_dir=$current_dir/../queries
 output_dir=$input_dir
 base_url="https://query.wikidata.org/embed.html#"
 # create a log file
-links="links_embedded.md"
+docs_dir=$input_dir/../docs
+links="$docs_dir/links_embedded.md"
 echo "<!-- links -->" > "$links"
-documentation="queries_documentation.md"
+documentation="$docs_dir/queries_documentation.md"
 echo "---"$'\n'"title: basic documentation of queries in this folder"$'\n'"lang: en"$'\n'"---" > "$documentation"
 
 for file in $input_dir/*.rq;
