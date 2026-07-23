@@ -6,8 +6,10 @@ cd $input_dir && pwd
 output_dir=$input_dir
 base_url="https://query.wikidata.org/embed.html#"
 # create a log file
-logfile="links_embedded.md"
-echo "" > "$logfile"
+links="links_embedded.md"
+echo "<!-- links -->" > "$links"
+documentation="queries_documentation.md"
+echo "---"$'\n'"title: basic documentation of queries in this folder"$'\n'"lang: en"$'\n'"---" > "$documentation"
 
 for file in $input_dir/*.rq;
     do
@@ -22,5 +24,8 @@ for file in $input_dir/*.rq;
         url="$base_url$query_clean"
         # save with prefix as full URL
         echo "$url" > $output_dir/$name".txt"
-        echo "[rq:$name]: $url" >> $logfile
+        # save a markdown dictionary with links
+        echo "[rq:$name]: $url"$'\n' >> $links
+        # write a basic documentation file to be manually expanded
+        echo $'\n\n'"# \`$name\`"$'\n\n'"- name: \`$name\`"$'\n'"- link: [SPARQL query on Wikidata][rq:$name]"$'\n\n'"[![Some description](../assets/img/$name.png)][rq:$name]{#fig:$name}" >> $documentation
     done
