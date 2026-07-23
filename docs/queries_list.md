@@ -27,6 +27,19 @@ tags:
   - SPARQL
 ---
 
+<!-- 
+pandoc \
+--from markdown-inline_code_attributes --to pdf \
+--pdf-engine=typst \
+--pdf-engine-opt=--root=${PWD} \
+--standalone --toc \
+--template=/Users/Shared/BachUni/BachBibliothek/GitHub/pandoc/templates/typst/default.typ \
+--lua-filter=/Users/Shared/BachCloud/BTSync/FormerDropbox/Pandoc/lua-filters/scholarly-metadata/scholarly-metadata.lua \
+--lua-filter=/Users/Shared/BachCloud/BTSync/FormerDropbox/Pandoc/lua-filters/author-info-blocks/author-info-blocks.lua \
+--citeproc --csl=/Users/Shared/BachUni/BachBibliothek/GitHub/pandoc/csl/chicago-author-date.csl \
+queries_list.md links_embedded.md -o queries_list.pdf
+ -->
+
 # General remarks
 ## Modularity
 
