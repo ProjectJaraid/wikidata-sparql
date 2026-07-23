@@ -19,7 +19,7 @@ for file in $input_dir/*.rq;
         query_urlencoded=$(perl -MURI::Escape -e 'print uri_escape($ARGV[0])' "$query")
         # process the string by stripping out comments and condense whitespace
         query_clean=$(echo "$query_urlencoded" | perl -pe 's/(%20)*%23%20.+?%0A/%20/g' | perl -pe 's/(%20)+/%20/g')
-        url="$base_url/$query_clean"
+        url="$base_url$query_clean"
         # save with prefix as full URL
         echo "$url" > $output_dir/$name".txt"
         echo "[rq:$name]: $url" >> $logfile
