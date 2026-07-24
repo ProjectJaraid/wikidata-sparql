@@ -128,6 +128,13 @@ Map of all Ottoman periodicals. Otherwise similar to the preceding map
 [![](../assets/img/periodicals-lang_ota-basic-disp_map.png)][rq:periodicals-lang_ota-basic-disp_map]
 
 ## Historical stages of the data set
+### Periodicals edited within the last week
+
+- name: `periodicals-lang_ar-modified_last-week-disp_map`
+- link: [SPARQL query on Wikidata][rq:periodicals-lang_ar-modified_last-week-disp_map]
+
+<!-- [![Some description](../assets/img/periodicals-lang_ar-modified_last-week-disp_map.png)][rq:periodicals-lang_ar-modified_last-week-disp_map]{#fig:periodicals-lang_ar-modified_last-week-disp_map} -->
+
 ### Map of all periodicals before our import
 
 Map of all items for periodicals that were created before 18 March 2024
