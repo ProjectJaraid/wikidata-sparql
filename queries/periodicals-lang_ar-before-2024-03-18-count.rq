@@ -1,0 +1,21 @@
+#title: The global Arabic periodical press until 1930 (items present before 18 March 2024)
+SELECT DISTINCT
+  (COUNT(?periodical) as ?count)
+# periodicals published before 1930
+WITH {
+  SELECT DISTINCT
+    ?periodical
+  WHERE {
+    ?periodical wdt:P31/wdt:P279* wd:Q1002697 ;
+                wdt:P407/wdt:P279* wd:Q13955 ;
+               (wdt:P571 | wdt:P580) ?dateOnset.
+    FILTER(?dateOnset < "1930-01-01"^^xsd:dateTime).
+  }
+  LIMIT 60000
+} as %periodicals
+# indirect filter for date of creation
+WHERE{
+  INCLUDE %periodicals
+  BIND(REPLACE(STR(?periodical), "^.*Q(\\d+)$", "$1", "i") as ?qid).  # get QID and strip Q
+  FILTER(xsd:integer(?qid) < "124964154"^^xsd:integer).               # filter for numbers smaller than 124964154, created on 2024-03-18
+  }

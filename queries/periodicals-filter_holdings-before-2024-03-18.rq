@@ -1,0 +1,42 @@
+#title: The global periodical press until 1930 (items present before 18 March 2024)
+SELECT DISTINCT
+  ?periodical ?periodicalLabel
+  (YEAR(?dateOnset) as ?year) ?pubPlaceLabel
+  ?periodicalDesc
+  ?inLibrary
+# periodicals published before 1930
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset ?inLibrary
+  WHERE {
+    hint:SubQuery hint:runOnce true .
+    ?periodical wdt:P31/wdt:P279* wd:Q1002697 ;
+               (wdt:P571 | wdt:P580) ?dateOnset ;
+                wdt:P195 ?collection .
+    FILTER(?dateOnset < "1930-01-01"^^xsd:dateTime).
+    BIND ( IF (BOUND (?collection), "x", "" )  as ?inLibrary )
+  }
+  LIMIT 60000
+} as %periodicals
+# indirect filter for date of creation
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset ?inLibrary
+  WHERE{
+    INCLUDE %periodicals
+    BIND(REPLACE(STR(?periodical), "^.*Q(\\d+)$", "$1", "i") as ?qid).  # get QID and strip Q
+    FILTER(xsd:integer(?qid) < "124964154"^^xsd:integer).               # filter for numbers smaller than 124964154, created on 2024-03-18
+    }
+  } as %period
+WHERE {
+    INCLUDE %period
+    # retrieve more properties: locations
+    OPTIONAL{?periodical (wdt:P291|wdt:P159|wdt:P276 ) ?pubPlace.}
+    SERVICE wikibase:label {
+        bd:serviceParam wikibase:language "mul,[AUTO_LANGUAGE]".
+        ?periodical rdfs:label ?periodicalLabel;
+            schema:description ?periodicalDesc.
+        ?pubPlace rdfs:label ?pubPlaceLabel.
+    }
+}
+ORDER BY ?dateOnset ?periodicalLabel

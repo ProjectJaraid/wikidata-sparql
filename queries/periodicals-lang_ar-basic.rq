@@ -72,7 +72,7 @@ WHERE {
       bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,ar,en,fr,de".
       ?periodical rdfs:label ?periodicalLabel;
           schema:description ?periodicalDesc.
-      ?pubPlace rdfs:label ?pubPlaceLabel
+      ?pubPlace rdfs:label ?pubPlaceLabel.
     }
 }
 ORDER BY ?dateOnset ?periodical ?inLibrary ?digitised

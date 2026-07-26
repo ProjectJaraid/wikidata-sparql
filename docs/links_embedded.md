@@ -1,11 +1,11 @@
 <!-- links -->
 [rq:arabic-periodicals-images]: https://query-chest.toolforge.org/redirect/nNIwitQHCq02U4Ww8MwIGS4EcY4y6qCO2uOWqGwWoGU 
 
-[rq:count-arabic-periodicals-2024-03-18]: https://query-chest.toolforge.org/redirect/oYNezk1fgs8UQyCQoKsSemEiWu6oiWSAq0As6k2QISv 
+[rq:periodicals-lang_ar-before-2024-03-18-count]: https://w.wiki/So9a
 
 [rq:count-arabic-periodicals-2024-08-08]: https://query-chest.toolforge.org/redirect/eO3ox4S9FwUeY24gs24CU6OOqiI0WiYKiEKmggM46sn 
 
-[rq:count-periodicals-all-2024-03-18]: https://query-chest.toolforge.org/redirect/BGlKl7mq24UyuaKyESSwQMYUS4S2qgwgUg4OuuOYksf 
+[rq:periodicals_before-2024-03-18-count]: https://w.wiki/So9Q 
 
 [rq:count_periodicals]: https://query.wikidata.org/embed.html#%23title%3A%20The%20global%20periodical%20press%20until%201930%20%28items%20present%20on%20selected%20date%29%0ASELECT%0A%20%28COUNT%20%28DISTINCT%20%3Fperiodical%29%20as%20%3Fcount%29%0AWITH%20%7B%0A%20SELECT%20DISTINCT%0A%20%3Fperiodical%0A%20WHERE%20%7B%0A%20%3Fperiodical%20wdt%3AP31%2Fwdt%3AP279%2A%20wd%3AQ1002697%3B%0A%20%28wdt%3AP571%20%7C%20wdt%3AP580%29%20%3FdateOnset.%0A%20FILTER%28%20YEAR%28%3FdateOnset%29%20%3C%201930%29.%0A%20%7D%0A%20LIMIT%2050000%0A%20%7D%20as%20%25periodicals%0AWITH%20%7B%0A%20SELECT%20DISTINCT%0A%20%3Fperiodical%0A%20WHERE%7B%0A%20INCLUDE%20%25periodicals%0A%20%3Fperiodical%20schema%3AdateModified%20%3Fmodified.%0A%20FILTER%28%3Fmodified%20%3C%3D%20%222024-08-21%22%5E%5Exsd%3AdateTime%29.%0A%20%7D%0A%20%7D%20as%20%25period%0AWHERE%20%7B%0A%20INCLUDE%20%25period%0A%7D
 

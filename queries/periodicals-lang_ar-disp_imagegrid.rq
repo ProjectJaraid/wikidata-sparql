@@ -1,0 +1,45 @@
+#title:الصحافة العربية
+#defaultView:ImageGrid
+SELECT DISTINCT
+  ?periodical ?periodicalLabel
+  ?title (YEAR(?dateOnset) as ?year) ?pubPlaceLabel
+  ?periodicalDesc
+  ?imgPeriodical
+WITH {
+  SELECT DISTINCT
+    ?periodical ?dateOnset
+  WHERE {
+    hint:SubQuery hint:runOnce true .    # this might save some time
+    VALUES ?lang {          # select publication languages
+      wd:Q13955             # Arabic
+#      wd:Q36730             # Ottoman Turkish
+#      wd:Q8785              # Armenian
+#      wd:Q36155             # Coptic
+#      wd:Q9129              # Greek
+#      wd:Q9168              # Farsi
+#      wd:Q36196             # Ladino
+      }.
+    ?periodical wdt:P31/wdt:P279* wd:Q1002697 ;   # limit to medium: periodicals (wd:Q1002697), newspapers (wd:Q11032)
+              (wdt:P571 | wdt:P580) ?dateOnset .
+    ?periodical wdt:P407/wdt:P279* ?lang .       # limit by publication language
+    FILTER(?dateOnset < "2000-01-01"^^xsd:dateTime) .       # published before a specific date
+  }
+  ORDER BY ?dateOnset
+  LIMIT 6000
+} as %periodicals
+WHERE {
+  INCLUDE %periodicals
+  OPTIONAL{?periodical (wdt:P291|wdt:P159|wdt:P276 ) ?pubPlace.} # locations
+  ?periodical (wdt:P18|wdt:P154) ?imgPeriodical;                 # page images
+              wdt:P1476 ?title.                                  # titles
+  FILTER(LANG(?title) = 'ar').  # limit titles to Arabic strings
+  # get labels and descriptions
+  SERVICE wikibase:label {
+      bd:serviceParam wikibase:language "[AUTO_LANGUAGE],mul,ar,en,fr,de".
+      ?periodical rdfs:label ?periodicalLabel;
+          schema:description ?periodicalDesc.
+      ?pubPlace rdfs:label ?pubPlaceLabel
+    }
+}
+ORDER BY ?dateOnset ?title ?periodicalLabel
+LIMIT 8000

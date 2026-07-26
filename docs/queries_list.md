@@ -183,8 +183,8 @@ Timeline of all periodicals published in pre-Nakba Palestine
 
 Simple counts for documentary purposes
 
-1. [All periodicals on Wikidata (items created before 18 March 2024)][rq:count-periodicals-all-2024-03-18]
-2. [Arabic periodicals on Wikidata (items created before 18 March 2024)][rq:count-arabic-periodicals-2024-03-18]
+1. [All periodicals on Wikidata (items created before 18 March 2024)][rq:periodicals_before-2024-03-18-count]
+2. [Arabic periodicals on Wikidata (items created before 18 March 2024)][rq:periodicals-lang_ar-before-2024-03-18-count]
 3. [Arabic periodicals on Wikidata (items created before 8 August 2024)][rq:count-arabic-periodicals-2024-08-08]
 
 ## Count of digitised collections per periodical
