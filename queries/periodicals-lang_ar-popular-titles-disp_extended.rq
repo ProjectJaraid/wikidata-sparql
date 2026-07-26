@@ -1,4 +1,4 @@
-#title:The most freuqent Arabic periodical titles before 1930
+#title:The most frequent Arabic periodical titles before 1930
 #defaultView:Table{"hide":["?coords"]}
 PREFIX medium: <http://www.wikidata.org/entity/Q1002697> # set a publication type: periodicals (wd:Q1002697), newspapers (wd:Q11032)
 SELECT DISTINCT
